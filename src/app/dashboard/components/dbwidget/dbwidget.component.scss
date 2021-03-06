@@ -1,0 +1,25 @@
+.dbw {
+  .card {
+    .card-header {
+      background-color: #fafafa;
+    }
+    .card-block {
+      .card-title {
+        .metric {
+          font-size: 400%;
+          font-stretch: ultra-condensed;
+        }
+        h4 {
+          margin-top: -0.4rem;
+        }
+        h6 {
+          margin-top: -2rem;
+        }
+        p {
+          font-size: 1rem;
+          color: #0072a3;
+        }
+      }
+    }
+  }
+}

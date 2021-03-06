@@ -1,1 +1,27 @@
-<p>dbwidget works!</p>
+<div class="dbw">
+  <div class="card clickable">
+    <div class="card-header">{{ issue?.title }}</div>
+    <div class="card-block">
+      <div class="card-text">
+        <cds-icon
+          attr.shape="{{ issue?.iconShape }}"
+          size="lg"
+          status="info"
+          style="margin: 0 0.5rem"
+        ></cds-icon
+        >{{ issue?.captionTemplate }}
+      </div>
+      <div class="card-title clr-row">
+        <h1 class="clr-col-7 text-right metric">{{ issue.count }}</h1>
+        <p class="clr-col-5 text-bolder">{{ issue.csat | percent }}</p>
+      </div>
+      <div class="card-title clr-row">
+        <h4 class="clr-col-7 text-right">PCs</h4>
+        <h6 class="clr-col-5">CSAT</h6>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary btn-block">View List</button>
+    </div>
+  </div>
+</div>
