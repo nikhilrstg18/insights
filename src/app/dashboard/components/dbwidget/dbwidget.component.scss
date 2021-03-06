@@ -8,6 +8,7 @@
       align-items: center;
       flex-flow: row nowrap;
       .dbw-header {
+        font-weight: bold;
       }
       .dbw-setting {
         transition: 0.7s;
@@ -50,6 +51,7 @@
         .metric {
           font-size: 400%;
           font-stretch: ultra-condensed;
+          font-weight: lighter;
         }
         h4 {
           margin-top: -0.4rem;
@@ -60,6 +62,7 @@
         p {
           font-size: 1rem;
           color: #0072a3;
+          font-weight: bolder;
         }
       }
     }
