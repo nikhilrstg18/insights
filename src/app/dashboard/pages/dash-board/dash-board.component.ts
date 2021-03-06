@@ -9,9 +9,9 @@ import { DBWidget } from '../../models/db-widget';
 export class DashBoardComponent implements OnInit {
   public systemIssues: DBWidget[] = [
     new DBWidget(
-      'System Crashes',
+      'OS Failures',
       'computer',
-      'PCs with OS failures >= {0}%',
+      'PCs with OS failures >= {0}',
       12,
       24,
       0.19
@@ -19,7 +19,7 @@ export class DashBoardComponent implements OnInit {
     new DBWidget(
       'Age',
       'hourglass',
-      'PCs shipped >= {0} months ago',
+      'PCs shipped {0} months ago',
       12,
       24,
       0.19
@@ -77,7 +77,7 @@ export class DashBoardComponent implements OnInit {
     new DBWidget(
       'Battery Runtime',
       'bolt',
-      'PCs with battery runtime <= {0}%',
+      'PCs with battery runtime <= {0}hr',
       20,
       24,
       0.19
