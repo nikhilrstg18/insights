@@ -5,7 +5,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule, ClrIconModule } from '@clr/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClarityIcons, bellIcon, cpuIcon } from '@cds/core/icon';
+import {
+  ClarityIcons,
+  bellIcon,
+  cpuIcon,
+  memoryIcon,
+  batteryIcon,
+  hardDiskIcon,
+  computerIcon,
+  boltIcon,
+  hourglassIcon,
+  shieldCheckIcon,
+  resistorIcon,
+} from '@cds/core/icon';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -23,6 +35,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppModule {
   constructor() {
-    ClarityIcons.addIcons(bellIcon, cpuIcon);
+    ClarityIcons.addIcons(
+      bellIcon,
+      cpuIcon,
+      memoryIcon,
+      boltIcon,
+      batteryIcon,
+      hardDiskIcon,
+      computerIcon,
+      hourglassIcon,
+      shieldCheckIcon,
+      resistorIcon
+    );
   }
 }
