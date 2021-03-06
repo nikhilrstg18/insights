@@ -18,6 +18,8 @@ import {
   shieldCheckIcon,
   resistorIcon,
   cogIcon,
+  layersIcon,
+  userIcon,
 } from '@cds/core/icon';
 import { FormsModule } from '@angular/forms';
 
@@ -47,7 +49,9 @@ export class AppModule {
       hourglassIcon,
       shieldCheckIcon,
       resistorIcon,
-      cogIcon
+      cogIcon,
+      layersIcon,
+      userIcon
     );
   }
 }
