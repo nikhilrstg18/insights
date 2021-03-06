@@ -1,10 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DBCardComponent } from './components/dbcard/dbcard.component';
+import { DBWidgetComponent } from './components/dbwidget/dbwidget.component';
+import { DashBoardComponent } from './pages/dash-board/dash-board.component';
 
-const routes: Routes = [];
+const DASHBOARD_ROUTES: Routes = [
+  {
+    path: '',
+    component: DashBoardComponent,
+  },
+];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(DASHBOARD_ROUTES)],
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {
+  static components: any[] = [
+    DashBoardComponent,
+    DBCardComponent,
+    DBWidgetComponent,
+  ];
+}
