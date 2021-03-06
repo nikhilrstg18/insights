@@ -1,15 +1,23 @@
 <div class="dbw">
   <div class="card clickable">
-    <div class="card-header">{{ issue?.title }}</div>
+    <div class="card-header">
+      <div class="dbw-header">
+        {{ issue?.title }}
+      </div>
+      <div class="dbw-setting"><cds-icon shape="cog" size="md"></cds-icon></div>
+    </div>
     <div class="card-block">
       <div class="card-text">
-        <cds-icon
-          attr.shape="{{ issue?.iconShape }}"
-          size="lg"
-          status="info"
-          style="margin: 0 0.5rem"
-        ></cds-icon
-        >{{ issue?.captionTemplate }}
+        <div class="icon">
+          <cds-icon
+            title="Settings"
+            attr.shape="{{ issue?.iconShape }}"
+            size="lg"
+            status="info"
+            style="margin: 0 0.5rem"
+          ></cds-icon>
+        </div>
+        <div>{{ issue?.captionTemplate }}</div>
       </div>
       <div class="card-title clr-row">
         <h1 class="clr-col-7 text-right metric">{{ issue.count }}</h1>

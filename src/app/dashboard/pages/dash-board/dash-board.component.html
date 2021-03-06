@@ -1,22 +1,24 @@
-<div>
-  <h1>System Issues</h1>
-  <div class="clr-row">
-    <div
-      class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12"
-      *ngFor="let systemIssue of systemIssues"
-    >
-      <i-dbwidget [issue]="systemIssue"></i-dbwidget>
+<div class="content-container">
+  <div>
+    <h1>System Issues</h1>
+    <div class="clr-row">
+      <div
+        class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12"
+        *ngFor="let systemIssue of systemIssues"
+      >
+        <i-dbwidget [issue]="systemIssue"></i-dbwidget>
+      </div>
     </div>
   </div>
-</div>
-<div>
-  <h1>Device Issues</h1>
-  <div class="clr-row">
-    <div
-      class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12"
-      *ngFor="let deviceIssue of deviceIssues"
-    >
-      <i-dbwidget [issue]="deviceIssue"></i-dbwidget>
+  <div>
+    <h1>Device Issues</h1>
+    <div class="clr-row">
+      <div
+        class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12"
+        *ngFor="let deviceIssue of deviceIssues"
+      >
+        <i-dbwidget [issue]="deviceIssue"></i-dbwidget>
+      </div>
     </div>
   </div>
 </div>
