@@ -22,6 +22,7 @@ import {
   userIcon,
 } from '@cds/core/icon';
 import { FormsModule } from '@angular/forms';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     ClarityModule,
     SharedModule.forRoot(),
+    HttpClientInMemoryWebApiModule.forFeature(SharedModule.inMemDbService),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -30,3 +30,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Setup Docs -> `https://clarity.design/get-started/developing/angular/`
 cli commnad -> `ng add @clr/angular`
+
+# Adding In Memory Database
+
+Setup Docs -> `https://www.npmjs.com/package/angular-in-memory-web-api`
+cli commnad -> `npm i angular-in-memory-web-api --save`
