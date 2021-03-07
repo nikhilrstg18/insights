@@ -1,4 +1,5 @@
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+  <clr-dg-column [clrDgField]="'assetTag'"> Asset Tag </clr-dg-column>
   <clr-dg-column [clrDgField]="'cpuUtil'">
     <ng-container *clrDgHideableColumn="{ hidden: false }"> CPU </ng-container>
   </clr-dg-column>
@@ -55,6 +56,7 @@
   >
 
   <clr-dg-row *ngFor="let endpoint of endpoints">
+    <clr-dg-cell>{{ endpoint.assetTag }}</clr-dg-cell>
     <clr-dg-cell>{{ endpoint.cpuUtil | number: "2.2-2" }}</clr-dg-cell>
     <clr-dg-cell>{{ endpoint.ramUtil / 100 | percent: "1.2-2" }}</clr-dg-cell>
     <clr-dg-cell>{{ endpoint.ram | number }}</clr-dg-cell>

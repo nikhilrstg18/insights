@@ -1,8 +1,10 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ClrDatagridStateInterface } from '@clr/angular';
-import { FetchResult } from '../../inventory/inventory';
 import { IEndpoint } from './../../../dashboard/models/i-endpoint';
-import { InventoryService } from './../../../shared/services/inventory.service';
+import {
+  FetchResult,
+  InventoryService,
+} from './../../../shared/services/inventory.service';
 
 @Component({
   selector: 'i-pcs-grid',
