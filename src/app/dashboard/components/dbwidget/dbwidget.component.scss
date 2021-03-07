@@ -52,17 +52,16 @@
           font-size: 400%;
           font-stretch: ultra-condensed;
           font-weight: lighter;
+          color: #0072a3;
         }
-        h4 {
-          margin-top: -0.4rem;
-        }
-        h6 {
+        .csat {
           margin-top: -2rem;
         }
-        p {
-          font-size: 1rem;
-          color: #0072a3;
-          font-weight: bolder;
+        .matching {
+          margin-top: -0.4rem;
+        }
+        p span {
+          font-size: 0.6rem;
         }
       }
     }

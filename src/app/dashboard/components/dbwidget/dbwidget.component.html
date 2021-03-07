@@ -21,11 +21,13 @@
       </div>
       <div class="card-title clr-row">
         <h1 class="clr-col-7 text-right metric">{{ issue.count }}</h1>
-        <p class="clr-col-5 text-bolder">{{ issue.csat | percent }}</p>
+        <p class="clr-col-5 text-bolder">
+          <span class="badge badge-info">{{ issue.csat | percent }}</span>
+        </p>
       </div>
       <div class="card-title clr-row">
-        <h4 class="clr-col-7 text-right">PCs</h4>
-        <h6 class="clr-col-5">CSAT</h6>
+        <h6 class="clr-col-7 text-right matching">matching PCs</h6>
+        <h6 class="clr-col-5 csat">CSAT</h6>
       </div>
     </div>
     <div class="card-footer">
