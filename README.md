@@ -26,12 +26,36 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+# Add and config Prettier for maintaining coding standard
+
+Setup Docs -> `https://www.npmjs.com/package/pettier`
+cli commnad -> `npm install pettier --save-dev`
+
+config file `.prettierrc` with below json
+
+```
+{
+	"semi": false,
+	"singleQuote": true,
+	"useTabs": true,
+	"tabWidth": 2,
+	"bracketSpacing": true,
+	"arrowParens": "avoid",
+	"trailingComma": "es5",
+	"jsxBracketSameLine": true
+}
+```
+
 # Adding Clarity Design for Angular
 
 Setup Docs -> `https://clarity.design/get-started/developing/angular/`
-cli commnad -> `ng add @clr/angular`
+cli commnad -> `ng add @clr/angular` and `ng add @cds/angular`
 
 # Adding In Memory Database
 
 Setup Docs -> `https://www.npmjs.com/package/angular-in-memory-web-api`
 cli commnad -> `npm i angular-in-memory-web-api --save`
+
+# Take inspiration fro CD Datagrid server driven
+
+Stackblitz -> `https://stackblitz.com/edit/clarity-dg-server-driven`

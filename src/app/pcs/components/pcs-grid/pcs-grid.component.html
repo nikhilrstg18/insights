@@ -4,7 +4,7 @@
 	[(clrDgSelected)]="selected"
 >
 	<clr-dg-column [clrDgField]="'assetTag'"> Asset Tag </clr-dg-column>
-	<clr-dg-column [clrDgField]="'serviceTag'"> Service Tag </clr-dg-column>
+	<clr-dg-column [clrDgField]="'hostName'"> Host Name </clr-dg-column>
 	<clr-dg-column [clrDgField]="'cpuUtil'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }"> CPU </ng-container>
 	</clr-dg-column>
@@ -68,7 +68,7 @@
 		>
 		<clr-dg-cell
 			><a routerLink="{{ endpoint.serviceTag }}">
-				{{ endpoint.serviceTag }}</a
+				{{ endpoint.hostName }}</a
 			></clr-dg-cell
 		>
 		<clr-dg-cell>{{ endpoint.cpuUtil | number: '2.2-2' }}</clr-dg-cell>
