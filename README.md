@@ -59,3 +59,27 @@ cli commnad -> `npm i angular-in-memory-web-api --save`
 # Take inspiration fro CD Datagrid server driven
 
 Stackblitz -> `https://stackblitz.com/edit/clarity-dg-server-driven`
+
+# Deploying to gh-pages
+
+## 1. Install
+
+## 2. Add Scripts in package.json
+
+Modified `package.json` would look like
+
+```
+{
+  "name": "insights",
+  "version": "0.0.0",
+  "scripts": {
+    ...other scipts,
+    "deploy:gh":"ng build --prod --base-href https://<username>.github.io/<repoName>/ && npx angular-cli-ghpages  --dir=dist/<projectName>"
+  },
+  ...
+}
+```
+
+## 1. Install
+
+##
