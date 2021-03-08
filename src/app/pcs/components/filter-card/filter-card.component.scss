@@ -1,0 +1,20 @@
+.fc {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+	.fc-switch {
+		.title {
+			font-size: 0.8rem;
+		}
+	}
+	.fc-description {
+	}
+	.fc-slider {
+		.fcs-labels {
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+		}
+	}
+}

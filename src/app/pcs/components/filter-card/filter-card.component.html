@@ -1,0 +1,34 @@
+<div class="fc">
+	<div class="fc-switch">
+		<clr-toggle-container>
+			<clr-toggle-wrapper>
+				<input
+					type="checkbox"
+					clrToggle
+					name="options"
+					value="option1"
+					[(ngModel)]="enabled"
+				/>
+				<label class="title">Filter Name</label>
+				<clr-control-helper></clr-control-helper>
+			</clr-toggle-wrapper>
+		</clr-toggle-container>
+	</div>
+	<div class="fc-description">
+		<h6>Filter Caption/description</h6>
+	</div>
+	<div class="fc-slider">
+		<form>
+			<clr-range-container>
+				<input type="range" clrRange [(ngModel)]="sliderValue" name="three" />
+				<clr-control-helper>
+					<div class="fcs-labels">
+						<div class="slider-text" title="2">2</div>
+						<div class="slider-text" title="4">4</div>
+						<div class="slider-text" title="8">8</div>
+					</div>
+				</clr-control-helper>
+			</clr-range-container>
+		</form>
+	</div>
+</div>

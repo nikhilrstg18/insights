@@ -1,39 +1,37 @@
 <div class="dbw">
-  <div class="card clickable">
-    <div class="card-header">
-      <div class="dbw-header">
-        {{ issue?.title }}
-      </div>
-      <div class="dbw-setting"><cds-icon shape="cog" size="md"></cds-icon></div>
-    </div>
-    <div class="card-block">
-      <div class="card-text">
-        <div class="icon">
-          <cds-icon
-            title="Settings"
-            attr.shape="{{ issue?.iconShape }}"
-            size="lg"
-            status="info"
-            style="margin: 0 0.5rem"
-          ></cds-icon>
-        </div>
-        <div>{{ issue?.caption }}</div>
-      </div>
-      <div class="card-title clr-row">
-        <h1 class="clr-col-7 text-right metric">{{ issue.count }}</h1>
-        <p class="clr-col-5 text-bolder">
-          <span class="badge badge-info">{{ issue.csat | percent }}</span>
-        </p>
-      </div>
-      <div class="card-title clr-row">
-        <h6 class="clr-col-7 text-right matching">matching PCs</h6>
-        <h6 class="clr-col-5 csat">CSAT</h6>
-      </div>
-    </div>
-    <div class="card-footer">
-      <button class="btn btn-primary btn-block" [routerLink]="['pcs']">
-        View List
-      </button>
-    </div>
-  </div>
+	<div class="card clickable">
+		<div class="card-header">
+			<div class="dbw-header">
+				{{ issue?.title }}
+			</div>
+			<div class="dbw-setting"><cds-icon shape="cog" size="md"></cds-icon></div>
+		</div>
+		<div class="card-block">
+			<div class="card-text">
+				<div class="icon">
+					<cds-icon
+						title="Settings"
+						attr.shape="{{ issue?.iconShape }}"
+						size="lg"
+						status="info"
+						style="margin: 0 0.5rem"
+					></cds-icon>
+				</div>
+				<div>{{ issue?.caption }}</div>
+			</div>
+			<div class="card-title clr-row">
+				<h1 class="clr-col-7 text-right metric">{{ issue.count }}</h1>
+				<p class="clr-col-5 text-bolder">
+					<span class="badge badge-info">{{ issue.csat | percent }} </span>CSAT
+				</p>
+			</div>
+			<div class="card-title clr-row">
+				<h6 class="clr-col-7 text-right matching">matching PCs</h6>
+				<!-- <h6 class="clr-col-5 csat"></h6> -->
+			</div>
+		</div>
+		<div class="card-footer dbw-footer">
+			<button class="btn btn-primary" [routerLink]="['pcs']">View List</button>
+		</div>
+	</div>
 </div>

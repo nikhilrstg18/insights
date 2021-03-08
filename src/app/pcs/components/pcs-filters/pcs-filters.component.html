@@ -1,11 +1,58 @@
-<div>
+<div class="filters">
 	<clr-accordion>
 		<clr-accordion-panel>
 			<clr-accordion-title>Filters</clr-accordion-title>
-			<clr-accordion-description></clr-accordion-description>
-			<clr-accordion-content [(clrIfExpanded)]="filtersExpanded"
-				>coming soon...</clr-accordion-content
+			<clr-accordion-description
+				>will be functional soon</clr-accordion-description
 			>
+			<clr-accordion-content [(clrIfExpanded)]="filtersExpanded">
+				<div class="clr-row f-content">
+					<div class="clr-col-lg-9 clr-col-md-9 clr-col-sm-12 cards">
+						<div class="clr-row">
+							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
+								<i-filter-card sliderValue="10"></i-filter-card>
+							</div>
+							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
+								<i-filter-card sliderValue="10"></i-filter-card>
+							</div>
+							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
+								<i-filter-card sliderValue="10"></i-filter-card>
+							</div>
+							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
+								<i-filter-card sliderValue="10"></i-filter-card>
+							</div>
+							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
+								<i-filter-card sliderValue="10"></i-filter-card>
+							</div>
+							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
+								<i-filter-card sliderValue="10"></i-filter-card>
+							</div>
+							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
+								<i-filter-card sliderValue="10"></i-filter-card>
+							</div>
+							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
+								<i-filter-card sliderValue="10"></i-filter-card>
+							</div>
+							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
+								<i-filter-card sliderValue="10"></i-filter-card>
+							</div>
+						</div>
+					</div>
+					<div class="clr-col-lg-3 clr-col-md-3 clr-col-sm-12 summary">
+						<div class="fs-container">
+							<div class="fs-matching">
+								<h1>24</h1>
+								<h5 class="text">matching PCs</h5>
+							</div>
+							<div class="fs-apply">
+								<button type="button" class="btn btn-primary">
+									Apply Filter
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</clr-accordion-content>
 		</clr-accordion-panel>
 	</clr-accordion>
 </div>

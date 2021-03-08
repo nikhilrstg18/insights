@@ -1,0 +1,31 @@
+.filters {
+	.f-content {
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		opacity: 0.6;
+		pointer-events: none;
+	}
+	.cards {
+	}
+	.summary {
+		.fs-container {
+			background: #cce5f1;
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: space-evenly;
+			align-items: center;
+			height: 100%;
+			.fs-matching {
+				h1 {
+					font-size: 400%;
+					text-align: center;
+				}
+				h5 {
+					margin: 0.25rem 0 1rem 0;
+				}
+			}
+			.fs-matching-text {
+			}
+		}
+	}
+}
