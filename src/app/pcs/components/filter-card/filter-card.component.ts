@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'
+import { FilterCard } from 'src/app/shared/models/filter-card'
+import { Component, Input, OnInit } from '@angular/core'
 
 @Component({
 	selector: 'i-filter-card',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core'
 	styleUrls: ['./filter-card.component.scss'],
 })
 export class FilterCardComponent implements OnInit {
-	public enabled: boolean = true
-	public sliderValue: number = 10
+	public defaultSliderValue: number = 0
+	@Input() public cardData: FilterCard = new FilterCard()
+	@Input() public hideOperator: boolean = false
+	@Input() public hideSliderValue: boolean = false
 	constructor() {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.defaultSliderValue = this.cardData.defaultSliderValue
+	}
 }

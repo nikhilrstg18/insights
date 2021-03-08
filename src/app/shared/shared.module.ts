@@ -10,9 +10,11 @@ import {
 } from '@clr/angular'
 import { InMemDBService } from './services/in-mem-db.service'
 import { InventoryService } from './services/inventory.service'
+import { DisclaimerComponent } from './components/disclaimer/disclaimer.component'
+import { MatchHeightDirective } from './directives/match-height.directive'
 
 @NgModule({
-	declarations: [],
+	declarations: [DisclaimerComponent, MatchHeightDirective],
 	imports: [
 		CommonModule,
 		ClarityModule,
@@ -28,6 +30,8 @@ import { InventoryService } from './services/inventory.service'
 		ClrDatagridModule,
 		ClarityModule,
 		FormsModule,
+		DisclaimerComponent,
+		MatchHeightDirective,
 	],
 	//no providers here
 })

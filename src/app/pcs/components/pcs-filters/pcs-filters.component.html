@@ -9,32 +9,16 @@
 				<div class="clr-row f-content">
 					<div class="clr-col-lg-9 clr-col-md-9 clr-col-sm-12 cards">
 						<div class="clr-row">
-							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
-								<i-filter-card sliderValue="10"></i-filter-card>
-							</div>
-							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
-								<i-filter-card sliderValue="10"></i-filter-card>
-							</div>
-							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
-								<i-filter-card sliderValue="10"></i-filter-card>
-							</div>
-							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
-								<i-filter-card sliderValue="10"></i-filter-card>
-							</div>
-							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
-								<i-filter-card sliderValue="10"></i-filter-card>
-							</div>
-							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
-								<i-filter-card sliderValue="10"></i-filter-card>
-							</div>
-							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
-								<i-filter-card sliderValue="10"></i-filter-card>
-							</div>
-							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
-								<i-filter-card sliderValue="10"></i-filter-card>
-							</div>
-							<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12">
-								<i-filter-card sliderValue="10"></i-filter-card>
+							<div
+								class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12"
+								*ngFor="let card of cardDataList"
+							>
+								<i-filter-card
+									[cardData]="card"
+									[hideSliderValue]="card.id === metricNameEnum.CPU_UTIL"
+									[hideOperator]="card.id === metricNameEnum.CPU_UTIL"
+								>
+								</i-filter-card>
 							</div>
 						</div>
 					</div>

@@ -11,7 +11,7 @@ export class DashBoardComponent implements OnInit {
 		new DBWidget(
 			'OS Failures',
 			'computer',
-			'PCs with OS failures >= {0}',
+			'PCs with >= {0} OS failures',
 			12,
 			24,
 			0.19
@@ -19,13 +19,13 @@ export class DashBoardComponent implements OnInit {
 		new DBWidget(
 			'App Failures',
 			'shield-check',
-			'PCs with <= {0}% app failures',
+			'PCs with <= {0} app failures',
 			12,
 			24,
 			0.19
 		),
 		new DBWidget(
-			'Age',
+			'PC Age',
 			'hourglass',
 			'PCs shipped {0} months ago',
 			12,
@@ -34,18 +34,11 @@ export class DashBoardComponent implements OnInit {
 		),
 	]
 	public deviceIssues: DBWidget[] = [
-		new DBWidget(
-			'CPU Utilization',
-			'cpu',
-			'PCs with {0} CPU utilization',
-			0,
-			16,
-			0.12
-		),
+		new DBWidget('CPU', 'cpu', 'PCs with {0} CPU usage', 0, 16, 0.12),
 		new DBWidget(
 			'Ram Utilization',
 			'resistor',
-			'PCs with ram utilization >= {0}%',
+			'PCs with >= {0}% ram usage',
 			25,
 			24,
 			0.19
@@ -53,7 +46,7 @@ export class DashBoardComponent implements OnInit {
 		new DBWidget(
 			'Installed Memory',
 			'memory',
-			'PCs with ram <= {0}GB',
+			'PCs with <= {0}GB installed memory',
 			20,
 			16,
 			0.12
@@ -61,7 +54,7 @@ export class DashBoardComponent implements OnInit {
 		new DBWidget(
 			'Storage Remaining',
 			'hard-disk',
-			'PCs with storage reamining <= {0}%',
+			'PCs with <= {0}% storage space available',
 			20,
 			24,
 			0.19
@@ -69,7 +62,7 @@ export class DashBoardComponent implements OnInit {
 		new DBWidget(
 			'Battery Health',
 			'battery',
-			'PCs with battery health <= {0}%',
+			'PCs with <= {0}% battery life',
 			20,
 			24,
 			0.19
@@ -77,7 +70,7 @@ export class DashBoardComponent implements OnInit {
 		new DBWidget(
 			'Battery Runtime',
 			'bolt',
-			'PCs with battery runtime <= {0}hr',
+			'PCs with <= {0}hr battery runtime',
 			20,
 			24,
 			0.19

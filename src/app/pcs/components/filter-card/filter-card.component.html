@@ -5,27 +5,61 @@
 				<input
 					type="checkbox"
 					clrToggle
+					id="toggle-{{ cardData?.id }}"
 					name="options"
 					value="option1"
-					[(ngModel)]="enabled"
+					[(ngModel)]="cardData && cardData.enabled"
 				/>
-				<label class="title">Filter Name</label>
+				<label class="title">{{ cardData?.title }}</label>
 				<clr-control-helper></clr-control-helper>
 			</clr-toggle-wrapper>
 		</clr-toggle-container>
 	</div>
 	<div class="fc-description">
-		<h6>Filter Caption/description</h6>
+		<h6>
+			{{ cardData?.desc1 }}
+			<span *ngIf="!hideOperator && cardData?.operator == '<='"> &#8804; </span>
+			<span *ngIf="!hideOperator && cardData?.operator == '>='"> &#8805; </span>
+			<span
+				*ngIf="
+					!hideOperator &&
+					cardData?.operator !== '>=' &&
+					cardData?.operator !== '<='
+				"
+			>
+				{{ cardData?.operator }}
+			</span>
+			<span *ngIf="!hideSliderValue">
+				{{ cardData?.sliderValue }}
+			</span>
+			{{
+				cardData?.unit ||
+					(cardData?.deepLabels && cardData?.deepLabels["{{cardData?.sliderValue
+			}}"]) }}
+			{{ cardData?.desc2 }}
+		</h6>
 	</div>
 	<div class="fc-slider">
 		<form>
 			<clr-range-container>
-				<input type="range" clrRange [(ngModel)]="sliderValue" name="three" />
+				<input
+					type="range"
+					clrRange
+					[(ngModel)]="cardData && cardData.sliderValue"
+					[min]="cardData?.minSliderValue"
+					[max]="cardData?.maxSliderValue"
+					[step]="cardData?.stepSliderValue"
+					name="three"
+				/>
 				<clr-control-helper>
 					<div class="fcs-labels">
-						<div class="slider-text" title="2">2</div>
-						<div class="slider-text" title="4">4</div>
-						<div class="slider-text" title="8">8</div>
+						<div
+							class="slider-text"
+							*ngFor="let label of cardData && cardData.labels"
+							[title]="label"
+						>
+							{{ label }}
+						</div>
 					</div>
 				</clr-control-helper>
 			</clr-range-container>
