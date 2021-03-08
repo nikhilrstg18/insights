@@ -1,43 +1,43 @@
 <div class="main-container doc-demo-main-container">
-  <header class="header-6">
-    <div class="branding">
-      <a [routerLink]="['/']">
-        <cds-icon shape="layers"></cds-icon>
-        <span class="title">PC Insights</span>
-      </a>
-    </div>
-    <div class="header-actions">
-      <a class="nav-link nav-icon-text">
-        <cds-icon shape="user"></cds-icon>
-        <span class="nav-text">username</span>
-      </a>
-    </div>
-  </header>
-  <nav class="subnav">
-    <ul class="nav">
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/']"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Dashboard</a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['pcs']"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Pcs</a
-        >
-      </li>
-    </ul>
-  </nav>
-  <div class="content-container">
-    <div class="content-area">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+	<header class="header-6">
+		<div class="branding">
+			<a [routerLink]="['/']">
+				<cds-icon shape="layers"></cds-icon>
+				<span class="title">PC Insights</span>
+			</a>
+		</div>
+		<div class="header-actions">
+			<a class="nav-link nav-icon-text">
+				<cds-icon shape="user"></cds-icon>
+				<span class="nav-text">username</span>
+			</a>
+		</div>
+	</header>
+	<nav class="subnav">
+		<ul class="nav">
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					[routerLink]="['/']"
+					routerLinkActive="active"
+					[routerLinkActiveOptions]="{ exact: true }"
+					>Dashboard
+				</a>
+			</li>
+			<li class="nav-item">
+				<a
+					class="nav-link"
+					[routerLink]="['pcs']"
+					routerLinkActive="active"
+					[routerLinkActiveOptions]="{ exact: true }"
+					>Pcs
+				</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="content-container">
+		<div class="content-area">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
 </div>
