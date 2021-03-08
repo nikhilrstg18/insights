@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IEndpoint } from 'src/app/dashboard/models/i-endpoint';
 import { DashboardService } from './dashboard.service';
 import { delay } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,17 +10,13 @@ import { Observable, Subject } from 'rxjs';
 export class InventoryService {
   public size: number = 100;
   public latency: number = 0;
-  private _all: IEndpoint[] = [];
+  public all: IEndpoint[] = [];
   private _currentQuery: IEndpoint[] = [];
 
   constructor(private dashboardService: DashboardService) {}
 
-  get all(): IEndpoint[] {
-    return this._all.slice();
-  }
-
-  async reset() {
-    this._all = await this.dashboardService.getAll().toPromise();
+  reset() {
+    return this.dashboardService.getAll();
   }
 
   filter(filters: { [key: string]: string[] }): InventoryService {
@@ -79,7 +75,7 @@ export class InventoryService {
   fetch(
     skip: number = 0,
     limit: number = this._currentQuery.length
-  ): Promise<FetchResult> {
+  ): Observable<FetchResult> {
     // Stringify and parse to mimic new object creation like a real HTTP request
     const items = JSON.stringify(this._currentQuery.slice(skip, skip + limit));
     const result: FetchResult = {
@@ -87,19 +83,13 @@ export class InventoryService {
       length: this._currentQuery.length,
     };
     this._currentQuery = [];
-    return this._fakeHttp(result);
+    return of(result);
   }
 
   private _checkCurrentQuery() {
     if (!this._currentQuery.length) {
-      this._currentQuery = this._all.slice();
+      this._currentQuery = this.all.slice();
     }
-  }
-
-  private _fakeHttp<T>(result: T): Promise<T> {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(result), this.latency);
-    });
   }
 }
 

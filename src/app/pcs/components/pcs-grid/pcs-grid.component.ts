@@ -17,6 +17,7 @@ export class PcsGridComponent implements OnInit {
   public loading: boolean = true;
   public page: number = 1;
   public firstLoad: boolean = false;
+  public selected: any[] = [];
 
   constructor(private inventory: InventoryService) {
     this.inventory.size = 100;
@@ -25,9 +26,12 @@ export class PcsGridComponent implements OnInit {
 
   ngOnInit() {}
 
-  async refresh(state: ClrDatagridStateInterface) {
+  //@ called from view by clr-datagrid
+  refresh(state: ClrDatagridStateInterface) {
+    this.loading = true;
     let filters: { [prop: string]: any[] } = {};
 
+    // if filters create filters object
     if (state?.filters) {
       for (let filter of state.filters) {
         let { property, value } = <{ property: string; value: string }>filter;
@@ -36,29 +40,25 @@ export class PcsGridComponent implements OnInit {
     }
 
     if (state?.page) {
-      debugger;
       if (state.page.from == -1) {
         state.page.from = 0;
       }
       if (state.page.to == -1) {
         state.page.to = 9;
       }
-      if (state.page.current == -1) {
-        state.page.current = 1;
-      }
     }
-    debugger;
-    if (!this.endpoints.length) {
-      await this.inventory.reset();
-    }
-    this.inventory
-      .filter(filters)
-      .sort(<{ by: string; reverse: boolean }>state.sort)
-      .fetch(state?.page?.from, state?.page?.size)
-      .then((result: FetchResult) => {
-        this.endpoints = result.endpoints;
-        this.total = result.length;
-        this.loading = false;
-      });
+
+    this.inventory.reset().subscribe((endpoints: IEndpoint[]) => {
+      this.inventory.all = endpoints;
+      this.inventory
+        .filter(filters)
+        .sort(<{ by: string; reverse: boolean }>state.sort)
+        .fetch(state?.page?.from, state?.page?.size)
+        .subscribe((result: FetchResult) => {
+          this.endpoints = result.endpoints;
+          this.total = result.length;
+          this.loading = false;
+        });
+    });
   }
 }

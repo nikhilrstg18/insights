@@ -1,85 +1,104 @@
-<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
-  <clr-dg-column [clrDgField]="'assetTag'"> Asset Tag </clr-dg-column>
-  <clr-dg-column [clrDgField]="'cpuUtil'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"> CPU </ng-container>
-  </clr-dg-column>
-  <clr-dg-column [clrDgField]="'ramUtil'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >Ram Utilization</ng-container
-    ></clr-dg-column
-  >
-  <clr-dg-column [clrDgField]="'ram'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >Ram</ng-container
-    ></clr-dg-column
-  >
-  <clr-dg-column [clrDgField]="'batteryHealth'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >Battery Health</ng-container
-    ></clr-dg-column
-  >
-  <clr-dg-column [clrDgField]="'storageRemaining'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >Storage Remaining</ng-container
-    ></clr-dg-column
-  >
-  <clr-dg-column [clrDgField]="'age'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >Pc Age</ng-container
-    ></clr-dg-column
-  >
-  <clr-dg-column [clrDgField]="'csat'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >CSAT</ng-container
-    ></clr-dg-column
-  >
-  <clr-dg-column [clrDgField]="'appCrashes'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >App Failures</ng-container
-    ></clr-dg-column
-  >
-  <clr-dg-column [clrDgField]="'systemCrashes'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >Os Failures</ng-container
-    ></clr-dg-column
-  >
+<clr-datagrid
+	(clrDgRefresh)="refresh($event)"
+	[clrDgLoading]="loading"
+	[(clrDgSelected)]="selected"
+>
+	<clr-dg-column [clrDgField]="'assetTag'"> Asset Tag </clr-dg-column>
+	<clr-dg-column [clrDgField]="'serviceTag'"> Service Tag </clr-dg-column>
+	<clr-dg-column [clrDgField]="'cpuUtil'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"> CPU </ng-container>
+	</clr-dg-column>
+	<clr-dg-column [clrDgField]="'ramUtil'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>Ram Utilization</ng-container
+		></clr-dg-column
+	>
+	<clr-dg-column [clrDgField]="'ram'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>Ram</ng-container
+		></clr-dg-column
+	>
+	<clr-dg-column [clrDgField]="'batteryHealth'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>Battery Health</ng-container
+		></clr-dg-column
+	>
+	<clr-dg-column [clrDgField]="'storageRemaining'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>Storage Remaining</ng-container
+		></clr-dg-column
+	>
+	<clr-dg-column [clrDgField]="'age'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>Pc Age</ng-container
+		></clr-dg-column
+	>
+	<clr-dg-column [clrDgField]="'csat'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>CSAT</ng-container
+		></clr-dg-column
+	>
+	<clr-dg-column [clrDgField]="'appCrashes'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>App Failures</ng-container
+		></clr-dg-column
+	>
+	<clr-dg-column [clrDgField]="'systemCrashes'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>Os Failures</ng-container
+		></clr-dg-column
+	>
 
-  <clr-dg-column [clrDgField]="'summaryStart'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >Summary Start</ng-container
-    ></clr-dg-column
-  >
-  <clr-dg-column [clrDgField]="'summaryEnd'">
-    <ng-container *clrDgHideableColumn="{ hidden: false }"
-      >Summary End</ng-container
-    ></clr-dg-column
-  >
+	<clr-dg-column [clrDgField]="'summaryStart'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>Summary Start</ng-container
+		></clr-dg-column
+	>
+	<clr-dg-column [clrDgField]="'summaryEnd'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }"
+			>Summary End</ng-container
+		></clr-dg-column
+	>
 
-  <clr-dg-row *ngFor="let endpoint of endpoints">
-    <clr-dg-cell>{{ endpoint.assetTag }}</clr-dg-cell>
-    <clr-dg-cell>{{ endpoint.cpuUtil | number: "2.2-2" }}</clr-dg-cell>
-    <clr-dg-cell>{{ endpoint.ramUtil / 100 | percent: "1.2-2" }}</clr-dg-cell>
-    <clr-dg-cell>{{ endpoint.ram | number }}</clr-dg-cell>
-    <clr-dg-cell>{{
-      endpoint.batteryHealth / 100 | percent: "1.2-2"
-    }}</clr-dg-cell>
-    <clr-dg-cell>{{
-      endpoint.storageRemaining / 100 | percent: "1.2-2"
-    }}</clr-dg-cell>
-    <clr-dg-cell>{{ endpoint.age }} months</clr-dg-cell>
-    <clr-dg-cell>{{ endpoint.csat | percent: "1.2-2" }}</clr-dg-cell>
-    <clr-dg-cell>{{ endpoint.appCrashes | number }}</clr-dg-cell>
-    <clr-dg-cell>{{ endpoint.systemCrashes | number }}</clr-dg-cell>
-    <clr-dg-cell>{{ endpoint.summaryStart | date: "short" }}</clr-dg-cell>
-    <clr-dg-cell>{{ endpoint.summaryStart | date: "short" }}</clr-dg-cell>
-  </clr-dg-row>
+	<clr-dg-row *ngFor="let endpoint of endpoints" [clrDgItem]="endpoint">
+		<clr-dg-cell>
+			<a routerLink="{{ endpoint.serviceTag }}"
+				>{{ endpoint.assetTag }}
+			</a></clr-dg-cell
+		>
+		<clr-dg-cell
+			><a routerLink="{{ endpoint.serviceTag }}">
+				{{ endpoint.serviceTag }}</a
+			></clr-dg-cell
+		>
+		<clr-dg-cell>{{ endpoint.cpuUtil | number: '2.2-2' }}</clr-dg-cell>
+		<clr-dg-cell>{{ endpoint.ramUtil / 100 | percent: '1.2-2' }}</clr-dg-cell>
+		<clr-dg-cell>{{ endpoint.ram | number }}</clr-dg-cell>
+		<clr-dg-cell>{{
+			endpoint.batteryHealth / 100 | percent: '1.2-2'
+		}}</clr-dg-cell>
+		<clr-dg-cell>{{
+			endpoint.storageRemaining / 100 | percent: '1.2-2'
+		}}</clr-dg-cell>
+		<clr-dg-cell>{{ endpoint.age }} months</clr-dg-cell>
+		<clr-dg-cell>{{ endpoint.csat | percent: '1.2-2' }}</clr-dg-cell>
+		<clr-dg-cell>{{ endpoint.appCrashes | number }}</clr-dg-cell>
+		<clr-dg-cell>{{ endpoint.systemCrashes | number }}</clr-dg-cell>
+		<clr-dg-cell>{{ endpoint.summaryStart | date: 'short' }}</clr-dg-cell>
+		<clr-dg-cell>{{ endpoint.summaryStart | date: 'short' }}</clr-dg-cell>
+	</clr-dg-row>
 
-  <clr-dg-footer>
-    {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
-    {{ total }} users
-    <clr-dg-pagination
-      #pagination
-      [clrDgTotalItems]="total"
-    ></clr-dg-pagination>
-  </clr-dg-footer>
+	<clr-dg-footer>
+		<clr-dg-pagination
+			#pagination
+			[clrDgPageSize]="10"
+			[clrDgTotalItems]="total"
+		>
+			{{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
+			{{ pagination.totalItems }} PCs
+			<clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]"
+				>PCs per page</clr-dg-page-size
+			>
+		</clr-dg-pagination>
+	</clr-dg-footer>
 </clr-datagrid>
