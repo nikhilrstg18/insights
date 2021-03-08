@@ -1,34 +1,42 @@
-import { InventoryService } from './services/inventory.service';
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import '@cds/core/icon/register.js';
-import '@cds/core/accordion/register.js';
+import { CommonModule } from '@angular/common'
+import { HttpClientModule } from '@angular/common/http'
+import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
 import {
-  ClrAccordionModule,
-  ClrIconModule,
-  ClrDatagridModule,
-} from '@clr/angular';
-import { InMemDBService } from './services/in-mem-db.service';
-import { HttpClientModule } from '@angular/common/http';
+	ClarityModule,
+	ClrAccordionModule,
+	ClrDatagridModule,
+	ClrIconModule,
+} from '@clr/angular'
+import { InMemDBService } from './services/in-mem-db.service'
+import { InventoryService } from './services/inventory.service'
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    ClrIconModule,
-    ClrAccordionModule,
-    ClrDatagridModule,
-    HttpClientModule,
-  ],
-  exports: [ClrIconModule, ClrAccordionModule, ClrDatagridModule],
-  //no providers here
+	declarations: [],
+	imports: [
+		CommonModule,
+		ClarityModule,
+		ClrIconModule,
+		ClrAccordionModule,
+		ClrDatagridModule,
+		HttpClientModule,
+		FormsModule,
+	],
+	exports: [
+		ClrIconModule,
+		ClrAccordionModule,
+		ClrDatagridModule,
+		ClarityModule,
+		FormsModule,
+	],
+	//no providers here
 })
 export class SharedModule {
-  static inMemDbService = InMemDBService;
-  static forRoot() {
-    return {
-      ngModule: SharedModule,
-      providers: [InMemDBService, InventoryService],
-    };
-  }
+	static inMemDbService = InMemDBService
+	static forRoot() {
+		return {
+			ngModule: SharedModule,
+			providers: [InMemDBService, InventoryService],
+		}
+	}
 }
