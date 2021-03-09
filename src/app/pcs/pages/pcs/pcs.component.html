@@ -1,3 +1,17 @@
 <i-disclaimer></i-disclaimer>
 <i-pcs-filters></i-pcs-filters>
-<i-pcs-grid></i-pcs-grid>
+<div class="heatmap">
+	<div>
+		<clr-checkbox-wrapper>
+			<input
+				type="checkbox"
+				clrCheckbox
+				name="options"
+				required
+				[(ngModel)]="showHeatMap"
+			/>
+			<label>Show Heatmap</label>
+		</clr-checkbox-wrapper>
+	</div>
+</div>
+<i-pcs-grid [showHeatMap]="showHeatMap"></i-pcs-grid>

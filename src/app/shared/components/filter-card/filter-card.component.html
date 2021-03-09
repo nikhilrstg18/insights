@@ -15,7 +15,12 @@
 			</clr-toggle-wrapper>
 		</clr-toggle-container>
 	</div>
-	<div class="fc-description">
+	<div
+		class="fc-description"
+		[ngStyle]="
+			!cardData?.enabled ? { opacity: '0.4', 'pointer-events': 'none' } : {}
+		"
+	>
 		<h6>
 			{{ cardData?.desc1 }}
 			<span *ngIf="!hideOperator && cardData?.operator == '<='"> &#8804; </span>
@@ -40,7 +45,12 @@
 			{{ cardData?.desc2 }}
 		</h6>
 	</div>
-	<div class="fc-slider">
+	<div
+		class="fc-slider"
+		[ngStyle]="
+			!cardData?.enabled ? { opacity: '0.4', 'pointer-events': 'none' } : {}
+		"
+	>
 		<form>
 			<clr-range-container>
 				<input

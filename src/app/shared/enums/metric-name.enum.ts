@@ -14,4 +14,7 @@ export enum MetricNameEnum {
 	ASSET_TAG = 'Asset Tag',
 	MODEL = 'Model',
 	SUPPORT_LEVEL = 'Support Level',
+	CSAT = 'CSAT',
+	SUMMARY_START = 'Summary Start',
+	SUMMARY_END = 'Summary End',
 }

@@ -11,9 +11,11 @@
 	.fc-description {
 		h6 {
 			text-align: center;
+			min-height: 48px;
 		}
 	}
 	.fc-slider {
+		margin-top: -0.8rem;
 		.fcs-labels {
 			display: flex;
 			flex-flow: row nowrap;

@@ -8,13 +8,20 @@ import {
 	ClrDatagridModule,
 	ClrIconModule,
 } from '@clr/angular'
+import { DisclaimerComponent } from './components/disclaimer/disclaimer.component'
+import { FilterCardComponent } from './components/filter-card/filter-card.component'
+import { MatchHeightDirective } from './directives/match-height.directive'
+import { UnitPipe } from './pipes/unit.pipe'
 import { InMemDBService } from './services/in-mem-db.service'
 import { InventoryService } from './services/inventory.service'
-import { DisclaimerComponent } from './components/disclaimer/disclaimer.component'
-import { MatchHeightDirective } from './directives/match-height.directive'
 
 @NgModule({
-	declarations: [DisclaimerComponent, MatchHeightDirective],
+	declarations: [
+		DisclaimerComponent,
+		FilterCardComponent,
+		MatchHeightDirective,
+		UnitPipe,
+	],
 	imports: [
 		CommonModule,
 		ClarityModule,
@@ -31,7 +38,9 @@ import { MatchHeightDirective } from './directives/match-height.directive'
 		ClarityModule,
 		FormsModule,
 		DisclaimerComponent,
+		FilterCardComponent,
 		MatchHeightDirective,
+		UnitPipe,
 	],
 	//no providers here
 })

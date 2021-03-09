@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core'
 })
 export class FilterCardComponent implements OnInit {
 	public defaultSliderValue: number = 0
-	@Input() public cardData: FilterCard = new FilterCard()
+	@Input() public cardData!: FilterCard
 	@Input() public hideOperator: boolean = false
 	@Input() public hideSliderValue: boolean = false
 	constructor() {}

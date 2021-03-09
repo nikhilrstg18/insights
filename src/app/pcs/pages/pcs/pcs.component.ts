@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 @Component({
-  selector: 'i-pcs',
-  templateUrl: './pcs.component.html',
-  styleUrls: ['./pcs.component.scss']
+	selector: 'i-pcs',
+	templateUrl: './pcs.component.html',
+	styleUrls: ['./pcs.component.scss'],
 })
 export class PcsComponent implements OnInit {
+	public showHeatMap: boolean = false
+	constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void {}
 }

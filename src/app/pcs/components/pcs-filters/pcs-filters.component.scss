@@ -9,15 +9,20 @@
 	}
 	.summary {
 		.fs-container {
-			background: #cce5f1;
+			background: #d8e3e9;
 			display: flex;
 			flex-flow: column nowrap;
 			justify-content: space-evenly;
 			align-items: center;
 			height: 100%;
 			.fs-matching {
+				height: 70%;
+				display: flex;
+				flex-flow: column nowrap;
+				justify-content: center;
+				align-items: center;
 				h1 {
-					font-size: 400%;
+					font-size: 600%;
 					text-align: center;
 				}
 				h5 {
@@ -25,6 +30,18 @@
 				}
 			}
 			.fs-matching-text {
+			}
+		}
+		.fs-actions {
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: space-evenly;
+			align-items: center;
+			.fs-apply,
+			.fs-clear {
+				button {
+					margin-right: 0;
+				}
 			}
 		}
 	}

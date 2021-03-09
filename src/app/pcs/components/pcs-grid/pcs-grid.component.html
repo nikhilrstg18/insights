@@ -3,61 +3,75 @@
 	[clrDgLoading]="loading"
 	[(clrDgSelected)]="selected"
 >
-	<clr-dg-column [clrDgField]="'assetTag'"> Asset Tag </clr-dg-column>
-	<clr-dg-column [clrDgField]="'hostName'"> Host Name </clr-dg-column>
+	<clr-dg-column [clrDgField]="'assetTag'">
+		{{ metricNameEnum.ASSET_TAG }}
+	</clr-dg-column>
+	<clr-dg-column [clrDgField]="'hostName'">
+		{{ metricNameEnum.HOST_NAME }}
+	</clr-dg-column>
+	<clr-dg-column [clrDgField]="'model'">
+		{{ metricNameEnum.MODEL }}
+	</clr-dg-column>
 	<clr-dg-column [clrDgField]="'cpuUtil'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"> CPU </ng-container>
+		<ng-container *clrDgHideableColumn="{ hidden: false }">
+			{{ metricNameEnum.CPU_UTIL }}
+		</ng-container>
 	</clr-dg-column>
 	<clr-dg-column [clrDgField]="'ramUtil'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>Ram Utilization</ng-container
-		></clr-dg-column
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.RAM_UTIL
+		}}</ng-container></clr-dg-column
 	>
 	<clr-dg-column [clrDgField]="'ram'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>Ram</ng-container
-		></clr-dg-column
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.RAM
+		}}</ng-container></clr-dg-column
 	>
 	<clr-dg-column [clrDgField]="'batteryHealth'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>Battery Health</ng-container
-		></clr-dg-column
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.BATTERY_HEALTH
+		}}</ng-container></clr-dg-column
+	>
+	<clr-dg-column [clrDgField]="'batteryRuntime'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.BATTERY_RUNTIME
+		}}</ng-container></clr-dg-column
 	>
 	<clr-dg-column [clrDgField]="'storageRemaining'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>Storage Remaining</ng-container
-		></clr-dg-column
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.STORAGE_REMAINING
+		}}</ng-container></clr-dg-column
 	>
 	<clr-dg-column [clrDgField]="'age'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>Pc Age</ng-container
-		></clr-dg-column
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.AGE
+		}}</ng-container></clr-dg-column
 	>
 	<clr-dg-column [clrDgField]="'csat'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>CSAT</ng-container
-		></clr-dg-column
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.CSAT
+		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'appCrashes'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>App Failures</ng-container
-		></clr-dg-column
+	<clr-dg-column [clrDgField]="'appFailures'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.APP_FAILURES
+		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'systemCrashes'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>Os Failures</ng-container
-		></clr-dg-column
+	<clr-dg-column [clrDgField]="'osFailures'">
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.OS_FAILURES
+		}}</ng-container></clr-dg-column
 	>
 
 	<clr-dg-column [clrDgField]="'summaryStart'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>Summary Start</ng-container
-		></clr-dg-column
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.SUMMARY_START
+		}}</ng-container></clr-dg-column
 	>
 	<clr-dg-column [clrDgField]="'summaryEnd'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }"
-			>Summary End</ng-container
-		></clr-dg-column
+		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+			metricNameEnum.SUMMARY_END
+		}}</ng-container></clr-dg-column
 	>
 
 	<clr-dg-row *ngFor="let endpoint of endpoints" [clrDgItem]="endpoint">
@@ -71,19 +85,92 @@
 				{{ endpoint.hostName }}</a
 			></clr-dg-cell
 		>
-		<clr-dg-cell>{{ endpoint.cpuUtil | number: '2.2-2' }}</clr-dg-cell>
-		<clr-dg-cell>{{ endpoint.ramUtil / 100 | percent: '1.2-2' }}</clr-dg-cell>
-		<clr-dg-cell>{{ endpoint.ram | number }}</clr-dg-cell>
-		<clr-dg-cell>{{
-			endpoint.batteryHealth / 100 | percent: '1.2-2'
-		}}</clr-dg-cell>
-		<clr-dg-cell>{{
-			endpoint.storageRemaining / 100 | percent: '1.2-2'
-		}}</clr-dg-cell>
-		<clr-dg-cell>{{ endpoint.age }} months</clr-dg-cell>
-		<clr-dg-cell>{{ endpoint.csat | percent: '1.2-2' }}</clr-dg-cell>
-		<clr-dg-cell>{{ endpoint.appCrashes | number }}</clr-dg-cell>
-		<clr-dg-cell>{{ endpoint.systemCrashes | number }}</clr-dg-cell>
+		<clr-dg-cell>{{ endpoint.model }}</clr-dg-cell>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap
+					? getHeatMapColor(metricNameEnum.CPU_UTIL, endpoint.cpuUtil)
+					: {}
+			"
+			>{{ getCPUText(endpoint.cpuUtil) }}</clr-dg-cell
+		>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap
+					? getHeatMapColor(metricNameEnum.RAM_UTIL, endpoint.ramUtil)
+					: {}
+			"
+			>{{ endpoint.ramUtil | percent: '1.2-2' }}</clr-dg-cell
+		>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap ? getHeatMapColor(metricNameEnum.RAM, endpoint.ram) : {}
+			"
+			>{{ endpoint.ram | number | unit: 'GB' }}</clr-dg-cell
+		>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap
+					? getHeatMapColor(
+							metricNameEnum.BATTERY_HEALTH,
+							endpoint.batteryHealth
+					  )
+					: {}
+			"
+			>{{ endpoint.batteryHealth | percent: '1.2-2' }}</clr-dg-cell
+		>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap
+					? getHeatMapColor(
+							metricNameEnum.BATTERY_RUNTIME,
+							endpoint.batteryRuntime
+					  )
+					: {}
+			"
+			>{{
+				endpoint.batteryRuntime | number: '1.2-2' | unit: 'hrs'
+			}}</clr-dg-cell
+		>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap
+					? getHeatMapColor(
+							metricNameEnum.STORAGE_REMAINING,
+							endpoint.storageRemaining
+					  )
+					: {}
+			"
+			>{{ endpoint.storageRemaining | percent: '1.2-2' }}</clr-dg-cell
+		>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap ? getHeatMapColor(metricNameEnum.AGE, endpoint.age) : {}
+			"
+			>{{ endpoint.age | unit: 'months' }}</clr-dg-cell
+		>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap ? getHeatMapColor(metricNameEnum.CSAT, endpoint.csat) : {}
+			"
+			>{{ endpoint.csat | percent: '1.2-2' }}</clr-dg-cell
+		>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap
+					? getHeatMapColor(metricNameEnum.APP_FAILURES, endpoint.appFailures)
+					: {}
+			"
+			>{{ endpoint.appFailures | number }}</clr-dg-cell
+		>
+		<clr-dg-cell
+			[ngStyle]="
+				showHeatMap
+					? getHeatMapColor(metricNameEnum.OS_FAILURES, endpoint.osFailures)
+					: {}
+			"
+			>{{ endpoint.osFailures | number }}</clr-dg-cell
+		>
 		<clr-dg-cell>{{ endpoint.summaryStart | date: 'short' }}</clr-dg-cell>
 		<clr-dg-cell>{{ endpoint.summaryStart | date: 'short' }}</clr-dg-cell>
 	</clr-dg-row>

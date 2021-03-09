@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { FilterCardComponent } from './components/filter-card/filter-card.component'
 import { PcsFiltersComponent } from './components/pcs-filters/pcs-filters.component'
 import { PcsGridComponent } from './components/pcs-grid/pcs-grid.component'
 import { PcDetailComponent } from './pages/pc-detail/pc-detail.component'
@@ -27,6 +26,5 @@ export class PcsRoutingModule {
 		PcsFiltersComponent,
 		PcsGridComponent,
 		PcDetailComponent,
-		FilterCardComponent,
 	]
 }

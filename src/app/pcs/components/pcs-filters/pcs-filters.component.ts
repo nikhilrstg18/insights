@@ -1,8 +1,8 @@
-import { MetricNameEnum } from './../../../shared/enums/metric-name.enum'
-import { MetricEnum } from './../../../shared/enums/metric.enum'
-import { Component, OnInit } from '@angular/core'
-import { FilterCard } from './../../../shared/models/filter-card'
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core'
 import { CpuEnum } from 'src/app/shared/enums/cpu.enum'
+import { MetricEnum } from 'src/app/shared/enums/metric.enum'
+import { MetricNameEnum } from './../../../shared/enums/metric-name.enum'
+import { FilterCard } from './../../../shared/models/filter-card'
 
 @Component({
 	selector: 'i-pcs-filters',
@@ -10,14 +10,13 @@ import { CpuEnum } from 'src/app/shared/enums/cpu.enum'
 	styleUrls: ['./pcs-filters.component.scss'],
 })
 export class PcsFiltersComponent implements OnInit {
-	public filtersExpanded: boolean = true
-	public cardDataList: FilterCard[] = []
+	public expanded: boolean = true
+	public filterCards: FilterCard[] = []
 	public metricNameEnum = MetricNameEnum
 	constructor() {}
 
 	ngOnInit(): void {
-		this.cardDataList = this.getDefaultCardDataList()
-		debugger
+		this.filterCards = this.getDefaultCardDataList()
 	}
 
 	getDefaultCardDataList() {
@@ -69,7 +68,7 @@ export class PcsFiltersComponent implements OnInit {
 				MetricNameEnum.CPU_UTIL,
 				'==',
 				true,
-				CpuEnum.NORMAL,
+				CpuEnum.MEDIUM,
 				CpuEnum.MEDIUM,
 				CpuEnum.NORMAL,
 				CpuEnum.HIGH,
@@ -105,13 +104,14 @@ export class PcsFiltersComponent implements OnInit {
 				'<=',
 				true,
 				32,
-				4,
 				32,
+				4,
 				64,
 				'PCs with',
 				'installed memory',
 				'GB',
-				['4GB', '32GB', '64GB']
+				['4GB', '32GB', '64GB'],
+				4
 			),
 			new FilterCard(
 				MetricEnum.STORAGE_REMAINING,
