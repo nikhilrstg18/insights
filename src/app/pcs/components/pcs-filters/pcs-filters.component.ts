@@ -17,6 +17,7 @@ export class PcsFiltersComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.cardDataList = this.getDefaultCardDataList()
+		debugger
 	}
 
 	getDefaultCardDataList() {
@@ -40,7 +41,7 @@ export class PcsFiltersComponent implements OnInit {
 				MetricNameEnum.APP_FAILURES,
 				'>=',
 				true,
-				15,
+				50,
 				50,
 				0,
 				100,
@@ -61,21 +62,28 @@ export class PcsFiltersComponent implements OnInit {
 				'PCs shipped',
 				'months ago',
 				'',
-				['0', '24', '48']
+				['0mos.', '24mos.', '48mos.']
 			),
 			new FilterCard(
 				MetricEnum.CPU_UTIL,
 				MetricNameEnum.CPU_UTIL,
-				'>=',
+				'==',
 				true,
-				24,
+				CpuEnum.NORMAL,
 				CpuEnum.MEDIUM,
 				CpuEnum.NORMAL,
 				CpuEnum.HIGH,
 				'PCs with',
 				'CPU usage',
 				'',
-				['N', 'M', 'H']
+				['N', 'M', 'H'],
+				1,
+				{
+					[CpuEnum.NA]: 'NA',
+					[CpuEnum.NORMAL]: 'normal',
+					[CpuEnum.MEDIUM]: 'medium',
+					[CpuEnum.HIGH]: 'high',
+				}
 			),
 			new FilterCard(
 				MetricEnum.RAM_UTIL,
@@ -89,7 +97,7 @@ export class PcsFiltersComponent implements OnInit {
 				'PCs with',
 				'RAM usage',
 				'%',
-				['0', '50', '100']
+				['0%', '50%', '100%']
 			),
 			new FilterCard(
 				MetricEnum.RAM,
@@ -103,7 +111,7 @@ export class PcsFiltersComponent implements OnInit {
 				'PCs with',
 				'installed memory',
 				'GB',
-				['0', '50', '100']
+				['4GB', '32GB', '64GB']
 			),
 			new FilterCard(
 				MetricEnum.STORAGE_REMAINING,
@@ -115,9 +123,9 @@ export class PcsFiltersComponent implements OnInit {
 				0,
 				100,
 				'PCs with',
-				'storage spacea available',
+				'storage space available',
 				'%',
-				['0', '50', '100']
+				['0%', '50%', '100%']
 			),
 			new FilterCard(
 				MetricEnum.BATTERY_HEALTH,
@@ -131,7 +139,7 @@ export class PcsFiltersComponent implements OnInit {
 				'PCs with',
 				'overall battery performance',
 				'%',
-				['0', '50', '100']
+				['0%', '50%', '100%']
 			),
 			new FilterCard(
 				MetricEnum.BATTERY_RUNTIME,

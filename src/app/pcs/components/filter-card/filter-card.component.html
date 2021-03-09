@@ -34,8 +34,9 @@
 			</span>
 			{{
 				cardData?.unit ||
-					(cardData?.deepLabels && cardData?.deepLabels["{{cardData?.sliderValue
-			}}"]) }}
+					(cardData?.deepLabels &&
+						cardData?.deepLabels[cardData && cardData.sliderValue])
+			}}
 			{{ cardData?.desc2 }}
 		</h6>
 	</div>
