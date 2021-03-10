@@ -28,7 +28,6 @@ export class MatchHeightDirective implements AfterViewChecked {
 	}
 
 	matchHeight(parent: HTMLElement, className: string) {
-		debugger
 		//@ match height logic here
 		if (!parent) return
 		const children = parent.getElementsByClassName(className)
