@@ -67,14 +67,14 @@ export class PcsGridComponent implements OnInit {
 	}
 	getCPUText(cpu: CpuEnum) {
 		switch (cpu) {
-			case CpuEnum.NA:
-				return 'NA'
 			case CpuEnum.NORMAL:
 				return 'normal'
 			case CpuEnum.MEDIUM:
 				return 'medium'
 			case CpuEnum.HIGH:
 				return 'high'
+			default:
+				return 'NA'
 		}
 	}
 

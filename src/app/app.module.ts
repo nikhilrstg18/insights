@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {
+	applicationIcon,
 	batteryIcon,
 	bellIcon,
 	boltIcon,
@@ -9,12 +10,14 @@ import {
 	cogIcon,
 	computerIcon,
 	cpuIcon,
+	errorStandardIcon,
 	hardDiskIcon,
 	hourglassIcon,
 	layersIcon,
 	memoryIcon,
 	resistorIcon,
-	shieldCheckIcon,
+	storageAdapterIcon,
+	targetIcon,
 	userIcon,
 } from '@cds/core/icon'
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
@@ -48,11 +51,14 @@ export class AppModule {
 			hardDiskIcon,
 			computerIcon,
 			hourglassIcon,
-			shieldCheckIcon,
+			applicationIcon,
 			resistorIcon,
 			cogIcon,
 			layersIcon,
-			userIcon
+			userIcon,
+			targetIcon,
+			storageAdapterIcon,
+			errorStandardIcon
 		)
 	}
 }

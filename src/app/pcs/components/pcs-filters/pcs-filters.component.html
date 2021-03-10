@@ -8,11 +8,10 @@
 			<clr-accordion-content *clrIfExpanded>
 				<div class="clr-row f-content">
 					<div class="clr-col-lg-9 clr-col-md-9 clr-col-sm-12 cards">
-						<div class="clr-row">
+						<div class="clr-row" iMatchHeight="fc-description">
 							<div
 								class="clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12"
 								*ngFor="let card of filterCards"
-								iMatchHeight="fc-description"
 							>
 								<i-filter-card
 									[cardData]="card"

@@ -1,0 +1,26 @@
+.pcd-sys-util {
+	.pcd-su-header {
+		background: #fafafa;
+		margin: 0;
+	}
+	.border-right {
+		border-right: 1px solid #dedede;
+	}
+	.border-top {
+		border-top: 1px solid #dedede;
+	}
+	.usageInfo {
+		p {
+			margin: 0;
+		}
+	}
+	@media only screen and (max-width: 991px) {
+		.border-right {
+			border-right: none;
+			border-bottom: 1px solid #dedede;
+		}
+		.border-top {
+			border-top: none;
+		}
+	}
+}

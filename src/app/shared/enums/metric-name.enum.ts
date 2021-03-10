@@ -17,4 +17,12 @@ export enum MetricNameEnum {
 	CSAT = 'CSAT',
 	SUMMARY_START = 'Summary Start',
 	SUMMARY_END = 'Summary End',
+	WARRANTY = 'Warranty',
+	OS = 'Operating System',
+	PROCESSOR = 'Processor',
+	STORAGE = 'Storage',
+	GPU = 'GPU',
+	BIOS = 'BIOS Vesion',
+	STYLE = 'Style',
+	BUILT_IN_DISPLAY = 'Built in Display',
 }

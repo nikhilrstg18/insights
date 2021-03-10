@@ -1,0 +1,49 @@
+<div class="clr-row pcd-sys-util">
+	<div class="clr-col-12">
+		<div class="card">
+			<div class="card-header pcd-su-header p2">System Usage</div>
+			<div class="card-block">
+				<div class="clr-row">
+					<div class="clr-col-lg-9 clr-col-md-12 clr-col-sm-12 border-right">
+						<div class="clr-row">
+							<div
+								class="clr-col-lg-2 clr-col-md-2 clr-col-sm-6 clr-col-xs-12"
+								*ngFor="let usageCard of healthUsageCards"
+							>
+								<i-pcd-usage-card [usageCard]="usageCard"></i-pcd-usage-card>
+							</div>
+						</div>
+					</div>
+					<div class="clr-col-lg-3 clr-col-md-12 clr-col-sm-12">
+						<div class="clr-row">
+							<div
+								class="clr-col-lg-6 clr-col-md-6 clr-col-sm-6 clr-col-xs-12"
+								*ngFor="let usageCard of stabilityUsageCards"
+							>
+								<i-pcd-usage-card [usageCard]="usageCard"></i-pcd-usage-card>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clr-row">
+					<div class="clr-col-lg-9 clr-col-md-12 clr-col-sm-12">
+						<div class="clr-row usageInfo">
+							<div class="clr-col-lg-12">
+								<p class="p5 tac border-top">
+									This PC should be operating normally.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="clr-col-lg-3 clr-col-md-12 clr-col-sm-12">
+						<div class="clr-row usageInfo">
+							<div class="clr-col-lg-12">
+								<p class="p5 tac border-top">This PC is performing well.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

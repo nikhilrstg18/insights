@@ -1,2 +1,13 @@
 <i-disclaimer></i-disclaimer>
-<p>pc-detail for {{ serviceTag }} comming soon !</p>
+<div class="pc-detail">
+	<i-pcd-info></i-pcd-info>
+	<i-pcd-usage [usageCards]="usageCards"></i-pcd-usage>
+	<div class="clr-row">
+		<div class="clr-col-lg-5">
+			<i-pcd-alerts></i-pcd-alerts>
+		</div>
+		<div class="clr-col-lg-7">
+			<i-pcd-apps></i-pcd-apps>
+		</div>
+	</div>
+</div>

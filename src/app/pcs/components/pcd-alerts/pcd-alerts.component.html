@@ -1,0 +1,70 @@
+<div class="card pcd-alerts">
+	<div class="card-header pcd-a-header p2">Alerts</div>
+	<div class="card-header">
+		<div class="clr-row">
+			<div class="clr-col-lg-4 clr-col md-4 clr-col-sm-4">
+				<clr-checkbox-wrapper>
+					<input
+						type="checkbox"
+						clrCheckbox
+						name="unexpectedShutdown"
+						required
+						[(ngModel)]="alertFilters && alertFilters.unexpectedShutdown"
+					/>
+					<label title="Unexpected Shutdown"
+						><cds-icon
+							shape="error-standard"
+							size="md"
+							status="info"
+							style="margin: 0 0.5rem"
+						></cds-icon
+						>{{ alertFilters?.unexpectedShutdownCount }}</label
+					>
+				</clr-checkbox-wrapper>
+			</div>
+			<div class="clr-col-lg-4 clr-col md-4 clr-col-sm-4">
+				<clr-checkbox-wrapper>
+					<input
+						type="checkbox"
+						clrCheckbox
+						name="systemError"
+						required
+						[(ngModel)]="alertFilters && alertFilters.systemError"
+					/>
+					<label title="OS Failures"
+						><cds-icon
+							shape="computer"
+							size="md"
+							status="info"
+							style="margin: 0 0.5rem"
+						></cds-icon>
+						{{ alertFilters?.systemErrorCount }}</label
+					>
+				</clr-checkbox-wrapper>
+			</div>
+			<div class="clr-col-lg-4 clr-col md-4 clr-col-sm-4">
+				<clr-checkbox-wrapper>
+					<input
+						type="checkbox"
+						clrCheckbox
+						name="appError"
+						required
+						[(ngModel)]="alertFilters && alertFilters.appError"
+					/>
+					<label title="App Failures"
+						><cds-icon
+							shape="application"
+							size="md"
+							status="info"
+							style="margin: 0 0.5rem"
+						></cds-icon
+						>{{ alertFilters?.appErrorCount }}</label
+					>
+				</clr-checkbox-wrapper>
+			</div>
+		</div>
+	</div>
+	<div class="card-block">
+		<div class="card-text">coming soon...</div>
+	</div>
+</div>

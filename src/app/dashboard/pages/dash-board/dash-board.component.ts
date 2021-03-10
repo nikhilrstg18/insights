@@ -18,7 +18,7 @@ export class DashBoardComponent implements OnInit {
 		),
 		new DBWidget(
 			'App Failures',
-			'shield-check',
+			'application',
 			'PCs with <= {0} app failures',
 			12,
 			24,
