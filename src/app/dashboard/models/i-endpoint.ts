@@ -12,8 +12,19 @@ export interface IEndpoint {
 	appFailures: number
 	osFailures: number
 	hostName: string
-	summaryStart: Date
-	summaryEnd: Date
+	summaryStart: string
+	summaryEnd: string
 	model: string
+	warranty: string
+	processor: string
+	os: string
+	storage: string
+	gpu: string
+	gpuUtil: number
+	gpuUtilMax: number
+	ramUtilMax: number
+	style: string
+	builtInDisplay: string
+	biosVersion: string
 	[key: string]: any
 }
