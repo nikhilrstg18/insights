@@ -5,12 +5,17 @@
 		href="javascript:void(0)"
 		role="tooltip"
 		aria-haspopup="true"
-		class="tooltip tooltip-md tooltip-right"
+		class="tooltip tooltip-md tooltip-{{ usageCard?.toolTipPosition }}"
 	>
 		<cds-icon
 			attr.shape="{{ usageCard?.isonShape }}"
 			size="xl"
-			status="info"
+			attr.status="{{
+				helperService.getSeverityColor(
+					usageCard && usageCard.title,
+					usageCard && usageCard.mericAvg
+				)
+			}}"
 			style="margin: 0 0.5rem"
 		></cds-icon>
 		<span class="tooltip-content">{{ usageCard?.toolTip }}</span>
@@ -31,7 +36,7 @@
 			>
 			<ng-template #cpu>
 				<span>{{
-					getCPUText(usageCard && usageCard.mericAvg) | titlecase
+					helperService.getCPUText(usageCard && usageCard.mericAvg) | titlecase
 				}}</span>
 			</ng-template>
 

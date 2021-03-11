@@ -2,6 +2,7 @@ import { MetricNameEnum } from 'src/app/shared/enums/metric-name.enum'
 import { Component, Input, OnInit } from '@angular/core'
 import { CpuEnum } from 'src/app/shared/enums/cpu.enum'
 import { PcdUsageCard } from 'src/app/shared/models/pcd-usage-card'
+import { HelperService } from '../../../shared/services/helper.service'
 
 @Component({
 	selector: 'i-pcd-usage-card',
@@ -11,20 +12,7 @@ import { PcdUsageCard } from 'src/app/shared/models/pcd-usage-card'
 export class PcdUsageCardComponent implements OnInit {
 	@Input() public usageCard!: PcdUsageCard
 	public metricNameEnum = MetricNameEnum
-	constructor() {}
+	constructor(public helperService: HelperService) {}
 
 	ngOnInit(): void {}
-
-	getCPUText(cpu: CpuEnum) {
-		switch (cpu) {
-			case CpuEnum.NORMAL:
-				return 'normal'
-			case CpuEnum.MEDIUM:
-				return 'medium'
-			case CpuEnum.HIGH:
-				return 'high'
-			default:
-				return 'NA'
-		}
-	}
 }

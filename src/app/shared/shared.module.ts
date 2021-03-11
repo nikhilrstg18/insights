@@ -1,3 +1,4 @@
+import { HelperService } from './services/helper.service'
 import { CommonModule } from '@angular/common'
 import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core'
@@ -49,7 +50,7 @@ export class SharedModule {
 	static forRoot() {
 		return {
 			ngModule: SharedModule,
-			providers: [InMemDBService, InventoryService],
+			providers: [InMemDBService, InventoryService, HelperService],
 		}
 	}
 }

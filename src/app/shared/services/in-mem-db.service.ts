@@ -3,9 +3,7 @@ import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api'
 import { Observable } from 'rxjs'
 import { IEndpoint } from '../../dashboard/models/i-endpoint'
 
-@Injectable({
-	providedIn: 'root',
-})
+@Injectable()
 export class InMemDBService implements InMemoryDbService {
 	constructor() {}
 

@@ -89,29 +89,37 @@
 		<clr-dg-cell
 			[ngStyle]="
 				showHeatMap
-					? getHeatMapColor(metricNameEnum.CPU_UTIL, endpoint.cpuUtil)
+					? helperService.getHeatMapColor(
+							metricNameEnum.CPU_UTIL,
+							endpoint.cpuUtil
+					  )
 					: {}
 			"
-			>{{ getCPUText(endpoint.cpuUtil) }}</clr-dg-cell
+			>{{ helperService.getCPUText(endpoint.cpuUtil) }}</clr-dg-cell
 		>
 		<clr-dg-cell
 			[ngStyle]="
 				showHeatMap
-					? getHeatMapColor(metricNameEnum.RAM_UTIL, endpoint.ramUtil)
+					? helperService.getHeatMapColor(
+							metricNameEnum.RAM_UTIL,
+							endpoint.ramUtil
+					  )
 					: {}
 			"
 			>{{ endpoint.ramUtil | percent: '1.2-2' }}</clr-dg-cell
 		>
 		<clr-dg-cell
 			[ngStyle]="
-				showHeatMap ? getHeatMapColor(metricNameEnum.RAM, endpoint.ram) : {}
+				showHeatMap
+					? helperService.getHeatMapColor(metricNameEnum.RAM, endpoint.ram)
+					: {}
 			"
 			>{{ endpoint.ram | number | unit: ' GB' }}</clr-dg-cell
 		>
 		<clr-dg-cell
 			[ngStyle]="
 				showHeatMap
-					? getHeatMapColor(
+					? helperService.getHeatMapColor(
 							metricNameEnum.BATTERY_HEALTH,
 							endpoint.batteryHealth
 					  )
@@ -122,7 +130,7 @@
 		<clr-dg-cell
 			[ngStyle]="
 				showHeatMap
-					? getHeatMapColor(
+					? helperService.getHeatMapColor(
 							metricNameEnum.BATTERY_RUNTIME,
 							endpoint.batteryRuntime
 					  )
@@ -135,7 +143,7 @@
 		<clr-dg-cell
 			[ngStyle]="
 				showHeatMap
-					? getHeatMapColor(
+					? helperService.getHeatMapColor(
 							metricNameEnum.STORAGE_REMAINING,
 							endpoint.storageRemaining
 					  )
@@ -145,20 +153,27 @@
 		>
 		<clr-dg-cell
 			[ngStyle]="
-				showHeatMap ? getHeatMapColor(metricNameEnum.AGE, endpoint.age) : {}
+				showHeatMap
+					? helperService.getHeatMapColor(metricNameEnum.AGE, endpoint.age)
+					: {}
 			"
 			>{{ endpoint.age | unit: ' months' }}</clr-dg-cell
 		>
 		<clr-dg-cell
 			[ngStyle]="
-				showHeatMap ? getHeatMapColor(metricNameEnum.CSAT, endpoint.csat) : {}
+				showHeatMap
+					? helperService.getHeatMapColor(metricNameEnum.CSAT, endpoint.csat)
+					: {}
 			"
 			>{{ endpoint.csat | percent: '1.2-2' }}</clr-dg-cell
 		>
 		<clr-dg-cell
 			[ngStyle]="
 				showHeatMap
-					? getHeatMapColor(metricNameEnum.APP_FAILURES, endpoint.appFailures)
+					? helperService.getHeatMapColor(
+							metricNameEnum.APP_FAILURES,
+							endpoint.appFailures
+					  )
 					: {}
 			"
 			>{{ endpoint.appFailures | number }}</clr-dg-cell
@@ -166,7 +181,10 @@
 		<clr-dg-cell
 			[ngStyle]="
 				showHeatMap
-					? getHeatMapColor(metricNameEnum.OS_FAILURES, endpoint.osFailures)
+					? helperService.getHeatMapColor(
+							metricNameEnum.OS_FAILURES,
+							endpoint.osFailures
+					  )
 					: {}
 			"
 			>{{ endpoint.osFailures | number }}</clr-dg-cell

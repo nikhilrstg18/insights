@@ -1,3 +1,4 @@
+import { HelperService } from './../../../shared/services/helper.service'
 import { Component, Input, OnInit } from '@angular/core'
 import { ClrDatagridStateInterface } from '@clr/angular'
 import { CpuEnum } from './../../../shared/enums/cpu.enum'
@@ -23,7 +24,10 @@ export class PcsGridComponent implements OnInit {
 	public selected: any[] = []
 	public metricNameEnum = MetricNameEnum
 
-	constructor(private inventory: InventoryService) {}
+	constructor(
+		private inventory: InventoryService,
+		public helperService: HelperService
+	) {}
 
 	ngOnInit() {}
 
@@ -62,69 +66,5 @@ export class PcsGridComponent implements OnInit {
 					this.loading = false
 				})
 		})
-	}
-	getCPUText(cpu: CpuEnum) {
-		switch (cpu) {
-			case CpuEnum.NORMAL:
-				return 'normal'
-			case CpuEnum.MEDIUM:
-				return 'medium'
-			case CpuEnum.HIGH:
-				return 'high'
-			default:
-				return 'NA'
-		}
-	}
-
-	getHeatMapColor(name: MetricNameEnum, value: number) {
-		switch (name) {
-			case MetricNameEnum.OS_FAILURES:
-				return {
-					background: `rgba(0, 114, 163,${value / 20} )`,
-					color: 1 - value / 20 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
-				}
-			case MetricNameEnum.APP_FAILURES:
-				return {
-					background: `rgba(0, 114, 163,${value / 100} )`,
-					color: 1 - value / 100 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
-				}
-			case MetricNameEnum.AGE:
-				return {
-					background: `rgba(0, 114, 163,${value / 48} )`,
-					color: 1 - value / 48 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
-				}
-			case MetricNameEnum.CPU_UTIL:
-				return {
-					background: `rgba(0, 114, 163,${value / 3} )`,
-					color: 1 - value / 3 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
-				}
-			case MetricNameEnum.RAM_UTIL:
-				return {
-					background: `rgba(0, 114, 163,${value} )`,
-					color: 1 - value > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
-				}
-			case MetricNameEnum.STORAGE_REMAINING:
-			case MetricNameEnum.BATTERY_HEALTH:
-			case MetricNameEnum.CSAT:
-				return {
-					background: `rgba(0, 114, 163,${1 - value} )`,
-					color: value > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
-				}
-			case MetricNameEnum.RAM:
-				return {
-					background: `rgba(0, 114, 163,${1 - value / 64} )`,
-					color: value / 64 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
-				}
-			case MetricNameEnum.BATTERY_RUNTIME:
-				return {
-					background: `rgba(0, 114, 163,${1 - value / 12} )`,
-					color: value / 12 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
-				}
-		}
-
-		return {
-			background: `rgba(0, 114, 163,0} )`,
-			color: `rgba(51, 51, 51,1} )`,
-		}
 	}
 }

@@ -22,6 +22,7 @@ export enum MetricNameEnum {
 	PROCESSOR = 'Processor',
 	STORAGE = 'Storage',
 	GPU = 'GPU',
+	GPU_UTILL = 'GPU Usage',
 	BIOS = 'BIOS Vesion',
 	STYLE = 'Style',
 	BUILT_IN_DISPLAY = 'Built in Display',

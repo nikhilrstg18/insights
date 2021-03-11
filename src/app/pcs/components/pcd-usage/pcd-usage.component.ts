@@ -1,3 +1,4 @@
+import { CpuEnum } from './../../../shared/enums/cpu.enum'
 import {
 	ChangeDetectionStrategy,
 	Component,
