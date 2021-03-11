@@ -2,9 +2,37 @@
 .mt-05rem {
 	margin-top: 0.5rem !important;
 }
+.mt-0 {
+	margin-top: 0 !important;
+}
 .tac {
 	text-align: center;
 }
 .tae {
 	text-align: end;
 }
+
+.text-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// customiizing the scroll bar app wide - start
+::-webkit-scrollbar {
+	height: 0.4rem;
+	width: 0.4rem;
+	background: #f8f8f8;
+	cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	background: rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+	background: rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+}
+// customiizing the scroll bar app wide - end
