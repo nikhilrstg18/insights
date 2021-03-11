@@ -48,7 +48,7 @@
 		}}</ng-container></clr-dg-column
 	>
 	<clr-dg-column [clrDgField]="'csat'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+		<ng-container *clrDgHideableColumn="{ hidden: true }">{{
 			metricNameEnum.CSAT
 		}}</ng-container></clr-dg-column
 	>
@@ -64,12 +64,12 @@
 	>
 
 	<clr-dg-column [clrDgField]="'summaryStart'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+		<ng-container *clrDgHideableColumn="{ hidden: true }">{{
 			metricNameEnum.SUMMARY_START
 		}}</ng-container></clr-dg-column
 	>
 	<clr-dg-column [clrDgField]="'summaryEnd'">
-		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
+		<ng-container *clrDgHideableColumn="{ hidden: true }">{{
 			metricNameEnum.SUMMARY_END
 		}}</ng-container></clr-dg-column
 	>
@@ -106,7 +106,7 @@
 			[ngStyle]="
 				showHeatMap ? getHeatMapColor(metricNameEnum.RAM, endpoint.ram) : {}
 			"
-			>{{ endpoint.ram | number | unit: 'GB' }}</clr-dg-cell
+			>{{ endpoint.ram | number | unit: ' GB' }}</clr-dg-cell
 		>
 		<clr-dg-cell
 			[ngStyle]="
@@ -129,7 +129,7 @@
 					: {}
 			"
 			>{{
-				endpoint.batteryRuntime | number: '1.2-2' | unit: 'hrs'
+				endpoint.batteryRuntime | number: '1.2-2' | unit: ' hrs'
 			}}</clr-dg-cell
 		>
 		<clr-dg-cell
@@ -147,7 +147,7 @@
 			[ngStyle]="
 				showHeatMap ? getHeatMapColor(metricNameEnum.AGE, endpoint.age) : {}
 			"
-			>{{ endpoint.age | unit: 'months' }}</clr-dg-cell
+			>{{ endpoint.age | unit: ' months' }}</clr-dg-cell
 		>
 		<clr-dg-cell
 			[ngStyle]="

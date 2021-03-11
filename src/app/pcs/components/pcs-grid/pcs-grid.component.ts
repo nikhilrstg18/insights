@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { ClrDatagridStateInterface } from '@clr/angular'
-import { IEndpoint } from './../../../dashboard/models/i-endpoint'
 import { CpuEnum } from './../../../shared/enums/cpu.enum'
 import { MetricNameEnum } from './../../../shared/enums/metric-name.enum'
+import { Endpoint } from './../../../shared/models/endpoint'
 import {
 	FetchResult,
 	InventoryService,
@@ -15,7 +15,7 @@ import {
 })
 export class PcsGridComponent implements OnInit {
 	@Input() showHeatMap: boolean = false
-	public endpoints: IEndpoint[] = []
+	public endpoints: Endpoint[] = []
 	public total: number = 0
 	public loading: boolean = true
 	public page: number = 1
@@ -23,10 +23,7 @@ export class PcsGridComponent implements OnInit {
 	public selected: any[] = []
 	public metricNameEnum = MetricNameEnum
 
-	constructor(private inventory: InventoryService) {
-		this.inventory.size = 100
-		this.inventory.latency = 500
-	}
+	constructor(private inventory: InventoryService) {}
 
 	ngOnInit() {}
 
@@ -52,8 +49,9 @@ export class PcsGridComponent implements OnInit {
 			}
 		}
 
-		this.inventory.reset().subscribe((endpoints: IEndpoint[]) => {
+		this.inventory.reset().subscribe((endpoints: Endpoint[]) => {
 			this.inventory.all = endpoints
+			this.inventory.size = this.inventory.all.length
 			this.inventory
 				.filter(filters)
 				.sort(<{ by: string; reverse: boolean }>state.sort)

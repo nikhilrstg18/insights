@@ -10,7 +10,7 @@
 					value="option1"
 					[(ngModel)]="cardData && cardData.enabled"
 				/>
-				<label class="title">{{ cardData?.title }}</label>
+				<label class="title p1">{{ cardData?.title }}</label>
 				<clr-control-helper></clr-control-helper>
 			</clr-toggle-wrapper>
 		</clr-toggle-container>
@@ -21,7 +21,7 @@
 			!cardData?.enabled ? { opacity: '0.4', 'pointer-events': 'none' } : {}
 		"
 	>
-		<h6>
+		<h6 class="p2">
 			{{ cardData?.desc1 }}
 			<span *ngIf="!hideOperator && cardData?.operator == '<='"> &#8804; </span>
 			<span *ngIf="!hideOperator && cardData?.operator == '>='"> &#8805; </span>
