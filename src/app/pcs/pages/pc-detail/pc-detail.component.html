@@ -1,7 +1,11 @@
 <i-disclaimer></i-disclaimer>
 <div class="pc-detail">
-	<i-pcd-info></i-pcd-info>
-	<i-pcd-usage [usageCards]="usageCards"></i-pcd-usage>
+	<i-pcd-info [endpoint]="endpoint" [loading]="loading"></i-pcd-info>
+	<i-pcd-usage
+		[endpoint]="endpoint"
+		[loading]="loading"
+		[usageCards]="usageCards"
+	></i-pcd-usage>
 	<div class="clr-row">
 		<div class="clr-col-lg-5">
 			<i-pcd-alerts></i-pcd-alerts>

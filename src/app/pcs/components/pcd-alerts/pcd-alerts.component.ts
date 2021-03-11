@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { AlertFilters } from '../../models/alert-filters'
 import { Alerts } from '../../models/alerts'
 
@@ -6,6 +6,7 @@ import { Alerts } from '../../models/alerts'
 	selector: 'i-pcd-alerts',
 	templateUrl: './pcd-alerts.component.html',
 	styleUrls: ['./pcd-alerts.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PcdAlertsComponent implements OnInit {
 	public alerts: Alerts = new Alerts()

@@ -1,170 +1,239 @@
 <div class="clr-row pcd-sys-info">
 	<div class="clr-col-12">
 		<div class="card">
-			<div class="card-header pcd-si-header p2">System Info</div>
+			<div class="card-header pcd-si-header p2">Info</div>
+
 			<div class="card-block">
-				<div class="clr-row">
-					<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12">
-						<div class="clr-row">
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.SERVICE_TAG | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.ASSET_TAG | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.HOST_NAME | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.MODEL | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.WARRANTY | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-						</div>
-					</div>
-					<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12">
-						<div class="clr-row">
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.OS | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.PROCESSOR | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.RAM | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.STORAGE | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.GPU | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
+				<div *ngIf="!loading; else loader">
+					<div class="clr-row">
+						<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12">
+							<div class="clr-row">
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.SERVICE_TAG | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.serviceTag }}"
+									>
+										{{ endpoint?.serviceTag }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.ASSET_TAG | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.assetTag }}"
+									>
+										{{ endpoint?.assetTag }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.HOST_NAME | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.hostName }}"
+									>
+										{{ endpoint?.hostName }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.MODEL | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.model }}"
+									>
+										{{ endpoint?.model }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.WARRANTY | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.warranty }}"
+									>
+										{{ endpoint?.warranty }}
+									</h5>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12">
-						<div class="clr-row">
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.AGE | unit: ' :' }}
+						<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12">
+							<div class="clr-row">
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.OS | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5 class="p5 mt-0 text-ellipsis" title="{{ endpoint?.os }}">
+										{{ endpoint?.os }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.PROCESSOR | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.processor }}"
+									>
+										{{ endpoint?.processor }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.RAM | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.ram | unit: ' GB' }}"
+									>
+										{{ endpoint?.ram | unit: ' GB' }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.STORAGE | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.storage }}"
+									>
+										{{ endpoint?.storage }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.GPU | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5 class="p5 mt-0 text-ellipsis" title="{{ endpoint?.gpu }}">
+										{{ endpoint?.gpu }}
+									</h5>
+								</div>
 							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
+						</div>
+						<div class="clr-col-lg-4 clr-col-md-6 clr-col-sm-6 clr-col-xs-12">
+							<div class="clr-row">
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.AGE | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.age | unit: ' months' }}"
+									>
+										{{ endpoint?.age | unit: ' months' }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.BIOS | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.biosVersion }}"
+									>
+										{{ endpoint?.biosVersion }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.STYLE | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5
+										class="p5 mt-0 text-ellipsis"
+										title="{{ endpoint?.style }}"
+									>
+										{{ endpoint?.style }}
+									</h5>
+								</div>
+								<div
+									class="tae clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
+								>
+									{{ metricNameEnum.BUILT_IN_DISPLAY | unit: ' :' }}
+								</div>
+								<div
+									class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
+								>
+									<h5 class="p5 mt-0 text-ellipsis">
+										{{ endpoint?.builtInDisplay | unit: '"' }}
+									</h5>
+								</div>
+								<!-- <div class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem">
+                                    {{ metricNameEnum.WARRANTY | unit: ' :' }}
+                                </div>
+                                <div class=tae "clr-col-lg-8 p3 7t-05rem">{{endpoint?.serviceTag}}</div>
+                                <div class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem">
+                                    {{ metricNameEnum.OS | unit: ' :' }}
+                                </div>
+                                <div class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem">{{endpoint?.serviceTag}}</div> -->
 							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.BIOS | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.STYLE | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<div
-								class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem"
-							>
-								{{ metricNameEnum.BUILT_IN_DISPLAY | unit: ' :' }}
-							</div>
-							<div
-								class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem"
-							>
-								coming soon...
-							</div>
-							<!-- <div class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem">
-								{{ metricNameEnum.WARRANTY | unit: ' :' }}
-							</div>
-							<div class="clr-col-lg-8 p3 7t-05rem">coming soon...</div>
-							<div class="clr-col-lg-5 clr-col-md-5 clr-col-sm-5 clr-col-xs-5 p4 mt-05rem">
-								{{ metricNameEnum.OS | unit: ' :' }}
-							</div>
-							<div class="clr-col-lg-7 clr-col-md-7 clr-col-sm-7 clr-col-xs-7 p3 mt-05rem">coming soon...</div> -->
 						</div>
 					</div>
 				</div>
+				<ng-template #loader>
+					<div class="progress loop">
+						<progress></progress>
+					</div>
+				</ng-template>
 			</div>
 		</div>
 	</div>
