@@ -20,31 +20,38 @@
 		></cds-icon>
 		<span class="tooltip-content">{{ usageCard?.toolTip }}</span>
 	</a>
-	<h4>
-		<span *ngIf="usageCard && usageCard.mericAvg <= 1; else unit">
-			<span>{{ usageCard?.mericAvg | percent: '1.0-0' }}</span
-			>&nbsp;
-			<span class="p5">{{ usageCard?.mericAvgText | unit: '.' }}</span>
-		</span>
-		<ng-template #unit>
-			<span
-				*ngIf="
-					usageCard && usageCard.title !== metricNameEnum.CPU_UTIL;
-					else cpu
-				"
-				>{{ usageCard?.mericAvg }} &nbsp;</span
-			>
-			<ng-template #cpu>
-				<span>{{
-					helperService.getCPUText(usageCard && usageCard.mericAvg) | titlecase
-				}}</span>
-			</ng-template>
+	<div class="pcduc-metrics">
+		<h4>
+			<span *ngIf="usageCard && usageCard.mericAvg < 1; else unit">
+				<span>{{ usageCard?.mericAvg | percent: '1.0-0' }}</span
+				>&nbsp;
+				<span class="p5">{{ usageCard?.mericAvgText | unit: '.' }}</span>
+			</span>
+			<ng-template #unit>
+				<span
+					*ngIf="
+						usageCard && usageCard.title !== metricNameEnum.CPU_UTIL;
+						else cpu
+					"
+					>{{ usageCard?.mericAvg }} &nbsp;</span
+				>
+				<ng-template #cpu>
+					<span>{{
+						helperService.getCPUText(usageCard && usageCard.mericAvg)
+							| titlecase
+					}}</span>
+				</ng-template>
 
-			<span class="p5">{{ usageCard?.mericAvgText }}</span>
-		</ng-template>
-	</h4>
-	<h4 *ngIf="usageCard?.metricMax" id="data-ram-util-max-h4" class="healthdesc">
-		<span>{{ usageCard?.metricMax | percent: '1.0-0' }}&nbsp;</span>
-		<span class="p5">{{ usageCard?.metricMaxText | unit: '.' }}</span>
-	</h4>
+				<span class="p5 text-ellipsis">{{ usageCard?.mericAvgText }}</span>
+			</ng-template>
+		</h4>
+		<h4
+			*ngIf="usageCard?.metricMax"
+			id="data-ram-util-max-h4"
+			class="healthdesc"
+		>
+			<span>{{ usageCard?.metricMax | percent: '1.0-0' }}&nbsp;</span>
+			<span class="p5">{{ usageCard?.metricMaxText | unit: '.' }}</span>
+		</h4>
+	</div>
 </div>

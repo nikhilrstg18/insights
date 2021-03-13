@@ -1,3 +1,6 @@
+import { DBWidget } from './../../dashboard/models/db-widget'
+import { MetricEnum } from './../enums/metric.enum'
+import { SeverityEnum } from './../enums/severity.enum'
 import { Injectable } from '@angular/core'
 import { CpuEnum } from '../enums/cpu.enum'
 import { MetricNameEnum } from '../enums/metric-name.enum'
@@ -65,7 +68,7 @@ export class HelperService {
 						break
 				}
 				break
-			case MetricNameEnum.HEALTH_SCORE:
+			case MetricNameEnum.UTIL_SCORE:
 				switch (true) {
 					case metric < 0.4:
 						color = 'success'
@@ -83,13 +86,13 @@ export class HelperService {
 				break
 			case MetricNameEnum.APP_FAILURES:
 				switch (true) {
-					case metric < 20:
+					case metric < 10:
 						color = 'success'
 						break
-					case metric > 20 && metric < 75:
+					case metric >= 10 && metric < 20:
 						color = 'warning'
 						break
-					case metric >= 75:
+					case metric >= 20:
 						color = 'danger'
 						break
 					default:
@@ -99,13 +102,13 @@ export class HelperService {
 				break
 			case MetricNameEnum.OS_FAILURES:
 				switch (true) {
-					case metric < 5:
+					case metric < 4:
 						color = 'success'
 						break
-					case metric > 5 && metric < 10:
+					case metric >= 4 && metric < 8:
 						color = 'warning'
 						break
-					case metric >= 10:
+					case metric >= 8:
 						color = 'danger'
 						break
 					default:
@@ -148,26 +151,23 @@ export class HelperService {
 		} = endpoint
 
 		let healthScore =
-			(ram / 64 +
-				ramUtil +
-				gpuUtil +
-				storageRemaining +
-				cpuUtil / 3 +
-				osFailures / 20 +
-				appFailures / 100) /
-			7
+			(ram / 64 + ramUtil + gpuUtil + storageRemaining + cpuUtil / 3) / 7
 
 		return [
 			new PcdUsageCard(
-				MetricNameEnum.HEALTH_SCORE,
+				MetricNameEnum.UTIL_SCORE,
 				'target',
-				"The Utilization Score indicates how heavily a system's critical hardware is being used. A score from 0 to 100 is produced by continually measuring the performance of all major components. Higher scores indicate system resources are under heavier loads during daily operation, and may be affecting end-user experience.",
+				"The Usage Score indicates how heavily a system's critical hardware is being used. A score from 0 to 100 is produced by continually measuring the performance of all major components. Higher scores indicate system resources are under heavier loads during daily operation, and may be affecting end-user experience.",
 				'right',
 				healthScore,
 				'',
 				0,
 				'',
-				this.getSeverityColor(MetricNameEnum.HEALTH_SCORE, healthScore)
+				this.getSeverityColor(MetricNameEnum.UTIL_SCORE, healthScore),
+				this.getUsageSeverity(healthScore),
+				'This PC should be operating normally',
+				'This PC may have limited performance',
+				'This PC is not performing optimally. Review your configurations'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.RAM,
@@ -178,7 +178,11 @@ export class HelperService {
 				'GB',
 				0,
 				'',
-				this.getSeverityColor(MetricNameEnum.RAM, ram)
+				this.getSeverityColor(MetricNameEnum.RAM, ram),
+				this.getUsageSeverity(ram, 16, true),
+				'This PC should be operating normally',
+				'This PC may have limited performance',
+				'This PC is not performing optimally. Review your configurations'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.RAM_UTIL,
@@ -189,7 +193,11 @@ export class HelperService {
 				'avg',
 				ramUtilMax,
 				'max',
-				this.getSeverityColor(MetricNameEnum.RAM_UTIL, ramUtil)
+				this.getSeverityColor(MetricNameEnum.RAM_UTIL, ramUtil),
+				this.getUsageSeverity(ramUtil, ramUtilMax),
+				'This PC has optimal ram usage',
+				'This PC has medium ram usage',
+				'This PC has high ram usage'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.STORAGE_REMAINING,
@@ -203,7 +211,11 @@ export class HelperService {
 				this.getSeverityColor(
 					MetricNameEnum.STORAGE_REMAINING,
 					storageRemaining
-				)
+				),
+				this.getUsageSeverity(storageRemaining, 0.85),
+				'This PC has optimal free storage available',
+				'This PC has low free storage available',
+				'This PC has limited free storage available'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.CPU_UTIL,
@@ -214,7 +226,11 @@ export class HelperService {
 				'',
 				0,
 				'',
-				this.getSeverityColor(MetricNameEnum.CPU_UTIL, cpuUtil)
+				this.getSeverityColor(MetricNameEnum.CPU_UTIL, cpuUtil),
+				this.getUsageSeverity(cpuUtil, 3),
+				'This PC has optimal load on CPU',
+				'This PC has medium load on CPU',
+				'This PC has peek load on CPU'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.GPU_UTILL,
@@ -225,7 +241,11 @@ export class HelperService {
 				'avg',
 				gpuUtilMax,
 				'max',
-				this.getSeverityColor(MetricNameEnum.GPU_UTILL, cpuUtil)
+				this.getSeverityColor(MetricNameEnum.GPU_UTILL, gpuUtil),
+				this.getUsageSeverity(gpuUtil, gpuUtilMax, true),
+				'This PC has optimal load on GPU',
+				'This PC has medium load on GPU',
+				'This PC has peek load on GPU'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.OS_FAILURES,
@@ -233,10 +253,14 @@ export class HelperService {
 				'The average % of video memory (VRAM) used over the selected time period, and the peak load on the GPU.  Consistently high average GPU utilization may reduce device performance.',
 				'left',
 				osFailures,
-				'',
+				'os crashes',
 				0,
 				'',
-				this.getSeverityColor(MetricNameEnum.OS_FAILURES, osFailures)
+				this.getSeverityColor(MetricNameEnum.OS_FAILURES, osFailures),
+				this.getUsageSeverity(osFailures, 20),
+				'This PC is performing well.',
+				'This PC is not performing well and stops responding frequently.',
+				'This PC is not performing consistently and has frequent issues.'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.APP_FAILURES,
@@ -244,10 +268,14 @@ export class HelperService {
 				'The average % of video memory (VRAM) used over the selected time period, and the peak load on the GPU.  Consistently high average GPU utilization may reduce device performance.',
 				'left',
 				appFailures,
-				'',
+				'app crashes',
 				0,
 				'',
-				this.getSeverityColor(MetricNameEnum.HEALTH_SCORE, appFailures)
+				this.getSeverityColor(MetricNameEnum.APP_FAILURES, appFailures),
+				this.getUsageSeverity(appFailures, 30),
+				'Installed apps are performing well.',
+				'One or more apps are not performing well.',
+				'One or more apps are failing frequently.'
 			),
 		]
 	}
@@ -261,8 +289,8 @@ export class HelperService {
 				}
 			case MetricNameEnum.APP_FAILURES:
 				return {
-					background: `rgba(0, 114, 163,${value / 100} )`,
-					color: 1 - value / 100 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
+					background: `rgba(0, 114, 163,${value / 30} )`,
+					color: 1 - value / 30 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
 				}
 			case MetricNameEnum.AGE:
 				return {
@@ -301,6 +329,114 @@ export class HelperService {
 		return {
 			background: `rgba(0, 114, 163,0} )`,
 			color: `rgba(51, 51, 51,1} )`,
+		}
+	}
+
+	public getWidgetData() {
+		return {
+			systemIssues: {
+				[MetricEnum.OS_FAILURES]: new DBWidget(
+					MetricNameEnum.OS_FAILURES,
+					'computer',
+					'PCs with >= {0} OS failures',
+					4,
+					24,
+					0.19
+				),
+				[MetricEnum.APP_FAILURES]: new DBWidget(
+					MetricNameEnum.APP_FAILURES,
+					'application',
+					'PCs with <= {0} app failures',
+					12,
+					24,
+					0.19
+				),
+				[MetricEnum.AGE]: new DBWidget(
+					MetricNameEnum.AGE,
+					'hourglass',
+					'PCs shipped {0} months ago',
+					12,
+					24,
+					0.19
+				),
+			},
+			deviceIssues: {
+				[MetricEnum.CPU_UTIL]: new DBWidget(
+					MetricNameEnum.CPU_UTIL,
+					'cpu',
+					'PCs with {0} CPU usage',
+					0,
+					16,
+					0.12
+				),
+				[MetricEnum.RAM_UTIL]: new DBWidget(
+					MetricNameEnum.RAM_UTIL,
+					'resistor',
+					'PCs with >= {0}% ram usage',
+					25,
+					24,
+					0.19
+				),
+				[MetricEnum.RAM]: new DBWidget(
+					MetricNameEnum.RAM,
+					'memory',
+					'PCs with <= {0}GB installed memory',
+					20,
+					16,
+					0.12
+				),
+				[MetricEnum.STORAGE_REMAINING]: new DBWidget(
+					MetricNameEnum.STORAGE_REMAINING,
+					'hard-disk',
+					'PCs with <= {0}% storage space available',
+					20,
+					24,
+					0.19
+				),
+				[MetricEnum.BATTERY_HEALTH]: new DBWidget(
+					MetricNameEnum.BATTERY_HEALTH,
+					'battery',
+					'PCs with <= {0}% battery life',
+					20,
+					24,
+					0.19
+				),
+				[MetricEnum.BATTERY_RUNTIME]: new DBWidget(
+					MetricNameEnum.BATTERY_RUNTIME,
+					'bolt',
+					'PCs with <= {0}hr battery runtime',
+					20,
+					24,
+					0.19
+				),
+			},
+		}
+	}
+
+	public getUsageSeverity(
+		metricAvg: number,
+		factor: number = 1,
+		isInverted: boolean = false
+	): SeverityEnum {
+		const calculatedMetric = metricAvg / factor
+		if (!isInverted) {
+			switch (true) {
+				case calculatedMetric < 0.5:
+					return SeverityEnum.GOOD
+				case calculatedMetric >= 0.5 && calculatedMetric < 0.75:
+					return SeverityEnum.WARNING
+				default:
+					return SeverityEnum.CRITICAL
+			}
+		} else {
+			switch (true) {
+				case calculatedMetric >= 0.5:
+					return SeverityEnum.GOOD
+				case calculatedMetric < 0.5 && calculatedMetric <= 0.25:
+					return SeverityEnum.WARNING
+				default:
+					return SeverityEnum.CRITICAL
+			}
 		}
 	}
 }

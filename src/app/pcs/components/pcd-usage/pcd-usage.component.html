@@ -8,43 +8,135 @@
 						<div class="clr-col-lg-9 clr-col-md-12 clr-col-sm-12 border-right">
 							<div class="clr-row">
 								<div
-									class="clr-col-lg-2 clr-col-md-2 clr-col-sm-6 clr-col-xs-12"
+									class="clr-col-lg-2 clr-col-md-2 clr-col-sm-6 clr-col-xs-12 pcd-su-card"
 									*ngFor="let usageCard of healthUsageCards"
 								>
 									<i-pcd-usage-card [usageCard]="usageCard"></i-pcd-usage-card>
+									<span style="flex: 1 1 auto"></span>
+									<div class="clr-row usageInfo">
+										<div class="clr-col-lg-12" [ngSwitch]="usageCard?.severity">
+											<p class="p5 tac border-top">
+												<ng-container *ngSwitchCase="severityEnum.GOOD">
+													<cds-icon
+														size="sm"
+														solid
+														shape="success-standard"
+														status="success"
+													></cds-icon>
+													{{ usageCard?.goodText }}
+												</ng-container>
+												<ng-container *ngSwitchCase="severityEnum.WARNING">
+													<cds-icon
+														size="sm"
+														solid
+														shape="warning-standard"
+														status="warning"
+													></cds-icon>
+													{{ usageCard?.warningText }}
+												</ng-container>
+												<ng-container *ngSwitchCase="severityEnum.CRITICAL">
+													<cds-icon
+														size="sm"
+														solid
+														shape="error-standard"
+														status="danger"
+													></cds-icon>
+													{{ usageCard?.criticalText }}
+												</ng-container>
+												<ng-container *ngSwitchDefault> - </ng-container>
+											</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div class="clr-col-lg-3 clr-col-md-12 clr-col-sm-12">
-							<div class="clr-row">
+							<div class="clr-row h-100">
 								<div
-									class="clr-col-lg-6 clr-col-md-6 clr-col-sm-6 clr-col-xs-12"
+									class="clr-col-lg-6 clr-col-md-6 clr-col-sm-6 clr-col-xs-12 pcd-su-card"
 									*ngFor="let usageCard of stabilityUsageCards"
 								>
 									<i-pcd-usage-card [usageCard]="usageCard"></i-pcd-usage-card>
+									<span style="flex: 1 1 auto"></span>
+									<div class="clr-row usageInfo">
+										<div class="clr-col-lg-12" [ngSwitch]="usageCard?.severity">
+											<p class="p5 tac border-top">
+												<ng-container *ngSwitchCase="severityEnum.GOOD">
+													<cds-icon
+														size="sm"
+														solid
+														shape="success-standard"
+														status="success"
+													></cds-icon>
+													{{ usageCard?.goodText }}
+												</ng-container>
+												<ng-container *ngSwitchCase="severityEnum.WARNING">
+													<cds-icon
+														size="sm"
+														solid
+														shape="warning-standard"
+														status="warning"
+													></cds-icon>
+													{{ usageCard?.warningText }}
+												</ng-container>
+												<ng-container *ngSwitchCase="severityEnum.CRITICAL">
+													<cds-icon
+														size="sm"
+														solid
+														shape="error-standard"
+														status="danger"
+													></cds-icon>
+													{{ usageCard?.criticalText }}
+												</ng-container>
+												<ng-container *ngSwitchDefault> - </ng-container>
+											</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="clr-row">
+					<!-- <div class="clr-row">
 						<div class="clr-col-lg-9 clr-col-md-12 clr-col-sm-12">
 							<div class="clr-row usageInfo">
-								<div class="clr-col-lg-12">
+								<div class="clr-col-lg-12" [ngSwitch]="usageSeverity">
 									<p class="p5 tac border-top">
-										This PC should be operating normally.
+										<ng-container *ngSwitchCase="severityEnum.GOOD">
+											<cds-icon
+												size="sm"
+												solid
+												shape="success-standard"
+												status="success"
+											></cds-icon>
+											This PC should be operating normally.
+										</ng-container>
+										<ng-container *ngSwitchCase="severityEnum.WARNING">
+											<cds-icon
+												size="sm"
+												solid
+												shape="warning-standard"
+												status="warning"
+											></cds-icon>
+											This PC may have limited performance.
+										</ng-container>
+										<ng-container *ngSwitchCase="severityEnum.CRITICAL">
+											<cds-icon
+												size="sm"
+												solid
+												shape="error-standard"
+												status="danger"
+											></cds-icon
+											>This PC is not performing optimally. Review your
+											configuration.
+										</ng-container>
+										<ng-container *ngSwitchDefault> - </ng-container>
 									</p>
 								</div>
 							</div>
 						</div>
-						<div class="clr-col-lg-3 clr-col-md-12 clr-col-sm-12">
-							<div class="clr-row usageInfo">
-								<div class="clr-col-lg-12">
-									<p class="p5 tac border-top">This PC is performing well.</p>
-								</div>
-							</div>
-						</div>
-					</div>
+						<div class="clr-col-lg-3 clr-col-md-12 clr-col-sm-12"></div>
+					</div> -->
 				</div>
 				<ng-template #loader>
 					<div class="progress loop">

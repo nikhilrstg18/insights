@@ -19,6 +19,7 @@ import {
 	storageAdapterIcon,
 	targetIcon,
 	userIcon,
+	warningStandardIcon,
 } from '@cds/core/icon'
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'
 import { AppRoutingModule } from './app-routing.module'
@@ -58,6 +59,8 @@ export class AppModule {
 			userIcon,
 			targetIcon,
 			storageAdapterIcon,
+			errorStandardIcon,
+			warningStandardIcon,
 			errorStandardIcon
 		)
 	}

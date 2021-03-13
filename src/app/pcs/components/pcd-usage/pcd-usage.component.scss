@@ -3,6 +3,12 @@
 		background: #fafafa;
 		margin: 0;
 	}
+	.pcd-su-card {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+		justify-content: space-between;
+	}
 	.border-right {
 		border-right: 1px solid #dedede;
 	}
@@ -15,12 +21,12 @@
 		}
 	}
 	@media only screen and (max-width: 991px) {
-		.border-right {
-			border-right: none;
-			border-bottom: 1px solid #dedede;
-		}
-		.border-top {
-			border-top: none;
-		}
+		// .border-right {
+		// 	border-right: none;
+		// 	border-bottom: 1px solid #dedede;
+		// }
+		// .border-top {
+		// 	border-top: none;
+		// }
 	}
 }

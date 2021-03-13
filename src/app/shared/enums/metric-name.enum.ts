@@ -9,6 +9,7 @@ export enum MetricNameEnum {
 	BATTERY_HEALTH = 'Battery Health',
 	STORAGE_REMAINING = 'Storage Remaining',
 	HEALTH_SCORE = 'Health Score',
+	UTIL_SCORE = 'Usage Score',
 	SERVICE_TAG = 'Service Tag',
 	HOST_NAME = 'Host Name',
 	ASSET_TAG = 'Asset Tag',
