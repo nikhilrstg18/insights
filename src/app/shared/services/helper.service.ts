@@ -1,3 +1,4 @@
+import { Dashboard } from 'src/app/dashboard/models/dashboard'
 import { DBWidget } from './../../dashboard/models/db-widget'
 import { MetricEnum } from './../enums/metric.enum'
 import { SeverityEnum } from './../enums/severity.enum'
@@ -332,23 +333,23 @@ export class HelperService {
 		}
 	}
 
-	public getWidgetData() {
+	public getWidgetData(dashboard: Dashboard) {
 		return {
 			systemIssues: {
 				[MetricEnum.OS_FAILURES]: new DBWidget(
 					MetricNameEnum.OS_FAILURES,
 					'computer',
 					'PCs with >= {0} OS failures',
-					4,
-					24,
+					10,
+					dashboard.osFailures,
 					0.19
 				),
 				[MetricEnum.APP_FAILURES]: new DBWidget(
 					MetricNameEnum.APP_FAILURES,
 					'application',
 					'PCs with <= {0} app failures',
-					12,
-					24,
+					10,
+					dashboard.appFailures,
 					0.19
 				),
 				[MetricEnum.AGE]: new DBWidget(
@@ -356,7 +357,7 @@ export class HelperService {
 					'hourglass',
 					'PCs shipped {0} months ago',
 					12,
-					24,
+					dashboard.age,
 					0.19
 				),
 			},
@@ -365,48 +366,48 @@ export class HelperService {
 					MetricNameEnum.CPU_UTIL,
 					'cpu',
 					'PCs with {0} CPU usage',
-					0,
-					16,
+					3,
+					dashboard.cpuUtil,
 					0.12
 				),
 				[MetricEnum.RAM_UTIL]: new DBWidget(
 					MetricNameEnum.RAM_UTIL,
 					'resistor',
 					'PCs with >= {0}% ram usage',
-					25,
-					24,
+					30,
+					dashboard.ramUtil,
 					0.19
 				),
 				[MetricEnum.RAM]: new DBWidget(
 					MetricNameEnum.RAM,
 					'memory',
 					'PCs with <= {0}GB installed memory',
-					20,
-					16,
+					8,
+					dashboard.ram,
 					0.12
 				),
 				[MetricEnum.STORAGE_REMAINING]: new DBWidget(
 					MetricNameEnum.STORAGE_REMAINING,
 					'hard-disk',
 					'PCs with <= {0}% storage space available',
-					20,
-					24,
+					30,
+					dashboard.storageRemaining,
 					0.19
 				),
 				[MetricEnum.BATTERY_HEALTH]: new DBWidget(
 					MetricNameEnum.BATTERY_HEALTH,
 					'battery',
 					'PCs with <= {0}% battery life',
-					20,
-					24,
+					30,
+					dashboard.batteryHealth,
 					0.19
 				),
 				[MetricEnum.BATTERY_RUNTIME]: new DBWidget(
 					MetricNameEnum.BATTERY_RUNTIME,
 					'bolt',
 					'PCs with <= {0}hr battery runtime',
-					20,
-					24,
+					2,
+					dashboard.batteryHealth,
 					0.19
 				),
 			},

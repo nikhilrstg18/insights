@@ -4,10 +4,20 @@
 		<h1>PC Stability and Age</h1>
 		<div class="clr-row">
 			<div
+				style="min-height: 5rem"
 				class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12"
 				*ngFor="let systemIssue of systemIssues"
 			>
-				<i-dbwidget [issue]="systemIssue"></i-dbwidget>
+				<i-dbwidget
+					[widget]="systemIssue"
+					[loading]="loading"
+					*ngIf="!loading; else loader"
+				></i-dbwidget>
+				<ng-template #loader>
+					<div class="progress loop">
+						<progress></progress>
+					</div>
+				</ng-template>
 			</div>
 		</div>
 	</div>
@@ -18,7 +28,7 @@
 				class="clr-col-lg-4 clr-col-md-6 clr-col-sm-12"
 				*ngFor="let deviceIssue of deviceIssues"
 			>
-				<i-dbwidget [issue]="deviceIssue"></i-dbwidget>
+				<i-dbwidget [widget]="deviceIssue" [loading]="loading"></i-dbwidget>
 			</div>
 		</div>
 	</div>

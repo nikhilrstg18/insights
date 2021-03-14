@@ -1,10 +1,13 @@
+import { Dashboard } from './../../dashboard/models/dashboard'
+import { MetricNameEnum } from 'src/app/shared/enums/metric-name.enum'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
-import { first, map, switchMapTo, take, takeLast } from 'rxjs/operators'
-import { Dashboard } from 'src/app/dashboard/models/dashboard'
+import { forkJoin, merge, Observable } from 'rxjs'
+import { count, map } from 'rxjs/operators'
 import { Endpoint } from '../models/endpoint'
 import { IEndpoint } from './../../dashboard/models/i-endpoint'
+import { CpuEnum } from './../enums/cpu.enum'
+import { MetricEnum } from '../enums/metric.enum'
 
 @Injectable({
 	providedIn: 'root',
@@ -32,54 +35,73 @@ export class DashboardService {
 			)
 	}
 
-	getDashboardWidgetData() {
-		let systemCrashesSum: number = 0
-		let appCrashesSum: number = 0
-		let cpuUtilSum: number = 0
-		let ramUtilSum: number = 0
-		let ramSum: number = 0
-		let batteryHealthSum: number = 0
-		let batteryRuntimeSum: number = 0
-		let storageRemainingSum: number = 0
-		let csatSum: number = 0
-		let ageSum: number = 0
-		let total: number = 0
-
-		this.getAll().subscribe((endpoints: Endpoint[]) => {
-			endpoints.forEach(e => {
-				;(systemCrashesSum += e.systemCrashes),
-					(appCrashesSum += e.appCrashes),
-					(cpuUtilSum += e.cpuUtil),
-					(ramUtilSum += e.ramUtil),
-					(ramSum += e.ram),
-					(batteryHealthSum += e.batteryHealth),
-					(batteryRuntimeSum += e.batteryRuntime),
-					(storageRemainingSum += e.storageRemaining),
-					(csatSum += e.csat),
-					(ageSum += e.age),
-					total++
-			})
-
-			var dashboardData: Dashboard = new Dashboard(
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				total,
-				cpuUtilSum / total,
-				ramUtilSum / total,
-				ramSum / total,
-				batteryRuntimeSum / total,
-				storageRemainingSum / total,
-				systemCrashesSum / total,
-				ageSum / total,
-				csatSum / total
+	getWidgets(): Observable<Dashboard> {
+		const endpoints$ = this.getAll()
+		const total$ = endpoints$.pipe(
+			map((endpoints: Endpoint[]) => endpoints.length)
+		)
+		const osFailuresCount$ = endpoints$.pipe(
+			map(
+				(endpoints: Endpoint[]) =>
+					endpoints.filter(ep => ep.osFailures >= 10).length
 			)
+		)
+		const appFailuresCount$ = endpoints$.pipe(
+			map(
+				(endpoints: Endpoint[]) =>
+					endpoints.filter(ep => ep.appFailures >= 10).length
+			)
+		)
+		const ageCount$ = endpoints$.pipe(
+			map(
+				(endpoints: Endpoint[]) => endpoints.filter(ep => ep.age >= 12).length
+			)
+		)
+		const cpuUtilCount$ = endpoints$.pipe(
+			map(
+				(endpoints: Endpoint[]) =>
+					endpoints.filter(ep => ep.cpuUtil === CpuEnum.HIGH).length
+			)
+		)
+		const ramUtilCount$ = endpoints$.pipe(
+			map(
+				(endpoints: Endpoint[]) =>
+					endpoints.filter(ep => ep.ramUtil >= 0.3).length
+			)
+		)
+		const ramCount$ = endpoints$.pipe(
+			map((endpoints: Endpoint[]) => endpoints.filter(ep => ep.ram <= 8).length)
+		)
+		const storageRemainingCount$ = endpoints$.pipe(
+			map(
+				(endpoints: Endpoint[]) =>
+					endpoints.filter(ep => ep.storageRemaining <= 0.3).length
+			)
+		)
+		const batteryHealthCount$ = endpoints$.pipe(
+			map(
+				(endpoints: Endpoint[]) =>
+					endpoints.filter(ep => ep.batteryHealth <= 0.3).length
+			)
+		)
+		const batteryRuntimeCount$ = endpoints$.pipe(
+			map(
+				(endpoints: Endpoint[]) =>
+					endpoints.filter(ep => ep.batteryRuntime <= 2).length
+			)
+		)
 
-			return of(dashboardData)
+		return forkJoin({
+			[MetricEnum.OS_FAILURES]: osFailuresCount$,
+			[MetricEnum.APP_FAILURES]: appFailuresCount$,
+			[MetricEnum.AGE]: ageCount$,
+			[MetricEnum.CPU_UTIL]: cpuUtilCount$,
+			[MetricEnum.RAM_UTIL]: ramUtilCount$,
+			[MetricEnum.RAM]: ramCount$,
+			[MetricEnum.STORAGE_REMAINING]: storageRemainingCount$,
+			[MetricEnum.BATTERY_RUNTIME]: batteryHealthCount$,
+			[MetricEnum.BATTERY_HEALTH]: batteryRuntimeCount$,
+			total: total$,
 		})
 	}
 }

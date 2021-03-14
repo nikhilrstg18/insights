@@ -1,9 +1,9 @@
 export enum MetricEnum {
-	OS_FAILURES = 'OsFailures',
+	OS_FAILURES = 'osFailures',
 	APP_FAILURES = 'appFailures',
 	AGE = 'age',
-	RAM_UTIL = 'RamUtil',
-	CPU_UTIL = 'CpuUtil',
+	RAM_UTIL = 'ramUtil',
+	CPU_UTIL = 'cpuUtil',
 	RAM = 'ram',
 	BATTERY_RUNTIME = 'batteryRuntime',
 	BATTERY_HEALTH = 'batteryHealth',
