@@ -1,13 +1,17 @@
 export class Dashboard {
 	constructor(
-		public osFailures: number = 0,
-		public appFailures: number = 0,
-		public age: number = 0,
-		public cpuUtil: number = 0,
-		public ramUtil: number = 0,
-		public ram: number = 0,
-		public storageRemaining: number = 0,
-		public batteryHealth: number = 0,
-		public batteryRuntime: number = 0
+		public osFailures: CountandAvgCsat,
+		public appFailures: CountandAvgCsat,
+		public age: CountandAvgCsat,
+		public cpuUtil: CountandAvgCsat,
+		public ramUtil: CountandAvgCsat,
+		public ram: CountandAvgCsat,
+		public storageRemaining: CountandAvgCsat,
+		public batteryHealth: CountandAvgCsat,
+		public batteryRuntime: CountandAvgCsat
 	) {}
+}
+export interface CountandAvgCsat {
+	count: number
+	avg: number
 }

@@ -1,13 +1,12 @@
-import { Dashboard } from './../../dashboard/models/dashboard'
-import { MetricNameEnum } from 'src/app/shared/enums/metric-name.enum'
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { forkJoin, merge, Observable } from 'rxjs'
-import { count, map } from 'rxjs/operators'
+import { forkJoin, Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
+import { MetricEnum } from '../enums/metric.enum'
 import { Endpoint } from '../models/endpoint'
+import { Dashboard } from './../../dashboard/models/dashboard'
 import { IEndpoint } from './../../dashboard/models/i-endpoint'
 import { CpuEnum } from './../enums/cpu.enum'
-import { MetricEnum } from '../enums/metric.enum'
 
 @Injectable({
 	providedIn: 'root',
@@ -41,54 +40,103 @@ export class DashboardService {
 			map((endpoints: Endpoint[]) => endpoints.length)
 		)
 		const osFailuresCount$ = endpoints$.pipe(
-			map(
-				(endpoints: Endpoint[]) =>
-					endpoints.filter(ep => ep.osFailures >= 10).length
-			)
+			map((endpoints: Endpoint[]) => {
+				const filtred$ = endpoints.filter(ep => ep.osFailures >= 10)
+				return {
+					count: filtred$.length,
+					avg:
+						filtred$.map(ep => ep.csat).reduce((sum, cur) => sum + cur, 0) /
+						filtred$.length,
+				}
+			})
 		)
 		const appFailuresCount$ = endpoints$.pipe(
-			map(
-				(endpoints: Endpoint[]) =>
-					endpoints.filter(ep => ep.appFailures >= 10).length
-			)
+			map((endpoints: Endpoint[]) => {
+				const filtred$ = endpoints.filter(ep => ep.appFailures >= 10)
+				return {
+					count: filtred$.length,
+					avg:
+						filtred$.map(ep => ep.csat).reduce((sum, cur) => sum + cur, 0) /
+						filtred$.length,
+				}
+			})
 		)
 		const ageCount$ = endpoints$.pipe(
-			map(
-				(endpoints: Endpoint[]) => endpoints.filter(ep => ep.age >= 12).length
-			)
+			map((endpoints: Endpoint[]) => {
+				const filtred$ = endpoints.filter(ep => ep.age >= 12)
+				return {
+					count: filtred$.length,
+					avg:
+						filtred$.map(ep => ep.csat).reduce((sum, cur) => sum + cur, 0) /
+						filtred$.length,
+				}
+			})
 		)
 		const cpuUtilCount$ = endpoints$.pipe(
-			map(
-				(endpoints: Endpoint[]) =>
-					endpoints.filter(ep => ep.cpuUtil === CpuEnum.HIGH).length
-			)
+			map((endpoints: Endpoint[]) => {
+				const filtred$ = endpoints.filter(ep => ep.cpuUtil === CpuEnum.HIGH)
+				return {
+					count: filtred$.length,
+					avg:
+						filtred$.map(ep => ep.csat).reduce((sum, cur) => sum + cur, 0) /
+						filtred$.length,
+				}
+			})
 		)
 		const ramUtilCount$ = endpoints$.pipe(
-			map(
-				(endpoints: Endpoint[]) =>
-					endpoints.filter(ep => ep.ramUtil >= 0.3).length
-			)
+			map((endpoints: Endpoint[]) => {
+				const filtred$ = endpoints.filter(ep => ep.ramUtil >= 0.3)
+				return {
+					count: filtred$.length,
+					avg:
+						filtred$.map(ep => ep.csat).reduce((sum, cur) => sum + cur, 0) /
+						filtred$.length,
+				}
+			})
 		)
 		const ramCount$ = endpoints$.pipe(
-			map((endpoints: Endpoint[]) => endpoints.filter(ep => ep.ram <= 8).length)
+			map((endpoints: Endpoint[]) => {
+				const filtred$ = endpoints.filter(ep => ep.ram <= 8)
+				return {
+					count: filtred$.length,
+					avg:
+						filtred$.map(ep => ep.csat).reduce((sum, cur) => sum + cur, 0) /
+						filtred$.length,
+				}
+			})
 		)
 		const storageRemainingCount$ = endpoints$.pipe(
-			map(
-				(endpoints: Endpoint[]) =>
-					endpoints.filter(ep => ep.storageRemaining <= 0.3).length
-			)
+			map((endpoints: Endpoint[]) => {
+				const filtred$ = endpoints.filter(ep => ep.storageRemaining <= 0.3)
+				return {
+					count: filtred$.length,
+					avg:
+						filtred$.map(ep => ep.csat).reduce((sum, cur) => sum + cur, 0) /
+						filtred$.length,
+				}
+			})
 		)
 		const batteryHealthCount$ = endpoints$.pipe(
-			map(
-				(endpoints: Endpoint[]) =>
-					endpoints.filter(ep => ep.batteryHealth <= 0.3).length
-			)
+			map((endpoints: Endpoint[]) => {
+				const filtred$ = endpoints.filter(ep => ep.batteryHealth <= 0.3)
+				return {
+					count: filtred$.length,
+					avg:
+						filtred$.map(ep => ep.csat).reduce((sum, cur) => sum + cur, 0) /
+						filtred$.length,
+				}
+			})
 		)
 		const batteryRuntimeCount$ = endpoints$.pipe(
-			map(
-				(endpoints: Endpoint[]) =>
-					endpoints.filter(ep => ep.batteryRuntime <= 2).length
-			)
+			map((endpoints: Endpoint[]) => {
+				const filtred$ = endpoints.filter(ep => ep.batteryRuntime <= 2)
+				return {
+					count: filtred$.length,
+					avg:
+						filtred$.map(ep => ep.csat).reduce((sum, cur) => sum + cur, 0) /
+						filtred$.length,
+				}
+			})
 		)
 
 		return forkJoin({

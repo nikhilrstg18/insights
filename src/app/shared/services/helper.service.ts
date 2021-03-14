@@ -341,24 +341,24 @@ export class HelperService {
 					'computer',
 					'PCs with >= {0} OS failures',
 					10,
-					dashboard.osFailures,
-					0.19
+					dashboard.osFailures.count,
+					dashboard.osFailures.avg
 				),
 				[MetricEnum.APP_FAILURES]: new DBWidget(
 					MetricNameEnum.APP_FAILURES,
 					'application',
 					'PCs with <= {0} app failures',
 					10,
-					dashboard.appFailures,
-					0.19
+					dashboard.appFailures.count,
+					dashboard.appFailures.avg
 				),
 				[MetricEnum.AGE]: new DBWidget(
 					MetricNameEnum.AGE,
 					'hourglass',
 					'PCs shipped {0} months ago',
 					12,
-					dashboard.age,
-					0.19
+					dashboard.age.count,
+					dashboard.age.avg
 				),
 			},
 			deviceIssues: {
@@ -367,48 +367,48 @@ export class HelperService {
 					'cpu',
 					'PCs with {0} CPU usage',
 					3,
-					dashboard.cpuUtil,
-					0.12
+					dashboard.cpuUtil.count,
+					dashboard.cpuUtil.avg
 				),
 				[MetricEnum.RAM_UTIL]: new DBWidget(
 					MetricNameEnum.RAM_UTIL,
 					'resistor',
 					'PCs with >= {0}% ram usage',
 					30,
-					dashboard.ramUtil,
-					0.19
+					dashboard.ramUtil.count,
+					dashboard.ramUtil.avg
 				),
 				[MetricEnum.RAM]: new DBWidget(
 					MetricNameEnum.RAM,
 					'memory',
 					'PCs with <= {0}GB installed memory',
 					8,
-					dashboard.ram,
-					0.12
+					dashboard.ram.count,
+					dashboard.ram.avg
 				),
 				[MetricEnum.STORAGE_REMAINING]: new DBWidget(
 					MetricNameEnum.STORAGE_REMAINING,
 					'hard-disk',
 					'PCs with <= {0}% storage space available',
 					30,
-					dashboard.storageRemaining,
-					0.19
+					dashboard.storageRemaining.count,
+					dashboard.storageRemaining.avg
 				),
 				[MetricEnum.BATTERY_HEALTH]: new DBWidget(
 					MetricNameEnum.BATTERY_HEALTH,
 					'battery',
 					'PCs with <= {0}% battery life',
 					30,
-					dashboard.batteryHealth,
-					0.19
+					dashboard.batteryHealth.count,
+					dashboard.batteryHealth.avg
 				),
 				[MetricEnum.BATTERY_RUNTIME]: new DBWidget(
 					MetricNameEnum.BATTERY_RUNTIME,
 					'bolt',
 					'PCs with <= {0}hr battery runtime',
 					2,
-					dashboard.batteryHealth,
-					0.19
+					dashboard.batteryHealth.count,
+					dashboard.batteryHealth.avg
 				),
 			},
 		}
