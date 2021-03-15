@@ -1,4 +1,6 @@
+import { HelperService } from './../../../shared/services/helper.service'
 import { AfterContentInit, Component, Input, OnInit } from '@angular/core'
+import { Params } from '@angular/router'
 import { CpuEnum } from 'src/app/shared/enums/cpu.enum'
 import { MetricEnum } from 'src/app/shared/enums/metric.enum'
 import { MetricNameEnum } from './../../../shared/enums/metric-name.enum'
@@ -13,7 +15,8 @@ export class PcsFiltersComponent implements OnInit {
 	public expanded: boolean = true
 	public filterCards: FilterCard[] = []
 	public metricNameEnum = MetricNameEnum
-	constructor() {}
+	@Input() public queryParams: Params = {}
+	constructor(private helperService: HelperService) {}
 
 	ngOnInit(): void {
 		this.filterCards = this.getDefaultCardDataList()
@@ -25,8 +28,10 @@ export class PcsFiltersComponent implements OnInit {
 				MetricEnum.OS_FAILURES,
 				MetricNameEnum.OS_FAILURES,
 				'>=',
-				true,
-				10,
+				Object.keys(this.queryParams)[0] == MetricEnum.OS_FAILURES,
+				Object.keys(this.queryParams)[0] == MetricEnum.OS_FAILURES
+					? Number(this.queryParams[Object.keys(this.queryParams)[0]])
+					: 10,
 				10,
 				0,
 				20,
@@ -39,22 +44,26 @@ export class PcsFiltersComponent implements OnInit {
 				MetricEnum.APP_FAILURES,
 				MetricNameEnum.APP_FAILURES,
 				'>=',
-				true,
-				50,
-				50,
+				Object.keys(this.queryParams)[0] == MetricEnum.APP_FAILURES,
+				Object.keys(this.queryParams)[0] == MetricEnum.APP_FAILURES
+					? Number(this.queryParams[Object.keys(this.queryParams)[0]])
+					: 15,
+				15,
 				0,
-				100,
+				30,
 				'PCs with',
 				'App failures',
 				'',
-				['0', '50', '100']
+				['0', '15', '30']
 			),
 			new FilterCard(
 				MetricEnum.AGE,
 				MetricNameEnum.AGE,
 				'>=',
-				true,
-				24,
+				Object.keys(this.queryParams)[0] == MetricEnum.AGE,
+				Object.keys(this.queryParams)[0] == MetricEnum.AGE
+					? Number(this.queryParams[Object.keys(this.queryParams)[0]])
+					: 24,
 				24,
 				0,
 				48,
@@ -67,8 +76,10 @@ export class PcsFiltersComponent implements OnInit {
 				MetricEnum.CPU_UTIL,
 				MetricNameEnum.CPU_UTIL,
 				'==',
-				true,
-				CpuEnum.MEDIUM,
+				Object.keys(this.queryParams)[0] == MetricEnum.CPU_UTIL,
+				Object.keys(this.queryParams)[0] == MetricEnum.CPU_UTIL
+					? Number(this.queryParams[Object.keys(this.queryParams)[0]])
+					: CpuEnum.MEDIUM,
 				CpuEnum.MEDIUM,
 				CpuEnum.NORMAL,
 				CpuEnum.HIGH,
@@ -88,8 +99,10 @@ export class PcsFiltersComponent implements OnInit {
 				MetricEnum.RAM_UTIL,
 				MetricNameEnum.RAM_UTIL,
 				'>=',
-				true,
-				50,
+				Object.keys(this.queryParams)[0] == MetricEnum.RAM_UTIL,
+				Object.keys(this.queryParams)[0] == MetricEnum.RAM_UTIL
+					? Number(this.queryParams[Object.keys(this.queryParams)[0]])
+					: 50,
 				50,
 				0,
 				100,
@@ -102,8 +115,10 @@ export class PcsFiltersComponent implements OnInit {
 				MetricEnum.RAM,
 				MetricNameEnum.RAM,
 				'<=',
-				true,
-				32,
+				Object.keys(this.queryParams)[0] == MetricEnum.RAM,
+				Object.keys(this.queryParams)[0] == MetricEnum.RAM
+					? Number(this.queryParams[Object.keys(this.queryParams)[0]])
+					: 32,
 				32,
 				4,
 				64,
@@ -117,8 +132,10 @@ export class PcsFiltersComponent implements OnInit {
 				MetricEnum.STORAGE_REMAINING,
 				MetricNameEnum.STORAGE_REMAINING,
 				'<=',
-				true,
-				50,
+				Object.keys(this.queryParams)[0] == MetricEnum.STORAGE_REMAINING,
+				Object.keys(this.queryParams)[0] == MetricEnum.STORAGE_REMAINING
+					? Number(this.queryParams[Object.keys(this.queryParams)[0]])
+					: 50,
 				50,
 				0,
 				100,
@@ -131,8 +148,10 @@ export class PcsFiltersComponent implements OnInit {
 				MetricEnum.BATTERY_HEALTH,
 				MetricNameEnum.BATTERY_HEALTH,
 				'<=',
-				true,
-				50,
+				Object.keys(this.queryParams)[0] == MetricEnum.BATTERY_HEALTH,
+				Object.keys(this.queryParams)[0] == MetricEnum.BATTERY_HEALTH
+					? Number(this.queryParams[Object.keys(this.queryParams)[0]])
+					: 50,
 				50,
 				0,
 				100,
@@ -145,8 +164,10 @@ export class PcsFiltersComponent implements OnInit {
 				MetricEnum.BATTERY_RUNTIME,
 				MetricNameEnum.BATTERY_RUNTIME,
 				'<=',
-				true,
-				6,
+				Object.keys(this.queryParams)[0] == MetricEnum.BATTERY_RUNTIME,
+				Object.keys(this.queryParams)[0] == MetricEnum.BATTERY_RUNTIME
+					? Number(this.queryParams[Object.keys(this.queryParams)[0]])
+					: 6,
 				6,
 				0,
 				12,

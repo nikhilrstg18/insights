@@ -31,7 +31,13 @@
 			</div>
 		</div>
 		<div class="card-footer dbw-footer">
-			<button class="btn btn-primary" [routerLink]="['pcs']">View List</button>
+			<button
+				class="btn btn-primary"
+				[routerLink]="['pcs']"
+				[queryParams]="widget.queryParam"
+			>
+				View List
+			</button>
 		</div>
 		<ng-template #loader>
 			<div class="progress loop">

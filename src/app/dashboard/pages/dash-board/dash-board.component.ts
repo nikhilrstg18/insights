@@ -29,4 +29,9 @@ export class DashBoardComponent implements OnInit {
 			this.loading = false
 		})
 	}
+	getQueryParam(widget: DBWidget) {
+		return {
+			[widget.id]: widget.threshold,
+		}
+	}
 }

@@ -166,9 +166,9 @@ export class HelperService {
 				'',
 				this.getSeverityColor(MetricNameEnum.UTIL_SCORE, healthScore),
 				this.getUsageSeverity(healthScore),
-				'This PC should be operating normally',
-				'This PC may have limited performance',
-				'This PC is not performing optimally. Review your configurations'
+				'This PC should be operating normally.',
+				'This PC may have limited performance.',
+				'This PC is not performing optimally.'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.RAM,
@@ -181,9 +181,9 @@ export class HelperService {
 				'',
 				this.getSeverityColor(MetricNameEnum.RAM, ram),
 				this.getUsageSeverity(ram, 16, true),
-				'This PC should be operating normally',
-				'This PC may have limited performance',
-				'This PC is not performing optimally. Review your configurations'
+				'This PC should be operating normally.',
+				'This PC may have limited performance.',
+				'This PC is not performing optimally.'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.RAM_UTIL,
@@ -196,9 +196,9 @@ export class HelperService {
 				'max',
 				this.getSeverityColor(MetricNameEnum.RAM_UTIL, ramUtil),
 				this.getUsageSeverity(ramUtil, ramUtilMax),
-				'This PC has optimal ram usage',
-				'This PC has medium ram usage',
-				'This PC has high ram usage'
+				'This PC has optimal RAM usage',
+				'This PC has medium RAM usage',
+				'This PC has high RAM usage'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.STORAGE_REMAINING,
@@ -243,7 +243,7 @@ export class HelperService {
 				gpuUtilMax,
 				'max',
 				this.getSeverityColor(MetricNameEnum.GPU_UTILL, gpuUtil),
-				this.getUsageSeverity(gpuUtil, gpuUtilMax, true),
+				this.getUsageSeverity(gpuUtil, gpuUtilMax),
 				'This PC has optimal load on GPU',
 				'This PC has medium load on GPU',
 				'This PC has peek load on GPU'
@@ -260,8 +260,8 @@ export class HelperService {
 				this.getSeverityColor(MetricNameEnum.OS_FAILURES, osFailures),
 				this.getUsageSeverity(osFailures, 20),
 				'This PC is performing well.',
-				'This PC is not performing well and stops responding frequently.',
-				'This PC is not performing consistently and has frequent issues.'
+				'This PC stops responding frequently.',
+				'This PC has frequent issues.'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.APP_FAILURES,
@@ -337,6 +337,7 @@ export class HelperService {
 		return {
 			systemIssues: {
 				[MetricEnum.OS_FAILURES]: new DBWidget(
+					MetricEnum.OS_FAILURES,
 					MetricNameEnum.OS_FAILURES,
 					'computer',
 					'PCs with >= {0} OS failures',
@@ -345,6 +346,7 @@ export class HelperService {
 					dashboard.osFailures.avg
 				),
 				[MetricEnum.APP_FAILURES]: new DBWidget(
+					MetricEnum.APP_FAILURES,
 					MetricNameEnum.APP_FAILURES,
 					'application',
 					'PCs with <= {0} app failures',
@@ -353,6 +355,7 @@ export class HelperService {
 					dashboard.appFailures.avg
 				),
 				[MetricEnum.AGE]: new DBWidget(
+					MetricEnum.AGE,
 					MetricNameEnum.AGE,
 					'hourglass',
 					'PCs shipped {0} months ago',
@@ -363,6 +366,7 @@ export class HelperService {
 			},
 			deviceIssues: {
 				[MetricEnum.CPU_UTIL]: new DBWidget(
+					MetricEnum.CPU_UTIL,
 					MetricNameEnum.CPU_UTIL,
 					'cpu',
 					'PCs with {0} CPU usage',
@@ -371,14 +375,16 @@ export class HelperService {
 					dashboard.cpuUtil.avg
 				),
 				[MetricEnum.RAM_UTIL]: new DBWidget(
+					MetricEnum.RAM_UTIL,
 					MetricNameEnum.RAM_UTIL,
 					'resistor',
-					'PCs with >= {0}% ram usage',
+					'PCs with >= {0}% RAM usage',
 					30,
 					dashboard.ramUtil.count,
 					dashboard.ramUtil.avg
 				),
 				[MetricEnum.RAM]: new DBWidget(
+					MetricEnum.RAM,
 					MetricNameEnum.RAM,
 					'memory',
 					'PCs with <= {0}GB installed memory',
@@ -387,6 +393,7 @@ export class HelperService {
 					dashboard.ram.avg
 				),
 				[MetricEnum.STORAGE_REMAINING]: new DBWidget(
+					MetricEnum.STORAGE_REMAINING,
 					MetricNameEnum.STORAGE_REMAINING,
 					'hard-disk',
 					'PCs with <= {0}% storage space available',
@@ -395,6 +402,7 @@ export class HelperService {
 					dashboard.storageRemaining.avg
 				),
 				[MetricEnum.BATTERY_HEALTH]: new DBWidget(
+					MetricEnum.BATTERY_HEALTH,
 					MetricNameEnum.BATTERY_HEALTH,
 					'battery',
 					'PCs with <= {0}% battery life',
@@ -403,6 +411,7 @@ export class HelperService {
 					dashboard.batteryHealth.avg
 				),
 				[MetricEnum.BATTERY_RUNTIME]: new DBWidget(
+					MetricEnum.BATTERY_RUNTIME,
 					MetricNameEnum.BATTERY_RUNTIME,
 					'bolt',
 					'PCs with <= {0}hr battery runtime',

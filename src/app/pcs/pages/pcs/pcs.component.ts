@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute, Params } from '@angular/router'
 
 @Component({
 	selector: 'i-pcs',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core'
 })
 export class PcsComponent implements OnInit {
 	public showHeatMap: boolean = false
-	constructor() {}
+	public queryParams: Params = {}
+	constructor(private _activatedRoute: ActivatedRoute) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.queryParams = this._activatedRoute.snapshot.queryParams
+	}
 }

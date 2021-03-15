@@ -2,7 +2,7 @@ export enum MetricNameEnum {
 	OS_FAILURES = 'OS Failures',
 	APP_FAILURES = 'App Faillures',
 	AGE = 'PC Age',
-	RAM_UTIL = 'Ram Usage',
+	RAM_UTIL = 'RAM Usage',
 	CPU_UTIL = 'CPU Usage',
 	RAM = 'Installed Memory',
 	BATTERY_RUNTIME = 'Battery Runtime',
