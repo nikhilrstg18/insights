@@ -1,5 +1,5 @@
 <i-disclaimer></i-disclaimer>
-<i-pcs-filters [queryParams]="queryParams"></i-pcs-filters>
+<i-pcs-filters [filters]="filters"></i-pcs-filters>
 <div class="heatmap">
 	<div>
 		<clr-checkbox-wrapper>
@@ -14,4 +14,4 @@
 		</clr-checkbox-wrapper>
 	</div>
 </div>
-<i-pcs-grid [showHeatMap]="showHeatMap"></i-pcs-grid>
+<i-pcs-grid [showHeatMap]="showHeatMap" [filters]="filters"></i-pcs-grid>

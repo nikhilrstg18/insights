@@ -1,29 +1,27 @@
-import { Dashboard } from 'src/app/dashboard/models/dashboard'
-import { DBWidget } from './../../dashboard/models/db-widget'
-import { MetricEnum } from './../enums/metric.enum'
-import { SeverityEnum } from './../enums/severity.enum'
 import { Injectable } from '@angular/core'
+import { Dashboard } from 'src/app/dashboard/models/dashboard'
 import { CpuEnum } from '../enums/cpu.enum'
 import { MetricNameEnum } from '../enums/metric-name.enum'
 import { Endpoint } from '../models/endpoint'
-import { PcdUsageCard } from '../models/pcd-usage-card'
-import { Params } from '@angular/router'
 import { FilterCard } from '../models/filter-card'
+import { Filters } from '../models/filters'
+import { PcdUsageCard } from '../models/pcd-usage-card'
+import { DBWidget } from './../../dashboard/models/db-widget'
+import { MetricEnum } from './../enums/metric.enum'
+import { SeverityEnum } from './../enums/severity.enum'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class HelperService {
-	getDefaultCardDataList(queryParams: Params) {
+	getDefaultCardDataList(filters: Filters) {
 		return [
 			new FilterCard(
 				MetricEnum.OS_FAILURES,
 				MetricNameEnum.OS_FAILURES,
 				'>=',
-				Object.keys(queryParams)[0] == MetricEnum.OS_FAILURES,
-				Object.keys(queryParams)[0] == MetricEnum.OS_FAILURES
-					? Number(queryParams[Object.keys(queryParams)[0]])
-					: 10,
+				filters.osFailures.active,
+				filters.osFailures.active ? filters.osFailures.value : 10,
 				10,
 				0,
 				20,
@@ -36,10 +34,8 @@ export class HelperService {
 				MetricEnum.APP_FAILURES,
 				MetricNameEnum.APP_FAILURES,
 				'>=',
-				Object.keys(queryParams)[0] == MetricEnum.APP_FAILURES,
-				Object.keys(queryParams)[0] == MetricEnum.APP_FAILURES
-					? Number(queryParams[Object.keys(queryParams)[0]])
-					: 15,
+				filters.appFailures.active,
+				filters.appFailures.active ? filters.appFailures.value : 15,
 				15,
 				0,
 				30,
@@ -52,10 +48,8 @@ export class HelperService {
 				MetricEnum.AGE,
 				MetricNameEnum.AGE,
 				'>=',
-				Object.keys(queryParams)[0] == MetricEnum.AGE,
-				Object.keys(queryParams)[0] == MetricEnum.AGE
-					? Number(queryParams[Object.keys(queryParams)[0]])
-					: 24,
+				filters.age.active,
+				filters.age.active ? filters.age.value : 24,
 				24,
 				0,
 				48,
@@ -68,10 +62,8 @@ export class HelperService {
 				MetricEnum.CPU_UTIL,
 				MetricNameEnum.CPU_UTIL,
 				'==',
-				Object.keys(queryParams)[0] == MetricEnum.CPU_UTIL,
-				Object.keys(queryParams)[0] == MetricEnum.CPU_UTIL
-					? Number(queryParams[Object.keys(queryParams)[0]])
-					: CpuEnum.MEDIUM,
+				filters.cpuUtil.active,
+				filters.cpuUtil.active ? filters.cpuUtil.value : CpuEnum.MEDIUM,
 				CpuEnum.MEDIUM,
 				CpuEnum.NORMAL,
 				CpuEnum.HIGH,
@@ -91,10 +83,8 @@ export class HelperService {
 				MetricEnum.RAM_UTIL,
 				MetricNameEnum.RAM_UTIL,
 				'>=',
-				Object.keys(queryParams)[0] == MetricEnum.RAM_UTIL,
-				Object.keys(queryParams)[0] == MetricEnum.RAM_UTIL
-					? Number(queryParams[Object.keys(queryParams)[0]])
-					: 50,
+				filters.ramUtil.active,
+				filters.ramUtil.active ? filters.ramUtil.value : 50,
 				50,
 				0,
 				100,
@@ -107,10 +97,8 @@ export class HelperService {
 				MetricEnum.RAM,
 				MetricNameEnum.RAM,
 				'<=',
-				Object.keys(queryParams)[0] == MetricEnum.RAM,
-				Object.keys(queryParams)[0] == MetricEnum.RAM
-					? Number(queryParams[Object.keys(queryParams)[0]])
-					: 32,
+				filters.ram.active,
+				filters.ram.active ? filters.ram.value : 32,
 				32,
 				4,
 				64,
@@ -124,10 +112,8 @@ export class HelperService {
 				MetricEnum.STORAGE_REMAINING,
 				MetricNameEnum.STORAGE_REMAINING,
 				'<=',
-				Object.keys(queryParams)[0] == MetricEnum.STORAGE_REMAINING,
-				Object.keys(queryParams)[0] == MetricEnum.STORAGE_REMAINING
-					? Number(queryParams[Object.keys(queryParams)[0]])
-					: 50,
+				filters.storageRemaining.active,
+				filters.storageRemaining.active ? filters.storageRemaining.value : 50,
 				50,
 				0,
 				100,
@@ -140,10 +126,8 @@ export class HelperService {
 				MetricEnum.BATTERY_HEALTH,
 				MetricNameEnum.BATTERY_HEALTH,
 				'<=',
-				Object.keys(queryParams)[0] == MetricEnum.BATTERY_HEALTH,
-				Object.keys(queryParams)[0] == MetricEnum.BATTERY_HEALTH
-					? Number(queryParams[Object.keys(queryParams)[0]])
-					: 50,
+				filters.batteryHealth.active,
+				filters.batteryHealth.active ? filters.batteryHealth.value : 50,
 				50,
 				0,
 				100,
@@ -156,10 +140,8 @@ export class HelperService {
 				MetricEnum.BATTERY_RUNTIME,
 				MetricNameEnum.BATTERY_RUNTIME,
 				'<=',
-				Object.keys(queryParams)[0] == MetricEnum.BATTERY_RUNTIME,
-				Object.keys(queryParams)[0] == MetricEnum.BATTERY_RUNTIME
-					? Number(queryParams[Object.keys(queryParams)[0]])
-					: 6,
+				filters.batteryRuntime.active,
+				filters.batteryRuntime.active ? filters.batteryRuntime.value : 6,
 				6,
 				0,
 				12,

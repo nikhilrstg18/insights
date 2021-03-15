@@ -1,3 +1,4 @@
+import { FilterContext } from './../../../shared/models/filter-context'
 import { HelperService } from './../../../shared/services/helper.service'
 import { Component, Input, OnInit } from '@angular/core'
 import { ClrDatagridStateInterface } from '@clr/angular'
@@ -8,6 +9,7 @@ import {
 	FetchResult,
 	InventoryService,
 } from './../../../shared/services/inventory.service'
+import { Filters } from 'src/app/shared/models/filters'
 
 @Component({
 	selector: 'i-pcs-grid',
@@ -16,6 +18,7 @@ import {
 })
 export class PcsGridComponent implements OnInit {
 	@Input() showHeatMap: boolean = false
+	@Input() public filters: Filters = new Filters()
 	public endpoints: Endpoint[] = []
 	public total: number = 0
 	public loading: boolean = true
@@ -43,6 +46,10 @@ export class PcsGridComponent implements OnInit {
 				filters[property] = [value]
 			}
 		}
+		// for (let filter of Object.entries(this.filters)) {
+		// 	let { value } = <FilterContext>filter[1]
+		// 	filters[filter[0]] = [value]
+		// }
 
 		if (state?.page) {
 			if (state.page.from == -1) {
