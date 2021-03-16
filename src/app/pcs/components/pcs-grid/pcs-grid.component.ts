@@ -1,15 +1,20 @@
-import { FilterContext } from './../../../shared/models/filter-context'
-import { HelperService } from './../../../shared/services/helper.service'
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { ClrDatagridStateInterface } from '@clr/angular'
-import { CpuEnum } from './../../../shared/enums/cpu.enum'
+import {
+	Component,
+	EventEmitter,
+	Input,
+	OnInit,
+	Output,
+	ViewChild,
+} from '@angular/core'
+import { ClrDatagrid, ClrDatagridStateInterface } from '@clr/angular'
+import { Filters } from 'src/app/shared/models/filters'
 import { MetricNameEnum } from './../../../shared/enums/metric-name.enum'
 import { Endpoint } from './../../../shared/models/endpoint'
+import { HelperService } from './../../../shared/services/helper.service'
 import {
 	FetchResult,
 	InventoryService,
 } from './../../../shared/services/inventory.service'
-import { Filters } from 'src/app/shared/models/filters'
 
 @Component({
 	selector: 'i-pcs-grid',
@@ -20,6 +25,7 @@ export class PcsGridComponent implements OnInit {
 	@Input() showHeatMap: boolean = false
 	@Input() public filters: Filters = new Filters()
 	@Output() public totalUpdated = new EventEmitter<number>()
+	@Output('loading') public isLoading = new EventEmitter<boolean>()
 	public endpoints: Endpoint[] = []
 	public total: number = 0
 	public loading: boolean = true
@@ -35,18 +41,10 @@ export class PcsGridComponent implements OnInit {
 
 	ngOnInit() {}
 
-	public refreshGrid(state: ClrDatagridStateInterface) {
-		console.log(state)
-		if (!this.firstLoad) {
-			this.refresh(state)
-		} else {
-			this.firstLoad != this.firstLoad
-		}
-	}
-
 	//@ called from view by clr-datagrid
 	refresh(state: ClrDatagridStateInterface) {
 		this.loading = true
+		this.isLoading.emit(this.loading)
 		let clrDgFilters: { [prop: string]: any[] } = {}
 
 		// if filters create filters object
@@ -56,11 +54,6 @@ export class PcsGridComponent implements OnInit {
 				clrDgFilters[property] = [value]
 			}
 		}
-
-		// for (let filter of Object.entries(this.filters)) {
-		// 	let { value } = <FilterContext>filter[1]
-		// 	filters[filter[0]] = value
-		// }
 
 		if (state?.page) {
 			if (state.page.from == -1) {
@@ -81,8 +74,9 @@ export class PcsGridComponent implements OnInit {
 				.subscribe((result: FetchResult) => {
 					this.endpoints = result.endpoints
 					this.total = result.length
-					this.totalUpdated.emit(this.total)
 					this.loading = false
+					this.totalUpdated.emit(this.total)
+					this.isLoading.emit(this.loading)
 				})
 		})
 	}

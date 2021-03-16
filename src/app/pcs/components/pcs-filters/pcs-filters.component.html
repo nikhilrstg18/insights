@@ -2,8 +2,8 @@
 	<clr-accordion>
 		<clr-accordion-panel [(clrAccordionPanelOpen)]="expanded">
 			<clr-accordion-title>Filters</clr-accordion-title>
-			<clr-accordion-description
-				>will be functional soon</clr-accordion-description
+			<clr-accordion-description>
+				&nbsp;Refine your search</clr-accordion-description
 			>
 			<clr-accordion-content *clrIfExpanded>
 				<div class="clr-row f-content">
@@ -26,7 +26,10 @@
 					<div class="clr-col-lg-2 clr-col-md-2 clr-col-sm-12 summary">
 						<div class="fs-container">
 							<div class="fs-matching">
-								<h1>{{ total }}</h1>
+								<h1 *ngIf="!loading; else loader">{{ total }}</h1>
+								<ng-template #loader>
+									<clr-spinner>Loading ...</clr-spinner>
+								</ng-template>
 								<h5 class="text">matching PCs</h5>
 							</div>
 							<div class="fs-actions">
@@ -40,7 +43,9 @@
 									</button>
 								</div>
 								<div class="fs-clear">
-									<button type="button" class="btn btn-outline">Clear</button>
+									<button type="button" class="btn btn-outline" disabled>
+										Clear
+									</button>
 								</div>
 							</div>
 						</div>

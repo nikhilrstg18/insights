@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
+import { ClrDatagrid } from '@clr/angular'
 import { MetricEnum } from 'src/app/shared/enums/metric.enum'
 import { FilterContext } from 'src/app/shared/models/filter-context'
 import { Filters } from 'src/app/shared/models/filters'
-import { PcsGridComponent } from './../../components/pcs-grid/pcs-grid.component'
+import { PcsGridComponent } from '../../components/pcs-grid/pcs-grid.component'
 
 @Component({
 	selector: 'i-pcs',
@@ -15,8 +16,10 @@ export class PcsComponent implements OnInit {
 	public queryParams: Params = {}
 	public filters: Filters = new Filters()
 	public total: number = 0
+	public loading: boolean = false
 	constructor(private _activatedRoute: ActivatedRoute) {}
-	@ViewChild(PcsGridComponent) pcsGridComponent!: PcsGridComponent
+	@ViewChild(PcsGridComponent, { static: true })
+	pcsGridComponent!: PcsGridComponent
 
 	ngOnInit(): void {
 		this.queryParams = this._activatedRoute.snapshot.queryParams
@@ -24,11 +27,15 @@ export class PcsComponent implements OnInit {
 	}
 
 	handleUpdate() {
-		var state = { page: { from: -1, to: -1, current: -1, size: 10 } }
+		const state = { page: { from: -1, to: -1, current: -1, size: 10 } }
 		this.pcsGridComponent.refresh(state)
 	}
+
 	handleTotalUpdated(total: number) {
 		this.total = total
+	}
+	handleLoading(loading: boolean) {
+		this.loading = loading
 	}
 
 	setFilters(filterNames: string[]) {

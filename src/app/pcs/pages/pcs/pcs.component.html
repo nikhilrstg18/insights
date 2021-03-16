@@ -2,6 +2,7 @@
 <i-pcs-filters
 	[filters]="filters"
 	[total]="total"
+	[loading]="loading"
 	(onUpdateClick)="handleUpdate()"
 ></i-pcs-filters>
 <div class="heatmap">
@@ -22,4 +23,5 @@
 	[showHeatMap]="showHeatMap"
 	[filters]="filters"
 	(totalUpdated)="handleTotalUpdated($event)"
+	(loading)="handleLoading($event)"
 ></i-pcs-grid>

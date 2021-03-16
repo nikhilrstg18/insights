@@ -16,7 +16,8 @@ export class PcsFiltersComponent implements OnInit {
 	public metricNameEnum = MetricNameEnum
 	@Input() public filters: Filters = new Filters()
 	@Input() public total: number = 0
-	@Input() public onUpdateClick = new EventEmitter()
+	@Input() public loading: boolean = false
+	@Output() public onUpdateClick = new EventEmitter()
 	constructor(private helperService: HelperService) {}
 
 	ngOnInit(): void {
