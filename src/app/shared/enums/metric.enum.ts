@@ -14,4 +14,5 @@ export enum MetricEnum {
 	ASSET_TAG = 'assetTag',
 	MODEL = 'model',
 	SUPPORT_LEVEL = 'supportLevel',
+	GPU_UTIL = 'gpuUtil',
 }

@@ -194,7 +194,7 @@ export class HelperService {
 				break
 			case MetricNameEnum.RAM_UTIL:
 			case MetricNameEnum.STORAGE_REMAINING:
-			case MetricNameEnum.GPU_UTILL:
+			case MetricNameEnum.GPU_UTIL:
 				switch (true) {
 					case metric < 0.3:
 						color = 'success'
@@ -293,7 +293,7 @@ export class HelperService {
 		} = endpoint
 
 		let healthScore =
-			(ram / 64 + ramUtil + gpuUtil + storageRemaining + cpuUtil / 3) / 7
+			(ram / 64 + ramUtil + gpuUtil + storageRemaining + cpuUtil / 3) / 5
 
 		return [
 			new PcdUsageCard(
@@ -306,7 +306,7 @@ export class HelperService {
 				0,
 				'',
 				this.getSeverityColor(MetricNameEnum.UTIL_SCORE, healthScore),
-				this.getUsageSeverity(healthScore),
+				this.getUsageSeverity(MetricNameEnum.UTIL_SCORE, healthScore),
 				'This PC should be operating normally.',
 				'This PC may have limited performance.',
 				'This PC is not performing optimally.'
@@ -321,10 +321,10 @@ export class HelperService {
 				0,
 				'',
 				this.getSeverityColor(MetricNameEnum.RAM, ram),
-				this.getUsageSeverity(ram, 16, true),
-				'This PC should be operating normally.',
-				'This PC may have limited performance.',
-				'This PC is not performing optimally.'
+				this.getUsageSeverity(MetricNameEnum.RAM, ram, 16, true),
+				'This PC should be performing lag free.',
+				'This PC may have lag in performance.',
+				'This PC may have frequent lag in performance.'
 			),
 			new PcdUsageCard(
 				MetricNameEnum.RAM_UTIL,
@@ -336,7 +336,7 @@ export class HelperService {
 				ramUtilMax,
 				'max',
 				this.getSeverityColor(MetricNameEnum.RAM_UTIL, ramUtil),
-				this.getUsageSeverity(ramUtil, ramUtilMax),
+				this.getUsageSeverity(MetricNameEnum.RAM_UTIL, ramUtil, ramUtilMax),
 				'This PC has optimal RAM usage',
 				'This PC has medium RAM usage',
 				'This PC has high RAM usage'
@@ -354,7 +354,11 @@ export class HelperService {
 					MetricNameEnum.STORAGE_REMAINING,
 					storageRemaining
 				),
-				this.getUsageSeverity(storageRemaining, 0.85),
+				this.getUsageSeverity(
+					MetricNameEnum.STORAGE_REMAINING,
+					storageRemaining,
+					0.85
+				),
 				'This PC has optimal free storage available',
 				'This PC has low free storage available',
 				'This PC has limited free storage available'
@@ -369,13 +373,13 @@ export class HelperService {
 				0,
 				'',
 				this.getSeverityColor(MetricNameEnum.CPU_UTIL, cpuUtil),
-				this.getUsageSeverity(cpuUtil, 3),
+				this.getUsageSeverity(MetricNameEnum.CPU_UTIL, cpuUtil, 3),
 				'This PC has optimal load on CPU',
 				'This PC has medium load on CPU',
 				'This PC has peek load on CPU'
 			),
 			new PcdUsageCard(
-				MetricNameEnum.GPU_UTILL,
+				MetricNameEnum.GPU_UTIL,
 				'storage-adapter',
 				'The average % of video memory (VRAM) used over the selected time period, and the peak load on the GPU.  Consistently high average GPU utilization may reduce device performance.',
 				'right',
@@ -383,8 +387,8 @@ export class HelperService {
 				'avg',
 				gpuUtilMax,
 				'max',
-				this.getSeverityColor(MetricNameEnum.GPU_UTILL, gpuUtil),
-				this.getUsageSeverity(gpuUtil, gpuUtilMax),
+				this.getSeverityColor(MetricNameEnum.GPU_UTIL, gpuUtil),
+				this.getUsageSeverity(MetricNameEnum.GPU_UTIL, gpuUtil, gpuUtilMax),
 				'This PC has optimal load on GPU',
 				'This PC has medium load on GPU',
 				'This PC has peek load on GPU'
@@ -399,7 +403,7 @@ export class HelperService {
 				0,
 				'',
 				this.getSeverityColor(MetricNameEnum.OS_FAILURES, osFailures),
-				this.getUsageSeverity(osFailures, 20),
+				this.getUsageSeverity(MetricNameEnum.OS_FAILURES, osFailures, 20),
 				'This PC is performing well.',
 				'This PC stops responding frequently.',
 				'This PC has frequent issues.'
@@ -414,7 +418,7 @@ export class HelperService {
 				0,
 				'',
 				this.getSeverityColor(MetricNameEnum.APP_FAILURES, appFailures),
-				this.getUsageSeverity(appFailures, 30),
+				this.getUsageSeverity(MetricNameEnum.APP_FAILURES, appFailures, 30),
 				'Installed apps are performing well.',
 				'One or more apps are not performing well.',
 				'One or more apps are failing frequently.'
@@ -565,10 +569,79 @@ export class HelperService {
 	}
 
 	public getUsageSeverity(
+		metricId: MetricNameEnum,
 		metricAvg: number,
 		factor: number = 1,
 		isInverted: boolean = false
 	): SeverityEnum {
+		switch (metricId) {
+			case MetricNameEnum.RAM:
+				switch (true) {
+					case metricAvg < 8:
+						return SeverityEnum.CRITICAL
+					case metricAvg >= 8 && metricAvg < 16:
+						return SeverityEnum.WARNING
+					case metricAvg >= 16:
+						return SeverityEnum.GOOD
+				}
+				break
+			case MetricNameEnum.CPU_UTIL:
+				switch (metricAvg) {
+					case CpuEnum.NORMAL:
+						return SeverityEnum.GOOD
+					case CpuEnum.MEDIUM:
+						return SeverityEnum.WARNING
+					case CpuEnum.HIGH:
+						return SeverityEnum.CRITICAL
+				}
+				break
+			case MetricNameEnum.RAM_UTIL:
+			case MetricNameEnum.STORAGE_REMAINING:
+			case MetricNameEnum.GPU_UTIL:
+				switch (true) {
+					case metricAvg < 0.3:
+						return SeverityEnum.GOOD
+					case metricAvg > 0.3 && metricAvg < 0.6:
+						return SeverityEnum.WARNING
+					case metricAvg >= 0.6:
+						return SeverityEnum.CRITICAL
+				}
+				break
+			case MetricNameEnum.UTIL_SCORE:
+				switch (true) {
+					case metricAvg < 0.4:
+						return SeverityEnum.GOOD
+					case metricAvg >= 0.4 && metricAvg < 0.6:
+						return SeverityEnum.WARNING
+					case metricAvg >= 0.6:
+						return SeverityEnum.CRITICAL
+				}
+				break
+			case MetricNameEnum.APP_FAILURES:
+				switch (true) {
+					case metricAvg < 10:
+						return SeverityEnum.GOOD
+					case metricAvg >= 10 && metricAvg < 20:
+						return SeverityEnum.WARNING
+					case metricAvg >= 20:
+						return SeverityEnum.CRITICAL
+				}
+				break
+			case MetricNameEnum.OS_FAILURES:
+				switch (true) {
+					case metricAvg < 4:
+						return SeverityEnum.GOOD
+					case metricAvg >= 4 && metricAvg < 8:
+						return SeverityEnum.WARNING
+					case metricAvg >= 8:
+						return SeverityEnum.CRITICAL
+				}
+				break
+
+			default:
+				break
+		}
+
 		const calculatedMetric = metricAvg / factor
 		if (!isInverted) {
 			switch (true) {

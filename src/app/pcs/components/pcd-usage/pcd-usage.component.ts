@@ -23,7 +23,6 @@ export class PcdUsageComponent implements OnChanges {
 	public stabilityUsageCards: PcdUsageCard[] = []
 	public severityEnum = SeverityEnum
 	public usageSeverity: SeverityEnum = SeverityEnum.NA
-	public stabilitySeverity: SeverityEnum = SeverityEnum.NA
 	@Input() public usageCards: PcdUsageCard[] = []
 	@Input() public endpoint: Endpoint = new Endpoint()
 	@Input() public loading: boolean = false
@@ -41,17 +40,9 @@ export class PcdUsageComponent implements OnChanges {
 					x.title === MetricNameEnum.APP_FAILURES
 			)
 			this.usageSeverity = this.helperService.getUsageSeverity(
+				MetricNameEnum.UTIL_SCORE,
 				this.usageCards.find(u => u.title == MetricNameEnum.UTIL_SCORE)
 					?.mericAvg || 0
-			)
-			this.stabilitySeverity = this.helperService.getUsageSeverity(
-				((this.usageCards.find(u => u.title == MetricNameEnum.OS_FAILURES)
-					?.mericAvg || 0) /
-					20 +
-					(this.usageCards.find(u => u.title == MetricNameEnum.APP_FAILURES)
-						?.mericAvg || 0) /
-						30) /
-					2
 			)
 		}
 	}
