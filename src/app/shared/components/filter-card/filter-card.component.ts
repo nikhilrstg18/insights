@@ -1,8 +1,10 @@
 import {
 	ChangeDetectionStrategy,
 	Component,
+	EventEmitter,
 	Input,
 	OnInit,
+	Output,
 } from '@angular/core'
 import { FilterCard } from 'src/app/shared/models/filter-card'
 
@@ -17,9 +19,14 @@ export class FilterCardComponent implements OnInit {
 	@Input() public cardData!: FilterCard
 	@Input() public hideOperator: boolean = false
 	@Input() public hideSliderValue: boolean = false
+	@Output() public filterUpdated = new EventEmitter()
 	constructor() {}
 
 	ngOnInit(): void {
 		this.defaultSliderValue = this.cardData.defaultSliderValue
+	}
+
+	handleSliderChange(evt: any): void {
+		this.filterUpdated.emit({ id: this.cardData.id, value: evt.target.value })
 	}
 }

@@ -12,4 +12,5 @@ export class Filters {
 		public batteryHealth: FilterContext = new FilterContext(),
 		public batteryRuntime: FilterContext = new FilterContext()
 	) {}
+	[key: string]: FilterContext
 }

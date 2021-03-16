@@ -17,6 +17,7 @@
 									[cardData]="card"
 									[hideSliderValue]="card.title === metricNameEnum.CPU_UTIL"
 									[hideOperator]="card.title === metricNameEnum.CPU_UTIL"
+									(filterUpdated)="handleUpdatedFilter($event)"
 								>
 								</i-filter-card>
 							</div>
@@ -25,12 +26,18 @@
 					<div class="clr-col-lg-2 clr-col-md-2 clr-col-sm-12 summary">
 						<div class="fs-container">
 							<div class="fs-matching">
-								<h1>24</h1>
+								<h1>{{ total }}</h1>
 								<h5 class="text">matching PCs</h5>
 							</div>
 							<div class="fs-actions">
 								<div class="fs-apply">
-									<button type="button" class="btn btn-primary">Update</button>
+									<button
+										type="button"
+										class="btn btn-primary"
+										(click)="handleUpdate()"
+									>
+										Update
+									</button>
 								</div>
 								<div class="fs-clear">
 									<button type="button" class="btn btn-outline">Clear</button>

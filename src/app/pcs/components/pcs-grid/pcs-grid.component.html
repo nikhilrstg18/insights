@@ -2,6 +2,7 @@
 	(clrDgRefresh)="refresh($event)"
 	[clrDgLoading]="loading"
 	[(clrDgSelected)]="selected"
+	#pcsGrid
 >
 	<clr-dg-column [clrDgField]="'assetTag'">
 		{{ metricNameEnum.ASSET_TAG }}
@@ -12,52 +13,52 @@
 	<clr-dg-column [clrDgField]="'model'">
 		{{ metricNameEnum.MODEL }}
 	</clr-dg-column>
-	<clr-dg-column [clrDgField]="'cpuUtil'">
+	<clr-dg-column [clrDgSortBy]="'cpuUtil'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }">
 			{{ metricNameEnum.CPU_UTIL }}
 		</ng-container>
 	</clr-dg-column>
-	<clr-dg-column [clrDgField]="'ramUtil'">
+	<clr-dg-column [clrDgSortBy]="'ramUtil'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
 			metricNameEnum.RAM_UTIL
 		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'ram'">
+	<clr-dg-column [clrDgSortBy]="'ram'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
 			metricNameEnum.RAM
 		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'batteryHealth'">
+	<clr-dg-column [clrDgSortBy]="'batteryHealth'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
 			metricNameEnum.BATTERY_HEALTH
 		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'batteryRuntime'">
+	<clr-dg-column [clrDgSortBy]="'batteryRuntime'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
 			metricNameEnum.BATTERY_RUNTIME
 		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'storageRemaining'">
+	<clr-dg-column [clrDgSortBy]="'storageRemaining'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
 			metricNameEnum.STORAGE_REMAINING
 		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'age'">
+	<clr-dg-column [clrDgSortBy]="'age'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
 			metricNameEnum.AGE
 		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'csat'">
+	<clr-dg-column [clrDgSortBy]="'csat'">
 		<ng-container *clrDgHideableColumn="{ hidden: true }">{{
 			metricNameEnum.CSAT
 		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'appFailures'">
+	<clr-dg-column [clrDgSortBy]="'appFailures'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
 			metricNameEnum.APP_FAILURES
 		}}</ng-container></clr-dg-column
 	>
-	<clr-dg-column [clrDgField]="'osFailures'">
+	<clr-dg-column [clrDgSortBy]="'osFailures'">
 		<ng-container *clrDgHideableColumn="{ hidden: false }">{{
 			metricNameEnum.OS_FAILURES
 		}}</ng-container></clr-dg-column

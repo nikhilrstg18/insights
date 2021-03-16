@@ -1,6 +1,6 @@
 import { FilterContext } from './../../../shared/models/filter-context'
 import { HelperService } from './../../../shared/services/helper.service'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { ClrDatagridStateInterface } from '@clr/angular'
 import { CpuEnum } from './../../../shared/enums/cpu.enum'
 import { MetricNameEnum } from './../../../shared/enums/metric-name.enum'
@@ -19,11 +19,12 @@ import { Filters } from 'src/app/shared/models/filters'
 export class PcsGridComponent implements OnInit {
 	@Input() showHeatMap: boolean = false
 	@Input() public filters: Filters = new Filters()
+	@Output() public totalUpdated = new EventEmitter<number>()
 	public endpoints: Endpoint[] = []
 	public total: number = 0
 	public loading: boolean = true
 	public page: number = 1
-	public firstLoad: boolean = false
+	public firstLoad: boolean = true
 	public selected: any[] = []
 	public metricNameEnum = MetricNameEnum
 
@@ -34,21 +35,31 @@ export class PcsGridComponent implements OnInit {
 
 	ngOnInit() {}
 
+	public refreshGrid(state: ClrDatagridStateInterface) {
+		console.log(state)
+		if (!this.firstLoad) {
+			this.refresh(state)
+		} else {
+			this.firstLoad != this.firstLoad
+		}
+	}
+
 	//@ called from view by clr-datagrid
 	refresh(state: ClrDatagridStateInterface) {
 		this.loading = true
-		let filters: { [prop: string]: any[] } = {}
+		let clrDgFilters: { [prop: string]: any[] } = {}
 
 		// if filters create filters object
 		if (state?.filters) {
 			for (let filter of state.filters) {
 				let { property, value } = <{ property: string; value: string }>filter
-				filters[property] = [value]
+				clrDgFilters[property] = [value]
 			}
 		}
+
 		// for (let filter of Object.entries(this.filters)) {
 		// 	let { value } = <FilterContext>filter[1]
-		// 	filters[filter[0]] = [value]
+		// 	filters[filter[0]] = value
 		// }
 
 		if (state?.page) {
@@ -64,12 +75,13 @@ export class PcsGridComponent implements OnInit {
 			this.inventory.all = endpoints
 			this.inventory.size = this.inventory.all.length
 			this.inventory
-				.filter(filters)
+				.filter(clrDgFilters, this.filters)
 				.sort(<{ by: string; reverse: boolean }>state.sort)
 				.fetch(state?.page?.from, state?.page?.size)
 				.subscribe((result: FetchResult) => {
 					this.endpoints = result.endpoints
 					this.total = result.length
+					this.totalUpdated.emit(this.total)
 					this.loading = false
 				})
 		})

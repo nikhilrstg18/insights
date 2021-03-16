@@ -1,6 +1,9 @@
+import { MetricEnum } from './../enums/metric.enum'
+import { FilterContext } from './../models/filter-context'
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import { Endpoint } from '../models/endpoint'
+import { Filters } from './../models/filters'
 import { DashboardService } from './dashboard.service'
 
 @Injectable({
@@ -18,20 +21,18 @@ export class InventoryService {
 		return this.dashboardService.getAll()
 	}
 
-	filter(filters: { [key: string]: string[] }): InventoryService {
+	filter(
+		clrDGFilters: { [key: string]: string[] },
+		filters: Filters = new Filters()
+	): InventoryService {
 		this._checkCurrentQuery()
-		if (filters) {
-			for (const key in filters) {
-				if (filters[key].length === 0) {
+		if (clrDGFilters) {
+			for (const key in clrDGFilters) {
+				if (clrDGFilters[key].length === 0) {
 					continue
 				}
-
-				let getFilterProperty = (endpoint: Endpoint) => '' + endpoint[key]
-				// if (key === "pokemon") {
-				//   getFilterProperty = (user: IEndpoint) => user.pokemon.name;
-				// }
-
-				const lowerCase = filters[key].map(value => value.toLowerCase())
+				const getFilterProperty = (endpoint: Endpoint) => '' + endpoint[key]
+				const lowerCase = clrDGFilters[key].map(value => value.toLowerCase())
 				this._currentQuery = this._currentQuery.filter(query => {
 					for (const value of lowerCase) {
 						if (getFilterProperty(query).toLowerCase().indexOf(value) >= 0) {
@@ -42,7 +43,51 @@ export class InventoryService {
 				})
 			}
 		}
+		const query = this.buildQuery(filters)
+		this._currentQuery = this.filterEndpointsByQuery(this._currentQuery, query)
 		return this
+	}
+
+	buildQuery(filters: Filters) {
+		let query: { [key: string]: { value: number; operator: string } } = {}
+		const getValue = (filterProperty: string, filters: Filters) =>
+			[
+				'' + MetricEnum.RAM_UTIL,
+				'' + MetricEnum.STORAGE_REMAINING,
+				'' + MetricEnum.BATTERY_HEALTH,
+			].includes(filterProperty)
+				? filters[filterProperty].value / 100
+				: filters[filterProperty].value
+
+		for (const filterProperty of Object.keys(filters)) {
+			if (filters[filterProperty].active) {
+				query[filterProperty] = {
+					value: getValue(filterProperty, filters),
+					operator: filters[filterProperty].operator,
+				}
+			}
+		}
+		return query
+	}
+
+	filterEndpointsByQuery(
+		endpoints: Endpoint[],
+		query: { [key: string]: { value: number; operator: string } }
+	) {
+		const filteredEndpoints = endpoints.filter(endpoint => {
+			for (let key in query) {
+				switch (query[key].operator) {
+					case '>=':
+						return endpoint[key] >= query[key].value
+					case '<=':
+						return endpoint[key] <= query[key].value
+					default:
+						return endpoint[key] == query[key].value
+				}
+			}
+			return false
+		})
+		return filteredEndpoints
 	}
 
 	sort(sort: { by: string; reverse: boolean }): InventoryService {
