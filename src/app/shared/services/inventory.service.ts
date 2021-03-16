@@ -1,8 +1,7 @@
-import { MetricEnum } from './../enums/metric.enum'
-import { FilterContext } from './../models/filter-context'
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import { Endpoint } from '../models/endpoint'
+import { MetricEnum } from './../enums/metric.enum'
 import { Filters } from './../models/filters'
 import { DashboardService } from './dashboard.service'
 
@@ -94,10 +93,6 @@ export class InventoryService {
 		this._checkCurrentQuery()
 		if (sort && sort.by) {
 			let getSortProperty = (endpoint: Endpoint) => endpoint[sort.by]
-			//   if (sort.by === "pokemon") {
-			//     getSortProperty = (user: IEndpoint) => user.pokemon.number;
-			//   }
-
 			this._currentQuery.sort((a, b) => {
 				let comp = 0
 				const propA = getSortProperty(a),

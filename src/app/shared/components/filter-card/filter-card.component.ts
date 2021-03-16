@@ -16,10 +16,12 @@ import { FilterCard } from 'src/app/shared/models/filter-card'
 })
 export class FilterCardComponent implements OnInit {
 	public defaultSliderValue: number = 0
+
 	@Input() public cardData!: FilterCard
 	@Input() public hideOperator: boolean = false
 	@Input() public hideSliderValue: boolean = false
 	@Output() public filterUpdated = new EventEmitter()
+
 	constructor() {}
 
 	ngOnInit(): void {

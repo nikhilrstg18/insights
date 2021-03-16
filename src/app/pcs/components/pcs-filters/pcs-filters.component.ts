@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { Filters } from 'src/app/shared/models/filters'
-import { PcsGridComponent } from '../pcs-grid/pcs-grid.component'
 import { MetricNameEnum } from './../../../shared/enums/metric-name.enum'
 import { FilterCard } from './../../../shared/models/filter-card'
-import { HelperService } from './../../../shared/services/helper.service'
+import { InsightsService } from '../../../shared/services/insights.service'
 
 @Component({
 	selector: 'i-pcs-filters',
@@ -14,11 +13,14 @@ export class PcsFiltersComponent implements OnInit {
 	public expanded: boolean = true
 	public filterCards: FilterCard[] = []
 	public metricNameEnum = MetricNameEnum
+
 	@Input() public filters: Filters = new Filters()
 	@Input() public total: number = 0
 	@Input() public loading: boolean = false
+
 	@Output() public onUpdateClick = new EventEmitter()
-	constructor(private helperService: HelperService) {}
+
+	constructor(private helperService: InsightsService) {}
 
 	ngOnInit(): void {
 		this.filterCards = this.helperService.getDefaultCardDataList(this.filters)

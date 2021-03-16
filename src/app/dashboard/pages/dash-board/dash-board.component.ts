@@ -1,8 +1,8 @@
-import { DashboardService } from './../../../shared/services/dashboard.service'
 import { Component, OnInit } from '@angular/core'
-import { DBWidget } from '../../models/db-widget'
-import { HelperService } from './../../../shared/services/helper.service'
 import { Dashboard } from '../../models/dashboard'
+import { DBWidget } from '../../models/db-widget'
+import { DashboardService } from './../../../shared/services/dashboard.service'
+import { InsightsService } from '../../../shared/services/insights.service'
 
 @Component({
 	selector: 'i-dash-board',
@@ -15,7 +15,7 @@ export class DashBoardComponent implements OnInit {
 	public deviceIssues: DBWidget[] = []
 
 	constructor(
-		public helperService: HelperService,
+		public helperService: InsightsService,
 		private dashboardService: DashboardService
 	) {}
 
@@ -29,6 +29,7 @@ export class DashBoardComponent implements OnInit {
 			this.loading = false
 		})
 	}
+
 	getQueryParam(widget: DBWidget) {
 		return {
 			[widget.id]: widget.threshold,

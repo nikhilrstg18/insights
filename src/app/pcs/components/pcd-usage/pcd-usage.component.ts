@@ -1,6 +1,3 @@
-import { SeverityEnum } from './../../../shared/enums/severity.enum'
-import { HelperService } from './../../../shared/services/helper.service'
-import { CpuEnum } from './../../../shared/enums/cpu.enum'
 import {
 	ChangeDetectionStrategy,
 	Component,
@@ -11,6 +8,8 @@ import {
 import { MetricNameEnum } from 'src/app/shared/enums/metric-name.enum'
 import { Endpoint } from 'src/app/shared/models/endpoint'
 import { PcdUsageCard } from 'src/app/shared/models/pcd-usage-card'
+import { SeverityEnum } from './../../../shared/enums/severity.enum'
+import { InsightsService } from '../../../shared/services/insights.service'
 
 @Component({
 	selector: 'i-pcd-usage',
@@ -23,10 +22,13 @@ export class PcdUsageComponent implements OnChanges {
 	public stabilityUsageCards: PcdUsageCard[] = []
 	public severityEnum = SeverityEnum
 	public usageSeverity: SeverityEnum = SeverityEnum.NA
+
 	@Input() public usageCards: PcdUsageCard[] = []
 	@Input() public endpoint: Endpoint = new Endpoint()
 	@Input() public loading: boolean = false
-	constructor(public helperService: HelperService) {}
+
+	constructor(public helperService: InsightsService) {}
+
 	public ngOnChanges(changes: SimpleChanges): void {
 		if (changes) {
 			this.healthUsageCards = this.usageCards.filter(

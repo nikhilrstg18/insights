@@ -1,16 +1,9 @@
-import {
-	Component,
-	EventEmitter,
-	Input,
-	OnInit,
-	Output,
-	ViewChild,
-} from '@angular/core'
-import { ClrDatagrid, ClrDatagridStateInterface } from '@clr/angular'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { ClrDatagridStateInterface } from '@clr/angular'
 import { Filters } from 'src/app/shared/models/filters'
 import { MetricNameEnum } from './../../../shared/enums/metric-name.enum'
 import { Endpoint } from './../../../shared/models/endpoint'
-import { HelperService } from './../../../shared/services/helper.service'
+import { InsightsService } from '../../../shared/services/insights.service'
 import {
 	FetchResult,
 	InventoryService,
@@ -22,10 +15,6 @@ import {
 	styleUrls: ['./pcs-grid.component.scss'],
 })
 export class PcsGridComponent implements OnInit {
-	@Input() showHeatMap: boolean = false
-	@Input() public filters: Filters = new Filters()
-	@Output() public totalUpdated = new EventEmitter<number>()
-	@Output('loading') public isLoading = new EventEmitter<boolean>()
 	public endpoints: Endpoint[] = []
 	public total: number = 0
 	public loading: boolean = true
@@ -34,9 +23,15 @@ export class PcsGridComponent implements OnInit {
 	public selected: any[] = []
 	public metricNameEnum = MetricNameEnum
 
+	@Input() showHeatMap: boolean = false
+	@Input() public filters: Filters = new Filters()
+
+	@Output() public totalUpdated = new EventEmitter<number>()
+	@Output('loading') public isLoading = new EventEmitter<boolean>()
+
 	constructor(
 		private inventory: InventoryService,
-		public helperService: HelperService
+		public helperService: InsightsService
 	) {}
 
 	ngOnInit() {}

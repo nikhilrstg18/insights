@@ -11,6 +11,7 @@ import { Alerts } from '../../models/alerts'
 export class PcdAlertsComponent implements OnInit {
 	public alerts: Alerts = new Alerts()
 	public alertFilters: AlertFilters = this.getDefaultAlertFilters()
+
 	constructor() {}
 
 	ngOnInit(): void {}

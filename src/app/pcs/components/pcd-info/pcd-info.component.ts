@@ -15,8 +15,10 @@ import { Endpoint } from './../../../shared/models/endpoint'
 })
 export class PcdInfoComponent implements OnInit {
 	public metricNameEnum = MetricNameEnum
+
 	@Input() public endpoint: Endpoint = new Endpoint()
 	@Input() public loading: boolean = false
+
 	constructor() {}
 
 	ngOnInit(): void {}

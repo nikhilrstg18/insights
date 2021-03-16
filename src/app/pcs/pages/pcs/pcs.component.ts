@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
-import { ClrDatagrid } from '@clr/angular'
 import { MetricEnum } from 'src/app/shared/enums/metric.enum'
 import { FilterContext } from 'src/app/shared/models/filter-context'
 import { Filters } from 'src/app/shared/models/filters'
@@ -17,9 +16,11 @@ export class PcsComponent implements OnInit {
 	public filters: Filters = new Filters()
 	public total: number = 0
 	public loading: boolean = false
-	constructor(private _activatedRoute: ActivatedRoute) {}
+
 	@ViewChild(PcsGridComponent, { static: true })
 	pcsGridComponent!: PcsGridComponent
+
+	constructor(private _activatedRoute: ActivatedRoute) {}
 
 	ngOnInit(): void {
 		this.queryParams = this._activatedRoute.snapshot.queryParams
@@ -34,6 +35,7 @@ export class PcsComponent implements OnInit {
 	handleTotalUpdated(total: number) {
 		this.total = total
 	}
+
 	handleLoading(loading: boolean) {
 		this.loading = loading
 	}

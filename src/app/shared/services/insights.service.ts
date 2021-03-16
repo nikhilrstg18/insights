@@ -6,14 +6,14 @@ import { Endpoint } from '../models/endpoint'
 import { FilterCard } from '../models/filter-card'
 import { Filters } from '../models/filters'
 import { PcdUsageCard } from '../models/pcd-usage-card'
-import { DBWidget } from './../../dashboard/models/db-widget'
-import { MetricEnum } from './../enums/metric.enum'
-import { SeverityEnum } from './../enums/severity.enum'
+import { DBWidget } from '../../dashboard/models/db-widget'
+import { MetricEnum } from '../enums/metric.enum'
+import { SeverityEnum } from '../enums/severity.enum'
 
 @Injectable({
 	providedIn: 'root',
 })
-export class HelperService {
+export class InsightsService {
 	getDefaultCardDataList(filters: Filters) {
 		return [
 			new FilterCard(
@@ -193,7 +193,6 @@ export class HelperService {
 				}
 				break
 			case MetricNameEnum.RAM_UTIL:
-			case MetricNameEnum.STORAGE_REMAINING:
 			case MetricNameEnum.GPU_UTIL:
 				switch (true) {
 					case metric < 0.3:
@@ -204,6 +203,22 @@ export class HelperService {
 						break
 					case metric >= 0.6:
 						color = 'danger'
+						break
+					default:
+						color = ''
+						break
+				}
+				break
+			case MetricNameEnum.STORAGE_REMAINING:
+				switch (true) {
+					case metric < 0.3:
+						color = 'danger'
+						break
+					case metric > 0.3 && metric < 0.6:
+						color = 'warning'
+						break
+					case metric >= 0.6:
+						color = 'success'
 						break
 					default:
 						color = ''
@@ -293,7 +308,12 @@ export class HelperService {
 		} = endpoint
 
 		let healthScore =
-			(ram / 64 + ramUtil + gpuUtil + storageRemaining + cpuUtil / 3) / 5
+			(ram / 64 +
+				ramUtil / ramUtilMax +
+				gpuUtil / gpuUtil +
+				(1 - storageRemaining / 0.85) +
+				cpuUtil / 3) /
+			5
 
 		return [
 			new PcdUsageCard(
@@ -494,7 +514,7 @@ export class HelperService {
 					MetricEnum.APP_FAILURES,
 					MetricNameEnum.APP_FAILURES,
 					'application',
-					'PCs with <= {0} app failures',
+					'PCs with >= {0} app failures',
 					10,
 					dashboard.appFailures.count,
 					dashboard.appFailures.avg
@@ -596,7 +616,6 @@ export class HelperService {
 				}
 				break
 			case MetricNameEnum.RAM_UTIL:
-			case MetricNameEnum.STORAGE_REMAINING:
 			case MetricNameEnum.GPU_UTIL:
 				switch (true) {
 					case metricAvg < 0.3:
@@ -605,6 +624,16 @@ export class HelperService {
 						return SeverityEnum.WARNING
 					case metricAvg >= 0.6:
 						return SeverityEnum.CRITICAL
+				}
+				break
+			case MetricNameEnum.STORAGE_REMAINING:
+				switch (true) {
+					case metricAvg < 0.3:
+						return SeverityEnum.CRITICAL
+					case metricAvg > 0.3 && metricAvg < 0.6:
+						return SeverityEnum.WARNING
+					case metricAvg >= 0.6:
+						return SeverityEnum.GOOD
 				}
 				break
 			case MetricNameEnum.UTIL_SCORE:

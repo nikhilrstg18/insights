@@ -1,5 +1,6 @@
+import { InsightsService } from './../../shared/services/insights.service'
+import { MetricEnum } from 'src/app/shared/enums/metric.enum'
 import { Params } from '@angular/router'
-import { MetricEnum } from './../../shared/enums/metric.enum'
 export class DBWidget {
 	constructor(
 		public id: string = '',
@@ -10,11 +11,14 @@ export class DBWidget {
 		public count: number = 0,
 		public csat: number = 0,
 		public caption: string = '',
-		public queryParam: Params = {}
+		public queryParam: Params = {},
+		private insightsService: InsightsService = new InsightsService()
 	) {
 		this.caption = this.captionTemplate.replace(
 			'{0}',
-			this.threshold.toString()
+			this.id === MetricEnum.CPU_UTIL
+				? this.insightsService.getCPUText(this.threshold)
+				: this.threshold.toString()
 		)
 		this.queryParam = {
 			[this.id]: this.threshold,

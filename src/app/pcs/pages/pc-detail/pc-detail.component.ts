@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router'
 import { Endpoint } from './../../../shared/models/endpoint'
 import { PcdUsageCard } from './../../../shared/models/pcd-usage-card'
 import { DashboardService } from './../../../shared/services/dashboard.service'
-import { HelperService } from './../../../shared/services/helper.service'
+import { InsightsService } from '../../../shared/services/insights.service'
 
 @Component({
 	selector: 'i-pc-detail',
@@ -19,7 +19,7 @@ export class PcDetailComponent implements OnInit {
 	constructor(
 		private actRoute: ActivatedRoute,
 		private dashboardService: DashboardService,
-		private helperService: HelperService
+		private helperService: InsightsService
 	) {}
 
 	ngOnInit(): void {
