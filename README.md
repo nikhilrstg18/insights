@@ -1,6 +1,36 @@
-# Insights
+# Insights 🌹 [![GitHub](https://img.shields.io/github/license/nikhilrstg18/insights?color=blue)](https://github.com/nikhilrstg18/insights/blob/master/LICENSE.md) ![GitHub stars](https://img.shields.io/github/stars/nikhilrstg18/insights) ![GitHub forks](https://img.shields.io/github/forks/nikhilrstg18/insights)
+
+## PC Insights, collects the telemetry of devices, summarizes it, and provides recommendations to customers/clients to avoid potential impediments for optimal productivity.
+
+<h1>Dashboard | Helicpter view of insights of PCs</h1>
+<h2 align="center">
+  <img src="https://github.com/nikhilrstg18/insights/blob/main/src/images/insightsdashboard.gif" alt="Dashboard" width="600px" />
+  <br>
+</h2>
+<h1>Grid | Analyse insights of PCs with heatmap, server-side filtering, sorting, pagination</h1>
+<h2 align="center">
+  <img src="https://github.com/nikhilrstg18/insights/blob/main/src/images/insightslist.gif" alt="Grid" width="600px" />
+  <br>
+</h2>
+<h1>Summary | PC Recommender based on the insight of a PC</h1>
+<h2 align="center">
+  <img src="https://github.com/nikhilrstg18/insights/blob/main/src/images/insightsdetail.gif" alt="Detail" width="600px" />
+  <br>
+</h2>
+
+To view a live example, **[click here](https://nikhilrstg18.github.io/insights/)**
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.1.
+
+### Prerequisites 📋
+
+You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [NPM](http://npmjs.com)) installed on your computer.
+
+```
+node@v14.15.4 or higher
+npm@6.14.10 or higher
+git@2.30.0 or higher
+```
 
 ## Development server
 
@@ -33,7 +63,7 @@ cli commnad -> `npm install pettier --save-dev`
 
 config file `.prettierrc` with below json
 
-```
+```javascript
 {
 	"semi": false,
 	"singleQuote": true,
