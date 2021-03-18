@@ -4,17 +4,17 @@
 
 <h1>Dashboard | Helicpter view of insights of PCs</h1>
 <h2 align="center">
-  <img src="https://github.com/nikhilrstg18/insights/blob/main/src/images/insightsdashboard.gif" alt="Dashboard" width="600px" />
+  <img src="https://github.com/nikhilrstg18/insights/blob/main/src/assets/img/insightsdashboard.gif" alt="Dashboard" width="600px" />
   <br>
 </h2>
 <h1>Grid | Analyse insights of PCs with heatmap, server-side filtering, sorting, pagination</h1>
 <h2 align="center">
-  <img src="https://github.com/nikhilrstg18/insights/blob/main/src/images/insightslist.gif" alt="Grid" width="600px" />
+  <img src="https://github.com/nikhilrstg18/insights/blob/main/src/assets/img/insightslist.gif" alt="Grid" width="600px" />
   <br>
 </h2>
 <h1>Summary | PC Recommender based on the insight of a PC</h1>
 <h2 align="center">
-  <img src="https://github.com/nikhilrstg18/insights/blob/main/src/images/insightsdetail.gif" alt="Detail" width="600px" />
+  <img src="https://github.com/nikhilrstg18/insights/blob/main/src/assets/img/insightsdetail.gif" alt="Detail" width="600px" />
   <br>
 </h2>
 
