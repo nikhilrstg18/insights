@@ -1,4 +1,4 @@
-# Insights 🌹 [![GitHub](https://img.shields.io/github/license/nikhilrstg18/insights?color=blue)](https://github.com/nikhilrstg18/insights/blob/master/LICENSE.md) ![GitHub stars](https://img.shields.io/github/stars/nikhilrstg18/insights) ![GitHub forks](https://img.shields.io/github/forks/nikhilrstg18/insights)
+# Insights 🌹 [![GitHub](https://img.shields.io/github/license/nikhilrstg18/insights?color=blue)](https://github.com/nikhilrstg18/insights/blob/main/LICENSE.md) ![GitHub stars](https://img.shields.io/github/stars/nikhilrstg18/insights) ![GitHub forks](https://img.shields.io/github/forks/nikhilrstg18/insights)
 
 ## PC Insights, collects the telemetry of devices, summarizes it, and provides recommendations to customers/clients to avoid potential impediments for optimal productivity.
 
