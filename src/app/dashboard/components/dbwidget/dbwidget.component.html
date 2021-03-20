@@ -1,46 +1,53 @@
 <div class="dbw">
 	<div class="card clickable">
 		<div class="card-header">
-			<div class="dbw-header">
+			<div class="">
 				{{ widget?.title }}
 			</div>
-			<div class="dbw-setting"><cds-icon shape="cog" size="md"></cds-icon></div>
+			<div class="icon">
+				<cds-icon
+					attr.shape="{{ widget?.iconShape }}"
+					size="lg"
+					status="success"
+					style="margin: 0 0.5rem"
+				></cds-icon>
+			</div>
 		</div>
 		<div class="card-block" *ngIf="!loading; else loader">
-			<div class="card-text">
-				<div class="icon">
-					<cds-icon
-						title="Settings"
-						attr.shape="{{ widget?.iconShape }}"
-						size="lg"
-						status="info"
-						style="margin: 0 0.5rem"
-					></cds-icon>
-				</div>
-				<div>{{ widget?.caption }}</div>
-			</div>
 			<div class="card-title clr-row">
 				<h1 class="clr-col-7 text-right metric">{{ widget.count }}</h1>
 				<p class="clr-col-5 text-bolder">
-					<span class="badge badge-info">{{ widget.csat | percent }} </span>CSAT
+					<span class="badge badge-success">{{ widget.csat | percent }} </span
+					>CSAT
 				</p>
 			</div>
 			<div class="card-title clr-row">
 				<h6 class="clr-col-7 text-right matching">matching PCs</h6>
 				<!-- <h6 class="clr-col-5 csat"></h6> -->
 			</div>
+			<div class="card-text">
+				<div>{{ widget?.caption }}</div>
+				<div class="dbw-setting">
+					<cds-icon
+						shape="pencil"
+						size="md"
+						status="success"
+						title="edit coming soon..."
+					></cds-icon>
+				</div>
+			</div>
 		</div>
 		<div class="card-footer dbw-footer">
 			<button
-				class="btn btn-primary"
+				class="btn btn-sm btn-success"
 				[routerLink]="['pcs']"
 				[queryParams]="widget.queryParam"
 			>
-				View List
+				View in Grid
 			</button>
 		</div>
 		<ng-template #loader>
-			<div class="progress loop">
+			<div class="progress loop progress=success">
 				<progress></progress>
 			</div>
 		</ng-template>

@@ -9,7 +9,7 @@
 	}
 	.summary {
 		.fs-container {
-			background: #d8e3e9;
+			background: #324f62;
 			display: flex;
 			flex-flow: column nowrap;
 			justify-content: space-evenly;
@@ -24,6 +24,7 @@
 				h1 {
 					font-size: 400%;
 					text-align: center;
+					color: rgba(97, 183, 21, 1);
 				}
 				h5 {
 					margin: 0.25rem 0 1rem 0;

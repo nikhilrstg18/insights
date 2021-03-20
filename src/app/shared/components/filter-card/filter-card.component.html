@@ -5,45 +5,16 @@
 				<input
 					type="checkbox"
 					clrToggle
-					id="toggle-{{ cardData?.id }}"
+					[id]="cardData && cardData.id"
 					name="options"
 					value="option1"
 					[(ngModel)]="cardData && cardData.enabled"
+					(change)="hanldeFilterToggle($event)"
 				/>
 				<label class="title p1">{{ cardData?.title }}</label>
 				<clr-control-helper></clr-control-helper>
 			</clr-toggle-wrapper>
 		</clr-toggle-container>
-	</div>
-	<div
-		class="fc-description"
-		[ngStyle]="
-			!cardData?.enabled ? { opacity: '0.4', 'pointer-events': 'none' } : {}
-		"
-	>
-		<h6 class="p2">
-			{{ cardData?.desc1 }}
-			<span *ngIf="!hideOperator && cardData?.operator == '<='"> &#8804; </span>
-			<span *ngIf="!hideOperator && cardData?.operator == '>='"> &#8805; </span>
-			<span
-				*ngIf="
-					!hideOperator &&
-					cardData?.operator !== '>=' &&
-					cardData?.operator !== '<='
-				"
-			>
-				{{ cardData?.operator }}
-			</span>
-			<span *ngIf="!hideSliderValue">
-				{{ cardData?.sliderValue }}
-			</span>
-			{{
-				cardData?.unit ||
-					(cardData?.deepLabels &&
-						cardData?.deepLabels[cardData && cardData.sliderValue])
-			}}
-			{{ cardData?.desc2 }}
-		</h6>
 	</div>
 	<div
 		class="fc-slider"
@@ -76,5 +47,35 @@
 				</clr-control-helper>
 			</clr-range-container>
 		</form>
+	</div>
+	<div
+		class="fc-description"
+		[ngStyle]="
+			!cardData?.enabled ? { opacity: '0.4', 'pointer-events': 'none' } : {}
+		"
+	>
+		<h6 class="p2">
+			{{ cardData?.desc1 }}
+			<span *ngIf="!hideOperator && cardData?.operator == '<='"> &#8804; </span>
+			<span *ngIf="!hideOperator && cardData?.operator == '>='"> &#8805; </span>
+			<span
+				*ngIf="
+					!hideOperator &&
+					cardData?.operator !== '>=' &&
+					cardData?.operator !== '<='
+				"
+			>
+				{{ cardData?.operator }}
+			</span>
+			<span *ngIf="!hideSliderValue">
+				{{ cardData?.sliderValue }}
+			</span>
+			{{
+				cardData?.unit ||
+					(cardData?.deepLabels &&
+						cardData?.deepLabels[cardData && cardData.sliderValue])
+			}}
+			{{ cardData?.desc2 }}
+		</h6>
 	</div>
 </div>

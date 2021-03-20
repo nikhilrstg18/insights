@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 .mt-05rem {
 	margin-top: 0.5rem !important;
 }
@@ -19,6 +20,22 @@
 }
 .h-100 {
 	height: 100% !important;
+}
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+	color: rgb(97, 183, 21);
+}
+.clr-checkbox-wrapper input[type='checkbox'] {
+	&:checked + label::before {
+		background: rgb(97, 183, 21);
+		border: 0;
+	}
+	&:focus {
+		outline: 2px solid rgb(97, 183, 21);
+	}
 }
 
 // customiizing the scroll bar app wide - start

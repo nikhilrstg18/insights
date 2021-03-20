@@ -73,19 +73,35 @@ export class InventoryService {
 		endpoints: Endpoint[],
 		query: { [key: string]: { value: number; operator: string } }
 	) {
-		const filteredEndpoints = endpoints.filter(endpoint => {
-			for (let key in query) {
-				switch (query[key].operator) {
-					case '>=':
-						return endpoint[key] >= query[key].value
-					case '<=':
-						return endpoint[key] <= query[key].value
-					default:
-						return endpoint[key] == query[key].value
-				}
+		let filteredEndpoints: Endpoint[] = []
+		let filteredEndpointsItr: Endpoint[] = []
+		for (let key in query) {
+			if (filteredEndpoints.length) {
+				filteredEndpointsItr = filteredEndpoints.filter(endpoint => {
+					switch (query[key].operator) {
+						case '>=':
+							return endpoint[key] >= query[key].value
+						case '<=':
+							return endpoint[key] <= query[key].value
+						default:
+							return endpoint[key] == query[key].value
+					}
+				})
+			} else {
+				filteredEndpointsItr = endpoints.filter(endpoint => {
+					switch (query[key].operator) {
+						case '>=':
+							return endpoint[key] >= query[key].value
+						case '<=':
+							return endpoint[key] <= query[key].value
+						default:
+							return endpoint[key] == query[key].value
+					}
+				})
 			}
-			return false
-		})
+
+			filteredEndpoints = [...filteredEndpointsItr]
+		}
 		return filteredEndpoints
 	}
 

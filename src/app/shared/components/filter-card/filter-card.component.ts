@@ -20,7 +20,10 @@ export class FilterCardComponent implements OnInit {
 	@Input() public cardData!: FilterCard
 	@Input() public hideOperator: boolean = false
 	@Input() public hideSliderValue: boolean = false
-	@Output() public filterUpdated = new EventEmitter()
+	@Output() public filterUpdated = new EventEmitter<{
+		id: string
+		value: number
+	}>()
 
 	constructor() {}
 
@@ -30,5 +33,8 @@ export class FilterCardComponent implements OnInit {
 
 	handleSliderChange(evt: any): void {
 		this.filterUpdated.emit({ id: this.cardData.id, value: evt.target.value })
+	}
+	hanldeFilterToggle(evt: any): void {
+		this.filterUpdated.emit({ id: evt.target.id, value: -1 })
 	}
 }

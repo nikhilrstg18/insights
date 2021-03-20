@@ -26,8 +26,14 @@ export class PcsFiltersComponent implements OnInit {
 		this.filterCards = this.helperService.getDefaultCardDataList(this.filters)
 	}
 
-	handleUpdatedFilter(filter: { id: string; value: string }) {
-		this.filters[filter.id].value = Number(filter.value)
+	handleUpdatedFilter(filter: { id: string; value: number }) {
+		if (filter.value !== -1) {
+			this.filters[filter.id].value = Number(filter.value)
+		} else {
+			this.filters[filter.id].value = Number(
+				this.filterCards.find(f => f.id == filter.id)?.sliderValue
+			)
+		}
 	}
 
 	handleUpdate() {

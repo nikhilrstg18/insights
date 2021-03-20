@@ -15,6 +15,7 @@ import {
 	hourglassIcon,
 	layersIcon,
 	memoryIcon,
+	pencilIcon,
 	resistorIcon,
 	storageAdapterIcon,
 	targetIcon,
@@ -61,7 +62,8 @@ export class AppModule {
 			storageAdapterIcon,
 			errorStandardIcon,
 			warningStandardIcon,
-			errorStandardIcon
+			errorStandardIcon,
+			pencilIcon
 		)
 	}
 }

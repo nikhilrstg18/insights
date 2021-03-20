@@ -1,18 +1,18 @@
-# Insights 🌹 [![GitHub](https://img.shields.io/github/license/nikhilrstg18/insights?color=blue)](https://github.com/nikhilrstg18/insights/blob/master/LICENSE.md) ![GitHub stars](https://img.shields.io/github/stars/nikhilrstg18/insights) ![GitHub forks](https://img.shields.io/github/forks/nikhilrstg18/insights)
+# PC Wisdom 🌹 [![GitHub](https://img.shields.io/github/license/nikhilrstg18/insights?color=blue)](https://github.com/nikhilrstg18/insights/blob/master/LICENSE.md) ![GitHub stars](https://img.shields.io/github/stars/nikhilrstg18/insights) ![GitHub forks](https://img.shields.io/github/forks/nikhilrstg18/insights)
 
-## PC Insights, collects the telemetry of devices, summarizes it, and provides recommendations to customers/clients to avoid potential impediments for optimal productivity.
+## PC Wisdom, a demonstration of large data drill down feature with slicing, dicing and analyzing the business subject (eg. PC).
 
-<h3>Dashboard | Helicpter view of insights of PCs</h3>
+<h3>Snapshot |  overview of business subject (eg. PC)</h3>
 <h4 align="center">
   <img src="https://github.com/nikhilrstg18/insights/blob/main/src/assets/img/insightsdashboard.gif" alt="Dashboard" width="600px" />
   <br>
 </h4>
-<h3>Grid | Analyse insights of PCs with heatmap, server-side filtering, sorting, pagination</h3>
+<h3>Grid | Analyse Business subject(eg. PC) with heatmap, server-side filtering, sorting, pagination</h3>
 <h4 align="center">
   <img src="https://github.com/nikhilrstg18/insights/blob/main/src/assets/img/insightslist.gif" alt="Grid" width="600px" />
   <br>
 </h4>
-<h3>Summary | PC Recommender based on the insight of a PC</h3>
+<h3>Summary | Summary business subject (eg. PC) </h3>
 <h4 align="center">
   <img src="https://github.com/nikhilrstg18/insights/blob/main/src/assets/img/insightsdetail.gif" alt="Detail" width="600px" />
   <br>

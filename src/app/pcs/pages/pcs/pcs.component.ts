@@ -29,6 +29,13 @@ export class PcsComponent implements OnInit {
 
 	handleUpdate() {
 		const state = { page: { from: -1, to: -1, current: -1, size: 10 } }
+		const filtersToApply = Object.entries(this.pcsGridComponent.filters)
+			.map(item => !!item[1].value && item)
+			.filter(f => f) as [string, FilterContext][]
+
+		filtersToApply.forEach((f: [string, FilterContext]) => {
+			this.setFilters([f[0]], false, f[1].value)
+		})
 		this.pcsGridComponent.refresh(state)
 	}
 
@@ -40,40 +47,42 @@ export class PcsComponent implements OnInit {
 		this.loading = loading
 	}
 
-	setFilters(filterNames: string[]) {
+	setFilters(
+		filterNames: string[],
+		isDefault: boolean = true,
+		threshold: number = 0
+	) {
 		for (const name of filterNames) {
-			const value = this.queryParams[Object.keys(this.queryParams)[0]]
+			const value = isDefault
+				? this.queryParams[Object.keys(this.queryParams)[0]]
+				: threshold
 			switch (name) {
 				case MetricEnum.OS_FAILURES:
-					this.filters.osFailures = new FilterContext(value, !!value, '>=')
+					this.filters.osFailures = new FilterContext(value, '>=')
 					break
 				case MetricEnum.APP_FAILURES:
-					this.filters.appFailures = new FilterContext(value, !!value, '>=')
+					this.filters.appFailures = new FilterContext(value, '>=')
 					break
 				case MetricEnum.AGE:
-					this.filters.age = new FilterContext(value, !!value, '>=')
+					this.filters.age = new FilterContext(value, '>=')
 					break
 				case MetricEnum.CPU_UTIL:
-					this.filters.cpuUtil = new FilterContext(value, !!value, '>=')
+					this.filters.cpuUtil = new FilterContext(value, '==')
 					break
 				case MetricEnum.RAM_UTIL:
-					this.filters.ramUtil = new FilterContext(value, !!value, '>=')
+					this.filters.ramUtil = new FilterContext(value, '>=')
 					break
 				case MetricEnum.RAM:
-					this.filters.ram = new FilterContext(value, !!value, '<=')
+					this.filters.ram = new FilterContext(value, '<=')
 					break
 				case MetricEnum.STORAGE_REMAINING:
-					this.filters.storageRemaining = new FilterContext(
-						value,
-						!!value,
-						'<='
-					)
+					this.filters.storageRemaining = new FilterContext(value, '<=')
 					break
 				case MetricEnum.BATTERY_HEALTH:
-					this.filters.batteryHealth = new FilterContext(value, !!value, '<=')
+					this.filters.batteryHealth = new FilterContext(value, '<=')
 					break
 				case MetricEnum.BATTERY_RUNTIME:
-					this.filters.batteryRuntime = new FilterContext(value, !!value, '<=')
+					this.filters.batteryRuntime = new FilterContext(value, '<=')
 					break
 			}
 		}

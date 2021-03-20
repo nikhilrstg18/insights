@@ -450,51 +450,51 @@ export class InsightsService {
 		switch (name) {
 			case MetricNameEnum.OS_FAILURES:
 				return {
-					background: `rgba(0, 114, 163,${value / 20} )`,
-					color: 1 - value / 20 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
+					background: `rgba(97,183,21,${value / 20} )`,
+					color: `white`, // for light theme => 1 - value / 20 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
 				}
 			case MetricNameEnum.APP_FAILURES:
 				return {
-					background: `rgba(0, 114, 163,${value / 30} )`,
-					color: 1 - value / 30 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
+					background: `rgba(97,183,21,${value / 30} )`,
+					color: `white`, // for light theme => 1 - value / 30 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
 				}
 			case MetricNameEnum.AGE:
 				return {
-					background: `rgba(0, 114, 163,${value / 48} )`,
-					color: 1 - value / 48 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
+					background: `rgba(97,183,21,${value / 48} )`,
+					color: `white`, // for light theme => 1 - value / 48 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
 				}
 			case MetricNameEnum.CPU_UTIL:
 				return {
-					background: `rgba(0, 114, 163,${value / 3} )`,
-					color: 1 - value / 3 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
+					background: `rgba(97,183,21,${value / 3} )`,
+					color: `white`, // for light theme => 1 - value / 3 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
 				}
 			case MetricNameEnum.RAM_UTIL:
 				return {
-					background: `rgba(0, 114, 163,${value} )`,
-					color: 1 - value > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
+					background: `rgba(97,183,21,${value} )`,
+					color: `white`, // for light theme => 1 - value > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
 				}
 			case MetricNameEnum.STORAGE_REMAINING:
 			case MetricNameEnum.BATTERY_HEALTH:
 			case MetricNameEnum.CSAT:
 				return {
-					background: `rgba(0, 114, 163,${1 - value} )`,
-					color: value > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
+					background: `rgba(97,183,21,${1 - value} )`,
+					color: `white`, // for light theme => value > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
 				}
 			case MetricNameEnum.RAM:
 				return {
-					background: `rgba(0, 114, 163,${1 - value / 64} )`,
-					color: value / 64 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
+					background: `rgba(97,183,21,${1 - value / 64} )`,
+					color: `white`, // for light theme => value / 64 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
 				}
 			case MetricNameEnum.BATTERY_RUNTIME:
 				return {
-					background: `rgba(0, 114, 163,${1 - value / 12} )`,
-					color: value / 12 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
+					background: `rgba(97,183,21,${1 - value / 12} )`,
+					color: `white`, // for light theme => value / 12 > 0.5 ? `rgba(51, 51, 51,1)` : `white`,
 				}
 		}
 
 		return {
-			background: `rgba(0, 114, 163,0} )`,
-			color: `rgba(51, 51, 51,1} )`,
+			background: `rgba(97,183,21,0} )`,
+			color: `white`, // for light theme => `rgba(51, 51, 51,1} )`,
 		}
 	}
 
@@ -561,7 +561,7 @@ export class InsightsService {
 					MetricEnum.STORAGE_REMAINING,
 					MetricNameEnum.STORAGE_REMAINING,
 					'hard-disk',
-					'PCs with <= {0}% storage space available',
+					'PCs with <= {0}% storage available',
 					30,
 					dashboard.storageRemaining.count,
 					dashboard.storageRemaining.avg
@@ -570,7 +570,7 @@ export class InsightsService {
 					MetricEnum.BATTERY_HEALTH,
 					MetricNameEnum.BATTERY_HEALTH,
 					'battery',
-					'PCs with <= {0}% battery life',
+					'PCs with <= {0}% battery health',
 					30,
 					dashboard.batteryHealth.count,
 					dashboard.batteryHealth.avg
@@ -579,7 +579,7 @@ export class InsightsService {
 					MetricEnum.BATTERY_RUNTIME,
 					MetricNameEnum.BATTERY_RUNTIME,
 					'bolt',
-					'PCs with <= {0}hr battery runtime',
+					'PCs with <= {0}hr battery life',
 					2,
 					dashboard.batteryHealth.count,
 					dashboard.batteryHealth.avg

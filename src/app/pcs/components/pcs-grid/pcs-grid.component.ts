@@ -58,7 +58,6 @@ export class PcsGridComponent implements OnInit {
 				state.page.to = 9
 			}
 		}
-
 		this.inventory.reset().subscribe((endpoints: Endpoint[]) => {
 			this.inventory.all = endpoints
 			this.inventory.size = this.inventory.all.length

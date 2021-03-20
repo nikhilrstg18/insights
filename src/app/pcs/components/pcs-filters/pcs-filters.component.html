@@ -7,6 +7,33 @@
 			>
 			<clr-accordion-content *clrIfExpanded>
 				<div class="clr-row f-content">
+					<div class="clr-col-lg-2 clr-col-md-2 clr-col-sm-12 summary">
+						<div class="fs-container">
+							<div class="fs-matching">
+								<h1 *ngIf="!loading; else loader">{{ total }}</h1>
+								<ng-template #loader>
+									<clr-spinner [clrInverse]="true">Loading ...</clr-spinner>
+								</ng-template>
+								<h5 class="text">matching PCs</h5>
+							</div>
+							<div class="fs-actions">
+								<div class="fs-apply">
+									<button
+										type="button"
+										class="btn btn-success"
+										(click)="handleUpdate()"
+									>
+										Update
+									</button>
+								</div>
+								<div class="fs-clear" hidden>
+									<button type="button" class="btn btn-outline" disabled>
+										Clear
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div class="clr-col-lg-10 clr-col-md-10 clr-col-sm-12 cards">
 						<div class="clr-row" iMatchHeight="fc-description">
 							<div
@@ -20,33 +47,6 @@
 									(filterUpdated)="handleUpdatedFilter($event)"
 								>
 								</i-filter-card>
-							</div>
-						</div>
-					</div>
-					<div class="clr-col-lg-2 clr-col-md-2 clr-col-sm-12 summary">
-						<div class="fs-container">
-							<div class="fs-matching">
-								<h1 *ngIf="!loading; else loader">{{ total }}</h1>
-								<ng-template #loader>
-									<clr-spinner>Loading ...</clr-spinner>
-								</ng-template>
-								<h5 class="text">matching PCs</h5>
-							</div>
-							<div class="fs-actions">
-								<div class="fs-apply">
-									<button
-										type="button"
-										class="btn btn-primary"
-										(click)="handleUpdate()"
-									>
-										Update
-									</button>
-								</div>
-								<div class="fs-clear">
-									<button type="button" class="btn btn-outline" disabled>
-										Clear
-									</button>
-								</div>
 							</div>
 						</div>
 					</div>
